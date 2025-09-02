@@ -1,0 +1,787 @@
+<?php
+// Gallery Page - PT Surya Abadi Raya
+// You can add PHP logic here if needed in the future
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - PT Surya Abadi Raya</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.theme.default.min.css" />
+    
+    <style>
+        /* Custom Navbar Styling - Simple Active State */
+        .custom-navbar {
+            background: linear-gradient(to right, #fdfdfd 0%, #B22222 50%, #8B0000 100%) !important;
+            box-shadow: 0 2px 10px rgba(139, 0, 0, 0.3);
+        }
+
+        .custom-navbar .navbar-brand,
+        .custom-navbar .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+
+        .custom-navbar .nav-link:hover {
+            color: #FFE4E1 !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-navbar .nav-link.active {
+            color: #FFFFFF !important;
+            font-weight: 700 !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+        }
+            
+        /* Custom Footer Styling */
+        .custom-footer {
+            background: linear-gradient(135deg, #252c50  10%, #3c3e58ff 50%, #292b37ff 100%) !important;
+            color: white;
+        }
+        
+        .custom-footer h5 {
+            color: #E3F2FD;
+            font-weight: 600;
+        }
+        
+        .custom-footer a {
+            color: #ffffff !important;
+            transition: color 0.3s ease;
+        }
+        
+        .custom-footer a:hover {
+            color: #ffffff !important;
+        }
+        
+        .custom-footer hr {
+            border-color: #3949ab;
+        }
+
+                
+        /* Page Transition Effects */
+        .fade-page {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .fade-page.show {
+            opacity: 1;
+        }
+
+        /* Gallery Container - Simple Masonry */
+        .gallery-container {
+            column-count: 4;
+            column-gap: 20px;
+            padding: 20px 0;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Gallery Card */
+        .gallery-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-card:hover {
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.2);
+        }
+
+        /* Images */
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        /* Overlay */
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(139, 0, 0, 0.8), rgba(220, 20, 60, 0.6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-card:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Filter Pills */
+        #galleryFilter .nav-link {
+            color: #8B0000;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin: 5px;
+            border-radius: 0;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        #galleryFilter .nav-link:hover {
+            background: rgba(139, 0, 0, 0.05);
+            transform: translateY(-2px);
+            border-bottom-color: rgba(139, 0, 0, 0.3);
+        }
+
+        #galleryFilter .nav-link.active {
+            background: transparent;
+            color: #8B0000;
+            border-bottom-color: #8B0000;
+            font-weight: 600;
+        }
+
+        /* Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .image-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content-img {
+            max-width: 70%;
+            max-height: 70%;
+            position: relative;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: #8B0000;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background: #B22222;
+        }
+
+        /* Hidden class for filtering */
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .gallery-container {
+                column-count: 3;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-container {
+                column-count: 2;
+                column-gap: 15px;
+            }
+            
+            .gallery-item {
+                margin-bottom: 15px;
+            }
+
+            #galleryFilter .nav-link {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-container {
+                column-count: 1;
+            }
+
+            #galleryFilter .nav-link {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+                margin: 3px;
+            }
+        }
+    </style>
+    </style>
+</head>
+<body class="fade-page">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.php"><img src="assets/images/logo/logo SAR.png" alt="" srcset=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.php">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produk.php">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="gallery.php">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ====== GALERI HEADER ====== -->
+    <section class="gallery-header position-relative">
+        <div class="container">
+            <div class="hero-box d-flex align-items-center justify-content-between flex-wrap gap-3">
+                <div class="hero-text">
+                    <h1 class="hero-title mb-1 slide-in-left">Galeri Visual</h1>
+                    <p class="hero-sub mb-0 slide-in-up">Telusuri hasil karya dan proses produksi kami yang terkurasi.</p>
+                </div>
+                <a href="index.php#contact" class="btn btn-cta fade-in-down">
+                    <i class="bi bi-chat-dots me-2"></i>Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Filter - Enhanced Version -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="nav nav-pills justify-content-center mb-5" id="galleryFilter">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" data-filter="all">
+                                <i class="bi bi-grid-fill me-2"></i>Semua Kategori
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter="products">
+                                <i class="bi bi-bag-check me-2"></i>Produk Unggulan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter="services">
+                                <i class="bi bi-tools me-2"></i>Layanan & Fasilitas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter="training">
+                                <i class="bi bi-mortarboard-fill me-2"></i>Pelatihan Kerja
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter="production">
+                                <i class="bi bi-person-lines-fill me-2"></i> Proses Produksi
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery - Enhanced Version -->
+    <section class="pb-5">
+        <div class="container">
+            <div class="gallery-container">
+
+                <!-- Products -->
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/sunstar.png', 'Seragam Sunstar - Kualitas tinggi untuk kerja tanpa hambatan')">
+                        <img src="assets/images/galeri/sunstar.png" class="gallery-img" alt="Seragam Perusahaan">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/trix.png', 'Seragam Trix - Mendukung produktivitas dengan gaya profesional')">
+                        <img src="assets/images/galeri/trix.png" class="gallery-img" alt="Seragam Kerja Formal">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/apron.png', 'Apron Profesional - Kualitas prima untuk tampilan rapi dan profesional')">
+                        <img src="assets/images/galeri/apron.png" class="gallery-img" alt="Apron Berkualitas">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/advik.png', 'Seragam Advik - Busana tahan lama untuk lingkungan industri')">
+                        <img src="assets/images/galeri/advik.png" class="gallery-img" alt="Seragam Industri">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/anti statik.png', 'Seragam Anti Statik - Keamanan kerja tanpa gangguan muatan statis')">
+                        <img src="assets/images/galeri/anti statik.png" class="gallery-img" alt="Seragam Anti Statik">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/tri.png', 'Seragam Magang - Nyaman dipakai untuk aktivitas pembelajaran')">
+                        <img src="assets/images/galeri/tri.png" class="gallery-img" alt="Seragam Pelatihan">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/set training.png', 'Set Seragam Training Praktis Serbaguna Berkualitas')">
+                        <img src="assets/images/galeri/set training.png" class="gallery-img" alt="Seragam Pelatihan">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/set nidec.png', 'Set Seragam Kerja - Nyaman dipakai untuk aktivitas pembelajaran')">
+                        <img src="assets/images/galeri/set nidec.png" class="gallery-img" alt="Seragam Pelatihan">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/namicoh.png', 'Seragam Namicoh - Desain profesional dengan kualitas terjamin')">
+                        <img src="assets/images/galeri/namicoh.png" class="gallery-img" alt="Seragam Perusahaan">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/polo.png', 'Polo Shirt Kerja - Desain minimalis untuk tampilan kasual profesional')">
+                        <img src="assets/images/galeri/polo.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/polo 2.png', 'Polo Shirt Kerja - Desain minimalis untuk tampilan kasual profesional')">
+                        <img src="assets/images/galeri/polo 2.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/kaos.png', 'Kaos Family Gathering Nyaman Dipakai')">
+                        <img src="assets/images/galeri/kaos.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/rompi 3.png', 'Rompi - Rompi Kerja Lapangan Praktis')">
+                        <img src="assets/images/galeri/rompi 3.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/rompi 2.png', 'Rompi - Rompi Kerja Lapangan Praktis')">
+                        <img src="assets/images/galeri/rompi 2.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/rompi 1.png', 'Rompi - Rompi Kerja Lapangan Praktis')">
+                        <img src="assets/images/galeri/rompi 1.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/unggul semesta.png', 'Seragam Kerja Lengan Panjang Modern')">
+                        <img src="assets/images/galeri/unggul semesta.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/set yasufuku.png', 'Set Seragam Kerja Lengkap Profesional')">
+                        <img src="assets/images/galeri/set yasufuku.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/sekisui.png', 'Seragam Kerja Lengan Panjang Modern')">
+                        <img src="assets/images/galeri/sekisui.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/TOPI5.png', 'Pilihan Topi Kerja untuk Kegiatan Anda')">
+                        <img src="assets/images/galeri/TOPI5.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/TOPI2.png', 'Topi kerja fungsional dengan bahan lembut dan tidak panas')">
+                        <img src="assets/images/galeri/TOPI2.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="products">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/TOPI4.png', 'Perlindungan kepala dengan topi kerja yang nyaman dan awet')">
+                        <img src="assets/images/galeri/TOPI4.png" class="gallery-img" alt="Seragam Polo">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+
+                <!-- Services -->
+                <div class="gallery-item" data-category="services">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/clean3.jpeg', 'Layanan Cleaning Service - Standar kebersihan profesional')">
+                        <img src="assets/images/galeri/clean3.jpeg" class="gallery-img" alt="Layanan Kebersihan">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="services">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/clean.jpg', 'Lingkungan Kerja Bersih - Menciptakan suasana kerja yang sehat')">
+                        <img src="assets/images/galeri/clean.jpg" class="gallery-img" alt="Area Kerja Bersih">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="services">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/drive3.jpeg', 'Driver Profesional - Layanan transportasi dengan standar keselamatan tinggi')">
+                        <img src="assets/images/galeri/drive3.jpeg" class="gallery-img" alt="Driver Profesional">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="services">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/satpam.jpeg', 'Security Service - Menjamin keamanan lingkungan kerja 24/7')">
+                        <img src="assets/images/galeri/satpam.jpeg" class="gallery-img" alt="Petugas Keamanan">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="services">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/truk.jpeg', 'Armada Truk - Kendaraan operasional terawat untuk distribusi')">
+                        <img src="assets/images/galeri/truk.jpeg" class="gallery-img" alt="Truk Operasional">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="services">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/car.jpeg', 'Mobil Operasional - Kendaraan standar untuk kebutuhan mobilitas')">
+                        <img src="assets/images/galeri/car.jpeg" class="gallery-img" alt="Mobil Operasional">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="services">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/elf.jpeg', 'Elf Transportasi - Kendaraan berkapasitas besar untuk rombongan')">
+                        <img src="assets/images/galeri/elf.jpeg" class="gallery-img" alt="Mobil Operasional">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <!-- Training -->
+                <div class="gallery-item" data-category="training">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/lpk.jpeg', 'Lembaga Pelatihan Kerja - Program pelatihan menjahit profesional')">
+                        <img src="assets/images/galeri/lpk.jpeg" class="gallery-img" alt="Pelatihan Menjahit">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="training">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/lpk2.jpeg', 'Workshop Pelatihan - Pembelajaran praktis dengan instruktur berpengalaman')">
+                        <img src="assets/images/galeri/lpk2.jpeg" class="gallery-img" alt="Workshop Pelatihan">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <!-- Production -->
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery10.jpg', 'Tim Produksi Berpengalaman - Profesional dengan dedikasi tinggi')">
+                        <img src="assets/images/galeri/gallery10.jpg" class="gallery-img" alt="Tim Garment Berpengalaman">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery18.jpg', 'Tim Ahli Garment - Spesialis produksi dengan standar kualitas tinggi')">
+                        <img src="assets/images/galeri/gallery18.jpg" class="gallery-img" alt="Tim Ahli Garment">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery7.jpg', 'Proses Produksi Profesional - Transformasi desain menjadi produk berkualitas')">
+                        <img src="assets/images/galeri/gallery7.jpg" class="gallery-img" alt="Tim Garment Profesional">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery2.jpg', 'Tim Solid Production - Sinergi sempurna untuk hasil optimal')">
+                        <img src="assets/images/galeri/gallery2.jpg" class="gallery-img" alt="Tim Solid Garment">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery22.jpg', 'Quality Control - Kontrol kualitas dan ketelitian setiap detail')">
+                        <img src="assets/images/galeri/gallery22.jpg" class="gallery-img" alt="Jahitan Berkualitas">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery21.jpg', 'Craftsmanship Excellence - Keahlian tangan profesional')">
+                        <img src="assets/images/galeri/gallery21.jpg" class="gallery-img" alt="Tim Terampil Garment">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery19.jpg', 'Production Team Excellence - Komitmen pada kualitas produk')">
+                        <img src="assets/images/galeri/gallery19.jpg" class="gallery-img" alt="Tim Garment Dedikasi Tinggi">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/potong1.jpeg', 'Cutting Process - Pemotongan kain dengan presisi teknologi modern')">
+                        <img src="assets/images/galeri/potong1.jpeg" class="gallery-img" alt="Pemotongan Kain Presisi">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/potong2.jpeg', 'Precision Cutting - Standar pemotongan untuk konsistensi kualitas')">
+                        <img src="assets/images/galeri/potong2.jpeg" class="gallery-img" alt="Pemotongan Kain Teliti">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/mesin4.jpg', 'Modern Machinery - Teknologi terdepan untuk hasil maksimal')">
+                        <img src="assets/images/galeri/mesin4.jpg" class="gallery-img" alt="Mesin Jahit Modern">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/mesin.jpg', 'Industrial Equipment - Mesin berkualitas tinggi untuk produksi optimal')">
+                        <img src="assets/images/galeri/mesin.jpg" class="gallery-img" alt="Mesin Jahit Berkualitas">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/mesin2.jpg', 'Printing Technology - Teknologi cetak dengan hasil warna tajam')">
+                        <img src="assets/images/galeri/mesin2.jpg" class="gallery-img" alt="Mesin Jahit Presisi">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="production">
+                    <div class="gallery-card" onclick="openModal('assets/images/galeri/potrait6.jpg', 'Finishing Process - Proses finishing untuk hasil sempurna')">
+                        <img src="assets/images/galeri/potrait6.jpg" class="gallery-img" alt="Penyetrikaan Rapi">
+                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeModal()">
+        <div class="modal-content-img" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <img id="modalImage" class="modal-img" src="" alt="">
+            <div id="modalTitle" style="color: white; text-align: center; margin-top: 10px; font-size: 1.1rem;"></div>
+        </div>
+    </div>
+
+<!-- FOOTER -->
+<footer class="custom-footer py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>PT Surya Abadi Raya</h5>
+        <p>Your trusted partner for quality garments and professional services.</p>
+        <p>Member of <a href="https://mardizu.co.id/" target="_blank" style="color:#fff; text-decoration:underline;">Mardizu</a></p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="index.php">Beranda</a></li>
+          <li><a href="about.php">Tentang Kami</a></li>
+          <li><a href="produk.php">Produk</a></li>
+          <li><a href="gallery.php">Galeri</a></li>
+          <li><a href="index.php#contact">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Contact Us</h5>
+        <address>
+          <p><i class="bi bi-geo-alt"></i> Ruko Central Business District (CBD) Blok C12 - C15 Jl. Niaga Raya Kawasan Industri Jababeka II Cikarang – Bekasi 17550</p>
+          <p><i class="bi bi-envelope"></i> surya.abadiraya@gmail.com</p>
+        </address>
+      </div>
+    </div>
+    <hr />
+    <div class="text-center"><p>&copy; 2025 PT Surya Abadi Raya. All Rights Reserved.</p></div>
+  </div>
+</footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Simple Gallery Filter
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterLinks = document.querySelectorAll('#galleryFilter a');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            filterLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Update active filter
+                    filterLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    // Filter items
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        });
+
+        // Modal Functions
+        function openModal(imageSrc, title) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            modal.classList.add('show');
+            modalImg.src = imageSrc;
+            modalTitle.textContent = title;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Smooth page transition script
+        document.addEventListener("DOMContentLoaded", function () {
+            const page = document.querySelector("body");
+            page.classList.add("fade-page");
+
+            // Show page with fade-in
+            setTimeout(() => {
+                page.classList.add("show");
+            }, 50);
+
+            // Fade-out when clicking internal links
+            const links = document.querySelectorAll("a[href]");
+
+            links.forEach(link => {
+                if (link.hostname === window.location.hostname && !link.href.includes("#")) {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const target = this.href;
+                        page.classList.remove("show");
+                        setTimeout(() => {
+                            window.location.href = target;
+                        }, 300);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

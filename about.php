@@ -1,0 +1,726 @@
+<?php
+// You can add PHP variables or logic here if needed
+$page_title = "About Us - PT Surya Abadi Raya";
+$company_name = "PT Surya Abadi Raya";
+$current_year = date('Y');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $page_title; ?></title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.theme.default.min.css" />
+    
+    <style>
+        /* Reset body dan html untuk memastikan tidak ada margin/padding */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Custom Navbar Styling - PERBAIKAN NAVBAR FIXED */
+        .custom-navbar {
+            background: linear-gradient(to right, #fdfdfd 0%, #B22222 50%, #8B0000 100%) !important;
+            box-shadow: 0 2px 10px rgba(139, 0, 0, 0.3);
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1030 !important;
+            width: 100% !important;
+        }
+
+        /* Kompensasi untuk navbar fixed */
+        body.has-fixed-navbar {
+            padding-top: 76px;
+        }
+
+        .custom-navbar .navbar-brand,
+        .custom-navbar .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+
+        .custom-navbar .nav-link:hover {
+            color: #FFE4E1 !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-navbar .nav-link.active {
+            color: #FFFFFF !important;
+            font-weight: 700 !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+        }
+        
+        /* Custom Footer Styling - SIMPLE SOLUTION */
+        .custom-footer {
+            background: linear-gradient(135deg, #252c50 10%, #3c3e58ff 50%, #292b37ff 100%) !important;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-wrapper {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            padding: 3rem 0;
+        }
+        
+        .custom-footer h5 {
+            color: #E3F2FD;
+            font-weight: 600;
+        }
+        
+        .custom-footer a {
+            color: #ffffff !important;
+            transition: color 0.3s ease;
+        }
+        
+        .custom-footer a:hover {
+            color: #ffffff !important;
+        }
+        
+        .custom-footer hr {
+            border-color: #3949ab;
+        }
+        
+        /* Additional CSS for better styling */
+        .text-justify {
+            text-align: justify;
+        }
+
+        .leading-relaxed {
+            line-height: 1.6;
+        }
+
+        .value-item {
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .icon-circle {
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .icon-circle {
+            transform: scale(1.1);
+        }
+
+        .section-heading {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Client Table Styling */
+        .client-table-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .client-table-section .table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .client-table-section .table thead th {
+            background-color: #8B0000;
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 1rem;
+        }
+
+        .client-table-section .table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        .client-table-section .table tbody tr:hover {
+            background-color: #f1f3f5;
+        }
+
+        .client-table-section .table tbody td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-color: #e9ecef;
+        }
+
+        .client-table-section .table tbody tr:first-child td {
+            border-top: none;
+        }
+
+        @media (max-width: 768px) {
+            .icon-circle {
+                width: 60px !important;
+                height: 60px !important;
+            }
+            
+            .icon-circle i {
+                font-size: 1.5rem !important;
+            }
+            
+            .client-table-section .table {
+                font-size: 0.9rem;
+            }
+            
+            .client-table-section .table thead th,
+            .client-table-section .table tbody td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        #carRentalCarousel .carousel-inner {
+            height: 450px; /* sesuaikan dengan kebutuhan */
+        }
+
+        #carRentalCarousel .carousel-item img {
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    </style>
+</head>
+<body class="fade-page has-fixed-navbar">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.php"><img src="assets/images/logo/logo SAR.png" alt="" srcset=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.php">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="produk.php">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.php">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!-- Company Overview -->
+<section class="company-overview py-5">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- Image Column -->
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="company-image-wrapper position-relative reveal from-left">
+          <img src="assets/images/banner/1.jpeg" alt="<?php echo $company_name; ?>" class="img-fluid rounded-3 shadow-lg">
+        </div>
+      </div>
+
+      <!-- Content Column -->
+      <div class="col-lg-6">
+        <div class="ps-lg-4 reveal from-right delay-1">
+          <!-- Section Heading -->
+          <div class="section-header mb-4">
+            <h2 class="section-title" style="color: #8B0000;">
+              <span class="title-text">Tentang Perusahaan</span>
+              <span class="title-line"></span>
+            </h2>
+          </div>
+
+          <!-- Company Description -->
+          <div class="company-description">
+            <div class="company-text-block mb-4 reveal from-up delay-2">
+              <div class="text-icon mb-2">
+                <i class="bi bi-building" style="color: #8B0000;"></i>
+              </div>
+              <p class="mb-0"><?php echo $company_name; ?> didirikan pada tahun 2017 dengan visi menjadi penyedia garmen berkualitas dan layanan profesional terkemuka di Indonesia. Selama bertahun-tahun, kami telah memperluas operasi kami hingga mencakup pelatihan kerja dan layanan alih daya, tetapi fokus utama kami tetap pada produksi garmen berkualitas tinggi untuk berbagai industri.</p>
+            </div>
+
+            <div class="company-text-block reveal from-up delay-3">
+              <div class="text-icon mb-2">
+                <i class="bi bi-people-fill" style="color: #8B0000;"></i>
+              </div>
+              <p class="mb-0">Dengan fasilitas canggih dan tim profesional yang terampil, kami berkomitmen untuk memberikan yang terbaik dalam segala hal yang kami lakukan. Dedikasi kami terhadap kualitas, inovasi, dan kepuasan pelanggan telah menjadikan kami mitra tepercaya bagi berbagai bisnis di seluruh Indonesia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Company Values -->
+    <div class="company-values mt-4">
+      <h4 class="values-title mb-4" style="color: #8B0000;">Prinsip Perusahaan Kami</h4>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="value-card h-100 p-3 p-sm-4 bg-light rounded-3 border-start border-4 border-danger reveal from-up delay-1" style="background-color: #f8f9fa;">
+            <div class="d-flex align-items-start">
+              <div class="value-icon me-3">
+                <i class="bi bi-award fs-3" style="color: #8B0000;"></i>
+              </div>
+              <div>
+                <h5 class="value-heading mb-2" style="color: #8B0000;">Quality</h5>
+                <p class="value-text mb-0 text-secondary">Kualitas tinggi dalam setiap jahitan, mencerminkan profesionalisme perusahaan Anda.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="value-card h-100 p-3 p-sm-4 bg-light rounded-3 border-start border-4 border-danger reveal from-up delay-2" style="background-color: #f8f9fa;">
+            <div class="d-flex align-items-start">
+              <div class="value-icon me-3">
+                <i class="bi bi-people fs-3" style="color: #8B0000;"></i>
+              </div>
+              <div>
+                <h5 class="value-heading mb-2" style="color: #8B0000;">Teamwork</h5>
+                <p class="value-text mb-0 text-secondary">Kerja sama solid antara tim internal dan mitra, membentuk sinergi yang mendukung setiap proses produksi dengan maksimal.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="value-card h-100 p-3 p-sm-4 bg-light rounded-3 border-start border-4 border-danger reveal from-up delay-3" style="background-color: #f8f9fa;">
+            <div class="d-flex align-items-start">
+              <div class="value-icon me-3">
+                <i class="bi bi-lightbulb fs-3" style="color: #8B0000;"></i>
+              </div>
+              <div>
+                <h5 class="value-heading mb-2" style="color: #8B0000;">Innovation</h5>
+                <p class="value-text mb-0 text-secondary">Kami terus berinovasi dengan menghadirkan solusi dan desain kreatif yang menjawab kebutuhan dinamis dunia kerja.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="value-card h-100 p-3 p-sm-4 bg-light rounded-3 border-start border-4 border-danger reveal from-up delay-4" style="background-color: #f8f9fa;">
+            <div class="d-flex align-items-start">
+              <div class="value-icon me-3">
+                <i class="bi bi-hand-thumbs-up fs-3" style="color: #8B0000;"></i>
+              </div>
+              <div>
+                <h5 class="value-heading mb-2" style="color: #8B0000;">Integrity</h5>
+                <p class="value-text mb-0 text-secondary">Kami percaya bahwa kejujuran dan komitmen profesional adalah kunci utama membangun kemitraan jangka panjang.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /row -->
+    </div><!-- /company-values -->
+  </div>
+</section>
+
+
+<!-- Vision and Mission -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-heading" style="color: #8B0000;">Vision & Mission</h2>
+            <p class="text-muted">Fondasi yang mengarahkan setiap langkah kami</p>
+        </div>
+        <div class="row">
+            <!-- Vision Section (moved to top) -->
+            <div class="col-md-6 mb-4">
+                <div class="card vision-card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <div class="icon-circle mx-auto mb-3" style="width: 80px; height: 80px; background-color: #8B0000; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-eye text-white fs-1"></i>
+                            </div>
+                            <h3 class="card-title" style="color: #8B0000;">Our Vision</h3>
+                        </div>
+                        <p class="card-text text-justify leading-relaxed">Menjadi penyedia terdepan dan paling tepercaya dalam bidang pakaian berkualitas tinggi dan layanan profesional di Indonesia. Kami berupaya menetapkan standar baru dalam industri melalui inovasi berkelanjutan, keunggulan operasional, dan komitmen yang kuat terhadap kepuasan pelanggan.</p>
+                        <p class="card-text text-justify">Lebih dari sekadar menghadirkan produk unggulan, kami bertujuan memberikan dampak positif yang berkelanjutan—memberdayakan karyawan, memperkuat kemitraan, serta berkontribusi pada pertumbuhan dan kesejahteraan komunitas yang kami layani.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Mission Section (moved to bottom) -->
+            <div class="col-md-6 mb-4">
+                <div class="card mission-card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <div class="icon-circle mx-auto mb-3" style="width: 80px; height: 80px; background-color: #8B0000; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-bullseye text-white fs-1"></i>
+                            </div>
+                            <h3 class="card-title" style="color: #8B0000;">Our Mission</h3>
+                        </div>
+                        <p class="card-text text-justify leading-relaxed">Memberikan pakaian berkualitas tinggi yang fungsional dan dirancang secara estetis untuk memenuhi beragam kebutuhan klien kami di berbagai industri. Kami berkomitmen untuk menghadirkan layanan terbaik melalui ketelitian dalam pengerjaan, kemitraan yang andal, dan solusi yang berpusat pada pelanggan.</p>
+                        <p class="card-text text-justify">Dengan menjunjung tinggi integritas, mendorong inovasi, dan terus berinvestasi pada pengembangan sumber daya manusia, kami bertekad menciptakan nilai tambah tidak hanya bagi klien, tetapi juga bagi karyawan, mitra bisnis, dan masyarakat luas. Misi kami bukan sekadar menjadi penyedia seragam—melainkan mitra tepercaya dalam membantu organisasi mengekspresikan identitas dan profesionalismenya di setiap jahitan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+      
+      <!-- Optional: Add scroll indicator -->
+      <div class="text-center mt-3">
+        <small class="text-muted">
+        </small>
+      </div>
+    </div>
+  </div>
+</section>
+ <!-- Business Areas -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-heading" style="color: #8B0000;">Bidang Usaha Kami</h2>
+                <p class="section-subheading">Solusi Terpadu untuk Berbagai Sektor Industri</p>
+            </div>
+
+           <!-- Produksi Garment -->
+            <div class="row align-items-center business-area mb-5">
+                <div class="col-lg-6 order-lg-1 mb-4 mb-lg-0">
+                    <div class="business-area-content pe-lg-4">
+                        <h3>Produksi Garment</h3>
+                        <p class="lead">Fokus utama kami adalah menciptakan pakaian berkualitas tinggi untuk berbagai industri.</p>
+                        <ul>
+                            <li>Seragam Perusahaan</li>
+                            <li>Pakaian Santai</li>
+                            <li>Pakaian Kerja Khusus</li>
+                            <li>Pakaian Promosi</li>
+                            <li>Pakaian Desain Kustom</li>
+                        </ul>
+                        <p>Proses produksi kami menekankan pengendalian kualitas di setiap tahap.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-2">
+                    <div id="garmentCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="assets/images/galeri/gallery9.jpg" class="d-block w-100" alt="Garment Production">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/images/galeri/gallery1.jpg" class="d-block w-100" alt="Garment Production">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/images/galeri/gallery4.jpg" class="d-block w-100" alt="Garment Production">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#garmentCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#garmentCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outsourcing Services -->
+            <div class="row align-items-center business-area mb-5">
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                    <div class="business-area-content ps-lg-4">
+                        <h3>Layanan Outsourcing</h3>
+                        <p class="lead">Solusi penyediaan tenaga kerja profesional untuk kebutuhan bisnis Anda.</p>
+                        <ul>
+                            <li>Satpam</li>
+                            <li>Layanan Kebersihan</li>
+                            <li>Sopir</li>
+                            <li>Operator Produksi</li>
+                            <li>Staf Administrasi</li>
+                        </ul>
+                        <p>Kami menangani proses rekrutmen, pelatihan, dan manajemen untuk hasil yang optimal.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div id="outsourcingCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="assets/images/galeri/drive.jpg" class="d-block w-100" alt="Outsourcing Services">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/images/galeri/clean2.jpeg" class="d-block w-100" alt="Outsourcing Services">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/images/galeri/satpam.jpeg" class="d-block w-100" alt="Outsourcing Services">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#outsourcingCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#outsourcingCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Training Institute -->
+            <div class="row align-items-center business-area mb-5">
+                <div class="col-lg-6 order-lg-1 mb-4 mb-lg-0">
+                    <div class="business-area-content pe-lg-4">
+                        <h3>Lembaga Pelatihan Kerja</h3>
+                        <p class="lead">Program pelatihan komprehensif untuk mengembangkan keterampilan dan jalur karier.</p>
+                        <ul>
+                            <li>Teknik Produksi Garmen</li>
+                            <li>Kontrol dan Penjaminan Kualitas</li>
+                            <li>Administrasi Bisnis</li>
+                            <li>Layanan Pelanggan Profesional</li>
+                            <li>Pengembangan Profesional</li>
+                        </ul>
+                        <p>Kurikulum kami dirancang untuk memenuhi standar industri.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-2">
+                    <div id="trainingCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="assets/images/galeri/lpk2.jpeg" class="d-block w-100" alt="Job Training">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/images/galeri/lpk.jpeg" class="d-block w-100" alt="Job Training">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#trainingCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#trainingCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+<!-- Car Rental Services -->
+            <div class="row align-items-center business-area">
+                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                    <div class="business-area-content ps-lg-4">
+                        <h3>Layanan Sewa Mobil</h3>
+                        <p class="lead">Solusi transportasi yang andal untuk keperluan bisnis maupun pribadi.</p>
+                        <ul>
+                            <li>SUV Eksekutif</li>
+                            <li>Mobil Penumpang</li>
+                            <li>Elf & HiAce</li>
+                            <li>Truck</li>
+                            <li>Paket Fleksibel Per Jam/Harian</li>
+                        </ul>
+                        <p>Kendaraan yang nyaman, bersih, dan siap digunakan untuk kenyamanan Anda.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div id="carRentalCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="assets/images/galeri/carr.png" class="d-block w-100" alt="Car Rental">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/images/galeri/trukk.png" class="d-block w-100" alt="Car Rental">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/images/galeri/elf.jpeg" class="d-block w-100" alt="Car Rental">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carRentalCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carRentalCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <!-- Client Table Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-heading" style="color:#8B0000;">Daftar Customer Kami</h2>
+      <p class="section-subheading">Beberapa perusahaan yang telah mempercayakan layanan kami</p>
+    </div>
+
+    <div class="client-table-section p-4">
+<div class="table-responsive" style="border: 1px solid #dee2e6; border-radius: 8px;">
+    <table class="table table-hover mb-0">
+      <thead style="background-color:#8B0000;color:#fff;">
+            <tr>
+              <th style="width:10%;">No</th>
+              <th style="width:45%;">Nama Perusahaan</th>
+              <th style="width:45%;">Alamat</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
+          // Format item:
+          // [nama, alamat_tampil, (opsional) url_maps / (opsional) ['lat'=>..., 'lng'=>...]]
+          $clients = [
+            // SUNSTAR: pakai link maps langsung (yang kamu kirim)
+            ['PT Sunstar Engineering Indonesia', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/GMHNCoRQSsqDZdQ8A'],
+            ['PT Heesung Electronics Jakarta', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/KK2SbkTPFp1XCyNg8'],
+            ['PT Berjaya Nawaplastic Indonesia', 'Cikarang, Bekasi' , 'https://maps.app.goo.gl/tTj9pu1HWcmXzepRA'],
+            ['PT Shinsung Automotive Indonesia', 'Cikarang, Bekasi' , 'https://maps.app.goo.gl/sZ1e1cVAznb9X5eLA'],
+            ['PT Nippo Mechatronics Indonesia', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/rVhUbKkZqv2j8eDv5'],
+            ['PT Unifoods Indonesia', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/Nv6ck6SjVLCLnDp87'],
+            ['PT Haeng Sung Raya Indonesia', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/ifdjpCEnWfULHnVv8'],
+            ['PT Kimpai Dyna Tube', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/Jiy2w1L3R4fPss9N8'],
+            ['PT Naga Sinar Terang', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/PMtAZmqtrqtAEnaK6'],
+            ['PT Neohyolim', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/s61sAQhtse9qS3DE6'],
+            
+            // Additional 10 clients to reach 20 total
+            ['PT Topline Evergreen Manufacturing', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/zRvgCwR1x9uENXE7A'],
+            ['PT GUUD Logistics Indonesia', 'Sunter,Jakarta', 'https://maps.app.goo.gl/iHrtY7zsvnrHYcxM6'],
+            ['PT Dela Cemara Indah', 'Cibitung,Bekasi', 'https://maps.app.goo.gl/rw4CHREmxWU8TdT9A'],
+            ['PT Woo In', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/vKXFr4op6qGJCtkK8'],
+            ['PT Dnt Indonesia', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/TSqinDWr8VHfws5S8'],
+            ['PT MICS Steel Indonesia', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/VnzgFrEWouxBYxbi8'],
+            ['PT Yasufuku Indonesia', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/zUMiJNKL9icqDSug9'],
+            ['LPK Horenso Indonesia', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/nWrwNNqNv13PyeAK9'],
+            ['LPK Mitra Industri', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/XzDQkhFMiwfByrDQ8'],
+            ['PT New Optics', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/4S9CvpRpeoFXgGod6']
+          ];
+
+          function buildMapsUrl($item) {
+            // 1) Kalau ada URL langsung, pakai itu
+            if (isset($item[2]) && is_string($item[2])) return $item[2];
+            // 2) Kalau ada koordinat, pakai lat,lng
+            if (isset($item[2]) && is_array($item[2]) && isset($item[2]['lat'],$item[2]['lng'])) {
+              return "https://www.google.com/maps/search/?api=1&query={$item[2]['lat']},{$item[2]['lng']}";
+            }
+            // 3) Fallback: query "Nama Perusahaan, Alamat"
+            return "https://www.google.com/maps/search/?api=1&query=" . urlencode($item[0] . ', ' . $item[1]);
+          }
+
+          $no = 1;
+          foreach ($clients as $c) {
+            $mapUrl = buildMapsUrl($c);
+            echo "<tr>";
+            echo "<td class='fw-medium'>{$no}</td>";
+            echo "<td class='fw-medium'>{$c[0]}</td>";
+            echo "<td class='fw-medium'><a href='{$mapUrl}' target='_blank' class='text-decoration-none text-dark'>{$c[1]}</a></td>";
+            echo "</tr>";
+            $no++;
+          }
+          ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+<!-- FOOTER -->
+<footer class="custom-footer py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>PT Surya Abadi Raya</h5>
+        <p>Your trusted partner for quality garments and professional services.</p>
+        <p>Member of <a href="https://mardizu.co.id/" target="_blank" style="color:#fff; text-decoration:underline;">Mardizu</a></p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="index.php">Beranda</a></li>
+          <li><a href="about.php">Tentang Kami</a></li>
+          <li><a href="produk.php">Produk</a></li>
+          <li><a href="gallery.php">Galeri</a></li>
+          <li><a href="index.php#contact">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Contact Us</h5>
+        <address>
+          <p><i class="bi bi-geo-alt"></i> Ruko Central Business District (CBD) Blok C12 - C15 Jl. Niaga Raya Kawasan Industri Jababeka II Cikarang – Bekasi 17550</p>
+          <p><i class="bi bi-envelope"></i> surya.abadiraya@gmail.com</p>
+        </address>
+      </div>
+    </div>
+    <hr />
+    <div class="text-center"><p>&copy; 2025 PT Surya Abadi Raya. All Rights Reserved.</p></div>
+  </div>
+</footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const page = document.querySelector("body");
+            page.classList.add("fade-page");
+
+            // Show page with fade-in
+            setTimeout(() => {
+                page.classList.add("show");
+            }, 50);
+
+            // Fade-out saat klik link internal
+            const links = document.querySelectorAll("a[href]");
+
+            links.forEach(link => {
+                if (link.hostname === window.location.hostname && !link.href.includes("#")) {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const target = this.href;
+                        page.classList.remove("show");
+                        setTimeout(() => {
+                            window.location.href = target;
+                        }, 300);
+                    });
+                }
+            });
+        });
+          (function(){
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: tampilkan semua jika browser lama
+      els.forEach(el => el.classList.add('visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target); // animasi sekali saja
+        }
+      });
+    }, { threshold: 0.12 });
+
+    els.forEach(el => io.observe(el));
+  })();
+    </script>
+
+</body>
+</html>

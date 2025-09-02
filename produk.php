@@ -1,0 +1,1801 @@
+<?php
+// You can add PHP variables or logic here if needed
+$page_title = "Produk - PT Surya Abadi Raya";
+$company_name = "PT Surya Abadi Raya";
+$current_year = date('Y');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $page_title; ?></title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <style>
+/* Custom Navbar Styling */
+.custom-navbar {
+    background: linear-gradient(to right, #fdfdfd 0%, #B22222 50%, #8B0000 100%) !important;
+    box-shadow: 0 2px 10px rgba(139, 0, 0, 0.3);
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+    color: white !important;
+    font-weight: 500;
+}
+
+.custom-navbar .nav-link:hover {
+    color: #FFE4E1 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.custom-navbar .nav-link.active {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Custom Footer Styling */
+.custom-footer {
+    background: linear-gradient(135deg, #252c50  10%, #3c3e58ff 50%, #292b37ff 100%) !important;
+    color: white;
+}
+
+.custom-footer h5 {
+    color: #E3F2FD;
+    font-weight: 600;
+}
+
+.custom-footer a {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+}
+
+.custom-footer a:hover {
+    color: #ffffff !important;
+}
+
+.custom-footer hr {
+    border-color: #3949ab;
+}
+
+/* Modal Fix - Mencegah background scroll */
+body.modal-open {
+    overflow: hidden !important;
+    padding-right: 0px !important;
+}
+
+.modal.show {
+    display: block !important;
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(3px);
+}
+
+/* E-commerce Modal Styling */
+.product-detail-modal .modal-dialog {
+    max-width: 1100px;
+    margin: 1.75rem auto;
+    position: relative;
+    z-index: 1060;
+}
+
+.product-detail-modal .modal-content {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* Image Gallery Styling */
+.product-image-gallery {
+    position: relative;
+}
+
+/* Main Product Image - Full View with Zoom */
+.main-product-image {
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+    background-color: #f8f9fa;
+}
+
+.main-product-image:hover {
+    transform: scale(1.02);
+}
+
+.main-product-image.zoomed {
+    cursor: zoom-out;
+    transform: scale(2);
+    transition: transform 0.3s ease;
+}
+
+.product-image-gallery {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.thumbnail-gallery {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.thumbnail-item {
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.thumbnail-item.active {
+    border-color: #8B0000;
+    box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.3);
+}
+
+.thumbnail-item:hover {
+    border-color: #8B0000;
+    transform: scale(1.05);
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    background-color: #f8f9fa;
+}
+
+/* Zoom overlay */
+.zoom-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: zoom-out;
+}
+
+.zoom-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.zoom-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.zoom-close:hover {
+    opacity: 0.7;
+}
+
+/* Product Info Styling */
+.product-info {
+    padding-left: 2rem;
+}
+
+.product-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #8B0000;
+    margin-bottom: 1.5rem;
+}
+
+.product-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.product-features {
+    margin-bottom: 2rem;
+}
+
+.feature-badge {
+    background: linear-gradient(45deg, #8B0000, #600000);
+    color: white;
+    padding: 0.4rem 0.9rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(139, 0, 0, 0.3);
+}
+
+/* Specifications Styling */
+.product-specs {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border: 1px solid #e9ecef;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #dee2e6;
+    align-items: center;
+}
+
+.spec-item:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    font-weight: 600;
+    color: #495057;
+    flex: 1;
+}
+
+.spec-value {
+    font-weight: 500;
+    color: #8B0000;
+    text-align: right;
+    flex: 1;
+}
+
+/* Hero Banner Styles */
+.hero-banner {
+    height: 60vh;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #8B0000 0%, #B22222 50%, #DC143C 100%);
+    display: flex;
+    align-items: center;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/images/galeri/mesinjahit6.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    max-width: 600px;
+    text-align: left;
+}
+
+.hero-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
+}
+
+.hero-offer {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    line-height: 1.4;
+}
+
+/* Product Circles */
+.product-circles {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.product-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 4px solid rgba(255, 255, 255, 0.9);
+}
+
+.product-circle:nth-child(2) {
+    width: 140px;
+    height: 140px;
+}
+
+.product-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* =====================================================
+   PROFESSIONAL CATALOG SECTION
+   ===================================================== */
+
+/* Professional Section Headers */
+.section-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #8B0000;
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.section-heading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #8B0000, #B22222);
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+.section-subheading {
+    font-size: 1.125rem;
+    color: #4a5568;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+}
+
+/* Professional Product Cards */
+.product-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(26, 54, 93, 0.02), rgba(49, 130, 206, 0.02));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border-color: #B22222;
+}
+
+/* Professional Product Image */
+.product-img {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    object-position: center;
+    background: linear-gradient(145deg, #f7fafc 0%, #ffffff 100%);
+    border-bottom: 1px solid #e2e8f0;
+    transition: transform 0.3s ease;
+    padding: 25px;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.03);
+}
+
+/* Card Body Professional Styling */
+.product-card .card-body {
+    padding: 1.75rem;
+    background: #ffffff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.product-card .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #8B0000;
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+    text-align: left;
+    min-height: 3rem;
+}
+
+/* Professional Materials Section */
+.materials-section {
+    margin-bottom: 1.75rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.materials-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.materials-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background: #B22222;
+    margin-right: 8px;
+    border-radius: 2px;
+}
+
+.material-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: auto;
+}
+
+/* Professional Material Tags */
+.material-tag {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    color: #2d3748;
+    border: 1px solid #cbd5e0;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.material-tag:hover {
+    background: #B22222;
+    color: white;
+    border-color: #B22222;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(178, 34, 34, 0.3);
+}
+
+/* Professional Button - Enhanced Style */
+.btn-view-details {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    color: #8B0000;
+    border: 1px solid #e2e8f0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-view-details::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #8B0000 0%, #600000 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 7px;
+    z-index: -1;
+}
+
+.btn-view-details::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: #8B0000;
+    transition: width 0.3s ease;
+}
+
+.btn-view-details:hover::before {
+    opacity: 1;
+}
+
+.btn-view-details:hover::after {
+    width: 80%;
+}
+
+.btn-view-details:hover {
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.25);
+    border-color: #8B0000;
+}
+
+/* Animation entrance */
+.animate-slide-in {
+    animation: slideInLeft 1s ease-out;
+}
+
+.animate-slide-in-delay {
+    animation: slideInLeft 1s ease-out 0.3s both;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Product Loading Animation */
+.product-grid {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.product-grid.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .product-circles {
+        right: 2%;
+        gap: 15px;
+    }
+    
+    .product-circle {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .product-circle:nth-child(2) {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .section-heading {
+        font-size: 2.25rem;
+    }
+    
+    .product-img {
+        height: 260px;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-banner {
+        height: 50vh;
+        min-height: 350px;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .product-circles {
+        position: static;
+        transform: none;
+        justify-content: center;
+        margin-top: 2rem;
+        gap: 15px;
+    }
+    
+    .product-circle {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .product-circle:nth-child(2) {
+        width: 100px;
+        height: 100px;
+    }
+
+    .product-img {
+        height: 240px;
+    }
+    
+    .section-heading {
+        font-size: 2rem;
+    }
+    
+    .product-card .card-body {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        height: 45vh;
+        min-height: 300px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-offer {
+        font-size: 1.1rem;
+    }
+    
+    .product-circle {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .product-circle:nth-child(2) {
+        width: 90px;
+        height: 90px;
+    }
+
+    .product-img {
+        height: 220px;
+    }
+
+    .product-detail-modal .modal-dialog {
+        max-width: 95%;
+        margin: 1rem;
+    }
+    
+    .product-info {
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+    
+    .product-title {
+        font-size: 1.5rem;
+    }
+    
+    .product-price {
+        font-size: 1.4rem;
+    }
+    
+    .main-product-image {
+        height: 400px;
+    }
+    
+    .section-heading {
+        font-size: 1.75rem;
+    }
+    
+    .section-subheading {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .product-card .card-title {
+        font-size: 1.125rem;
+        min-height: 2.5rem;
+    }
+    
+    .product-card .card-body {
+        padding: 1.25rem;
+    }
+    
+    .materials-section {
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn-view-details {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .product-circle {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .product-circle:nth-child(2) {
+        width: 80px;
+        height: 80px;
+    }
+
+    .product-img {
+        height: 200px;
+        padding: 20px;
+    }
+    
+    .main-product-image {
+        height: 320px;
+    }
+    
+    .section-heading {
+        font-size: 1.5rem;
+    }
+    
+    .product-card .card-body {
+        padding: 1rem;
+    }
+    
+    .material-tag {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+}
+    </style>
+</head>
+<body class="fade-page">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.php"><img src="assets/images/logo/logo SAR.png" alt="" srcset=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.php">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="produk.php">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.php">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner Section -->
+    <section class="hero-banner">
+        <!-- Background -->
+        <div class="hero-background"></div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="hero-content">
+                        <div class="hero-badge animate-slide-in">
+                            Kualitas Terpercaya
+                        </div>
+                        <h1 class="hero-title animate-slide-in">
+                            GARMENT
+                        </h1>
+                        <h2 class="hero-subtitle animate-slide-in-delay">
+                            Berkualitas Tinggi
+                        </h2>
+                        <div class="hero-offer animate-fade-in">
+                            Solusi Terpercaya untuk Kebutuhan Perusahaan Anda
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="product-circles">
+                        <div class="product-circle">
+                            <img src="assets/images/galeri/trix2.png">
+                        </div>
+                        
+                        <div class="product-circle">
+                            <img src="assets/images/galeri/polo2.png">
+                        </div>
+                        
+                        <div class="product-circle">
+                            <img src="assets/images/galeri/anti statik2.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Product Circles -->
+        <div class="d-lg-none">
+            <div class="product-circles">
+                <div class="product-circle">
+                    <img src="assets/images/galeri/trix2.png">
+                </div>
+                
+                <div class="product-circle">
+                    <img src="assets/images/galeri/polo2.png">
+                </div>
+                
+                <div class="product-circle">
+                    <img src="assets/images/galeri/anti statik2.png">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Product Detail Modal -->
+    <div class="modal fade product-detail-modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="productModalLabel">
+                <i class="bi bi-bag-check me-2"></i>Detail Produk
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-0">
+            <div class="row g-0">
+              <!-- Image Gallery Column -->
+              <div class="col-lg-6 p-4">
+                <div class="product-image-gallery">
+                  <img id="mainProductImage" src="" alt="" class="main-product-image" onclick="openZoomModal(this.src)">
+                  <div class="thumbnail-gallery" id="thumbnailGallery">
+                    <!-- Thumbnails will be populated by JavaScript -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product Info Column -->
+              <div class="col-lg-6">
+                <div class="product-info p-4">
+                  <h2 class="product-title" id="modalProductTitle"></h2>
+                  <div class="product-price" id="modalProductPrice">Hubungi untuk harga</div>
+                  <p class="product-description" id="modalProductDescription"></p>
+
+                  <!-- Features -->
+                  <div class="product-features">
+                    <h6 class="fw-bold mb-3">
+                        <i class="bi bi-check-circle me-2"></i>Keunggulan Produk
+                    </h6>
+                    <div id="modalProductFeatures">
+                      <!-- Features will be populated by JavaScript -->
+                    </div>
+                  </div>
+
+                  <!-- Product Information Only -->
+                  <div class="alert alert-info">
+                    <i class="bi bi-info-circle me-2"></i>
+                    <strong>Informasi Produk:</strong> Untuk mendapatkan informasi lebih lanjut, konsultasi, dan penawaran khusus, silakan hubungi tim sales kami melalui kontak yang tersedia.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Specifications Section -->
+            <div class="px-4 pb-4">
+              <div class="product-specs">
+                <h5 class="mb-3">
+                    <i class="bi bi-gear me-2"></i>Spesifikasi Teknis
+                </h5>
+                <div id="modalProductSpecs">
+                  <!-- Specs will be populated by JavaScript -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zoom Modal -->
+    <div class="zoom-overlay" id="zoomOverlay" onclick="closeZoomModal()">
+      <span class="zoom-close">&times;</span>
+      <img id="zoomedImage" src="" alt="Zoomed Product Image">
+    </div>
+
+<!-- Products Section -->
+<section id="products" class="py-5" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa);">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-heading">Katalog Produk Kami</h2>
+      <p class="section-subheading">Temukan berbagai pilihan seragam dan garment berkualitas untuk kebutuhan perusahaan Anda.</p>
+    </div>
+    
+    <div class="row g-4 product-grid" id="productGrid">
+      <!-- Product 1: Seragam Atas Cowok -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('seragam-atas-cowok')">
+          <img src="assets/images/galeri/advik.png" alt="Seragam Atas Cowok" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Seragam Kerja Lengan Pendek</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Maryland Drill</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2: Seragam Atas Cewek -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('seragam-atas-cewek')">
+          <img src="assets/images/galeri/sunstar.png" alt="Seragam Atas Cewek" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Seragam Kerja Lengan Panjang</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Maryland Drill</span>
+                <span class="material-tag">AM 1919</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3: Seragam Set -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('seragam-set')">
+          <img src="assets/images/galeri/set nidec.png" alt="Seragam Set" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Set Seragam Kerja Lengkap</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Am 1919 &  Maryland Drill</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4: Seragam Trix -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('seragam-trix')">
+          <img src="assets/images/galeri/trix.png" alt="Seragam Trix" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Seragam Kerja Lapangan</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Maryland Tropical</span>
+                <span class="material-tag">Drill</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5: Polo -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('polo')">
+          <img src="assets/images/galeri/polo.png" alt="Polo" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Polo Shirt Kerja</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Lacoste Pique</span>
+                <span class="material-tag">Cotton Combed</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6: Kaos Family Gathering -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('kaos-family-gathering')">
+          <img src="assets/images/galeri/kaos.png" alt="Kaos Family Gathering" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Kaos Family Gathering</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Cotton Combed</span>
+                <span class="material-tag">Kaos</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7: Apron -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('apron')">
+          <img src="assets/images/galeri/apron.png" alt="Apron" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Apron Kerja</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Jeans Non Stretch</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8: Anti Statik -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('anti-statik')">
+          <img src="assets/images/galeri/anti statik.png" alt="Anti Statik" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Seragam Anti Statik</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Drill Antistatik</span>
+                <span class="material-tag">Perlindungan ESD</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 9: Topi -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('topi')">
+          <img src="assets/images/galeri/TOPI5.png" alt="Topi" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Topi Seragam</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Drill</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 10: Seragam Training Set -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('seragam-training-set')">
+          <img src="assets/images/galeri/goodiebag3.png" alt="Seragam Training Set" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Goodie Bag</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Kanvas</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 11: Rompi -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('rompi')">
+          <img src="assets/images/galeri/rompi 1.png" alt="Rompi" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Rompi Kerja</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Poliester High Vis</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 12: Totebag (Seragam Magang) -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card product-card h-100" onclick="showProductDetail('totebag')">
+          <img src="assets/images/galeri/tri.png" alt="Seragam Magang" class="card-img-top product-img">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">T-Shirt Lengan Panjang/Pendek</h5>
+            
+            <div class="materials-section">
+              <div class="materials-title">Bahan:</div>
+              <div class="material-tags">
+                <span class="material-tag">Cotton Combed</span>
+              </div>
+            </div>
+            
+            <button class="btn-view-details">
+             Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Call to Action -->
+    <section class="py-5" style="background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);">
+        <div class="container">
+            <div class="text-center">
+                <h3 class="mb-3 text-white">Butuh Produk Custom?</h3>
+                <p class="text-light mb-4">Kami siap membantu mewujudkan desain khusus sesuai kebutuhan perusahaan Anda</p>
+                <a href="index.php#contact" class="btn btn-light btn-lg me-3">
+                    <i class="bi bi-telephone me-2"></i>Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-heading">Mengapa Memilih Kami?</h2>
+                <p class="section-subheading">Keunggulan yang membuat kami menjadi pilihan terbaik</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="service-icon">
+                        <i class="bi bi-award"></i>
+                    </div>
+                    <h4 style="color: #8B0000;">Kualitas Premium</h4>
+                    <p class="text-muted">Material berkualitas tinggi dengan standar internasional dan kontrol kualitas yang ketat di setiap proses produksi.</p>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="service-icon">
+                        <i class="bi bi-clock"></i>
+                    </div>
+                    <h4 style="color: #8B0000;">Pengiriman Tepat Waktu</h4>
+                    <p class="text-muted">Sistem manajemen produksi yang efisien memastikan semua pesanan diselesaikan sesuai jadwal yang disepakati.</p>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="service-icon">
+                        <i class="bi bi-palette"></i>
+                    </div>
+                    <h4 style="color: #8B0000;">Desain Custom</h4>
+                    <p class="text-muted">Tim desainer berpengalaman siap mewujudkan konsep dan ide unik sesuai dengan kebutuhan spesifik Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- FOOTER -->
+<footer class="custom-footer py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>PT Surya Abadi Raya</h5>
+        <p>Your trusted partner for quality garments and professional services.</p>
+        <p>Member of <a href="https://mardizu.co.id/" target="_blank" style="color:#fff; text-decoration:underline;">Mardizu</a></p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="index.php">Beranda</a></li>
+          <li><a href="about.php">Tentang Kami</a></li>
+          <li><a href="produk.php">Produk</a></li>
+          <li><a href="gallery.php">Galeri</a></li>
+          <li><a href="index.php#contact">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Contact Us</h5>
+        <address>
+          <p><i class="bi bi-geo-alt"></i> Ruko Central Business District (CBD) Blok C12 - C15 Jl. Niaga Raya Kawasan Industri Jababeka II Cikarang – Bekasi 17550</p>
+          <p><i class="bi bi-envelope"></i> surya.abadiraya@gmail.com</p>
+        </address>
+      </div>
+    </div>
+    <hr />
+    <div class="text-center"><p>&copy; 2025 PT Surya Abadi Raya. All Rights Reserved.</p></div>
+  </div>
+</footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+<script>
+// Data Produk Seragam (Bahasa Indonesia - versi rapi & konsisten)
+const productData = {
+  'seragam-atas-cowok': {
+    title: 'Seragam Kerja Lengan Pendek',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/advik.png',
+            'assets/images/galeri/unifood.png',
+            'assets/images/galeri/sanksyu.png',
+    ],
+    description:
+      'Seragam kerja pria lengan pendek dengan potongan simpel dan profesional. Cocok digunakan di lingkungan kerja indoor maupun outdoor dengan tampilan rapi dan nyaman.',
+    features: ['Nyaman Dipakai', 'Desain Simpel', 'Bahan Berkualitas', 'Tahan Lama', 'Tampilan Profesional'],
+    specs: {
+      'Bahan Utama': 'Drill',
+      'Jenis Kain': 'Verlando CP America',
+      'Pilihan Warna': '30+ Variasi Warna',
+      'Ukuran': 'S - 5XL',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '14-25 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  'seragam-atas-cewek': {
+    title: 'Seragam Kerja Lengan Panjang',
+    price: 'Hubungi untuk harga',
+    images: [
+      'assets/images/galeri/sunstar.png',
+      'assets/images/galeri/sekisui.png',
+      'assets/images/galeri/unggul semesta.png',
+    ],
+    description:
+      'Seragam kerja lengan panjang dengan desain elegan. Dibuat dari bahan yang adem dan nyaman sehingga mendukung aktivitas kerja sehari-hari.',
+    features: ['Desain Elegan', 'Bahan Adem', 'Nyaman Dipakai', 'Tampilan Rapi', 'Mudah Perawatan'],
+    specs: {
+      'Bahan Utama': 'Drill',
+      'Jenis Kain 1': 'Maryland Drill',
+      'Jenis Kain 2': 'AM 1919',
+      'Pilihan Warna': '30+ Variasi Warna',
+      'Ukuran': 'XS - 3XL',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '14-25 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  'seragam-set': {
+    title: 'Set Seragam Kerja Lengkap',
+    price: 'Hubungi untuk harga',
+    images: [
+      'assets/images/galeri/set nidec.png',
+      'assets/images/galeri/kanefusa 2.png',
+      'assets/images/galeri/kanefusa.png',
+      'assets/images/galeri/set yasufuku.png',
+    ],
+    description:
+      'Paket seragam kerja lengkap terdiri dari atasan dan bawahan dengan warna dan desain senada. Memberikan kesan seragam yang profesional dan rapi di lingkungan kerja.',
+    features: ['Paket Lengkap', 'Tampilan Serasi', 'Nyaman Dipakai', 'Kualitas Terjamin', 'Desain Profesional'],
+    specs: {
+      'Bahan Utama': 'Drill',
+      'Jenis Kain': 'AM 1919 & Maryland Drill',
+      'Pilihan Warna': '30+ Variasi Warna',
+      'Ukuran': 'S - 5XL',
+      'Minimum Order': '50 Set',
+      'Waktu Produksi': '14-25 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  'seragam-trix': {
+    title: 'Seragam Kerja Lapangan',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/trix.png'],
+    description:
+      'Seragam kerja lapangan dengan desain modern dan kuat. Dibuat untuk mendukung aktivitas kerja yang dinamis dengan tetap menjaga kenyamanan pemakainya.',
+    features: ['Desain Modern', 'Nyaman Dipakai', 'Bahan Tahan Lama', 'Tampilan Rapi', 'Cocok untuk Outdoor'],
+    specs: {
+      'Bahan Utama': 'Drill',
+      'Jenis Kain': 'Maryland Tropical',
+      'Pilihan Warna': '30+ Variasi Warna',
+      'Ukuran': 'S - 5XL',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '14-25 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  polo: {
+    title: 'Polo Shirt Kerja',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/polo.png',
+        'assets/images/galeri/polo 2.png',
+        'assets/images/galeri/set training.png',
+    ],
+    description:
+      'Polo shirt kerja dengan bahan adem dan nyaman. Desain kasual namun tetap profesional, cocok untuk seragam perusahaan dengan tambahan logo kustom.',
+    features: ['Bahan Adem', 'Desain Kasual Profesional', 'Logo Bisa Kustom', 'Nyaman Dipakai', 'Mudah Perawatan'],
+    specs: {
+      'Bahan 1': 'Lacoste Pique',
+      'Bahan 2': 'Cotton Combed',
+      'Jenis Kain 1': 'Lacoste Poli-Katun',
+      'Jenis Kain 2': 'Cotton Combed 20S',
+      'Pilihan Warna': '15+ Variasi Warna',
+      'Ukuran': 'S - 5XL',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '10-20 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  'kaos-family-gathering': {
+    title: 'Kaos Family Gathering',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/kaos.png'],
+    description:
+      'Kaos family gathering dengan bahan katun lembut dan nyaman. Bisa dikustomisasi sesuai tema acara, warna, atau logo perusahaan.',
+    features: ['Katun Lembut', 'Nyaman Dipakai', 'Desain Bisa Kustom', 'Cocok untuk Acara', 'Tampilan Kompak'],
+    specs: {
+      'Bahan Utama': 'Cotton Combed',
+      'Jenis Kain': 'Cotton Combed 20S',
+      'Pilihan Warna': '30+ Variasi Warna',
+      'Ukuran': 'S - 5XL',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '10-20 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  apron: {
+    title: 'Apron Kerja',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/apron.png'],
+    description:
+      'Apron kerja berbahan jeans tebal yang kuat dan tahan noda. Dilengkapi kantong multifungsi untuk mendukung kebutuhan kerja harian.',
+    features: ['Bahan Kuat', 'Anti Noda', 'Kantong Multifungsi', 'Tali Bisa Disetel', 'Nyaman Dipakai'],
+    specs: {
+      'Bahan Utama': 'Jeans',
+      'Jenis Kain': 'Jeans Non Stretch 14oz',
+      'Pilihan Warna': '2 Pilihan Warna',
+      'Ukuran': 'All Size',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '14-25 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  'anti-statik': {
+    title: 'Seragam Anti Statik (ESD)',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/anti statik.png'],
+    description:
+      'Seragam kerja anti statik (ESD) yang melindungi perangkat elektronik sensitif dari muatan listrik statis. Dirancang khusus untuk lingkungan industri elektronik dan cleanroom.',
+    features: ['Perlindungan ESD', 'Standar Internasional', 'Anti Statis', 'Nyaman Dipakai', 'Tahan Lama'],
+    specs: {
+      'Bahan Utama': 'Drill',
+      'Jenis Kain': 'Anti Statik',
+      'Pilihan Warna': '30+ Variasi Warna',
+      'Ukuran': 'S - 5XL',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '14-25 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  topi: {
+    title: 'Topi Seragam',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/TOPI5.png',
+    'assets/images/galeri/TOPI2.png',
+    'assets/images/galeri/TOPI4.png',
+    'assets/images/galeri/TOPI1.png',
+    'assets/images/galeri/TOPI3.png',
+
+    ],
+    description:
+      'Topi seragam berbahan drill yang kuat dan nyaman. Ukuran bisa disetel serta dapat ditambahkan logo perusahaan dengan bordir atau sablon.',
+    features: ['Ukuran Adjustable', 'Nyaman Dipakai'],
+    specs: {
+      'Bahan Utama': 'Drill',
+      'Pilihan Warna': '12+ Variasi Warna',
+      'Ukuran': 'All Size (Adjustable)',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '10-15 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  'seragam-training-set': {
+    title: 'Goodie Bag',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/goodiebag3.png',
+    'assets/images/galeri/goodiebag5.png',
+    'assets/images/galeri/goodiebag6.png',
+    'assets/images/galeri/goodiebag7.png',
+
+    ],
+    description:
+      'Tas goodie bag serbaguna dengan kapasitas luas dan desain menarik. Ideal untuk seminar, belanja, hingga souvenir.',
+    features: ['Ringan', 'Tahan Lama', 'Kapasitas Luas', 'Praktis'],
+    specs: {
+      'Bahan Utama': 'Kanvas', 
+      'Pilihan Warna': '20+ Variasi Warna',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '10-20 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+  
+  rompi: {
+    title: 'Rompi Kerja',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/rompi 1.png',
+    'assets/images/galeri/rompi 2.png',
+        'assets/images/galeri/rompi 3.png',
+    ],
+    description:
+      'Rompi kerja dengan visibilitas tinggi dilengkapi reflective tape. Memberikan perlindungan ekstra bagi pekerja lapangan, konstruksi, maupun pengatur lalu lintas.',
+    features: ['Visibilitas Tinggi', 'Reflective Tape', 'Ringan', 'Nyaman Dipakai', 'Sertifikasi Keselamatan'],
+    specs: {
+      'Bahan Utama': 'Polyester Mesh',
+      'Jenis Kain': 'High Vis Polyester',
+      'Standar': 'ANSI/ISEA 107-2015',
+      'Ukuran': 'S - 5XL',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '12-20 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+
+  'totebag': {
+    title: 'T-shirt Lengan Panjang/Pendek',
+    price: 'Hubungi untuk harga',
+    images: ['assets/images/galeri/tri.png'],
+    description:
+      'T-shirt dengan desain sederhana. Dibuat dari bahan nyaman untuk mendukung aktivitas sehari-hari.',
+    features: ['Nyaman Dipakai', 'Tampilan Rapi', 'Ringan', 'Mudah Perawatan'],
+    specs: {
+      'Bahan Utama': 'Kaos',
+      'Jenis Kain': 'Cotton Combed 20S',
+      'Pilihan Warna': '30+ Variasi Warna',
+      'Ukuran': 'S - 5XL',
+      'Minimum Order': '50 Pcs',
+      'Waktu Produksi': '10-20 Hari Kerja',
+      'Garansi': '7 Hari Setelah Pengiriman',
+    },
+  },
+};
+
+        // Modal event handlers
+        const productModal = document.getElementById('productModal');
+        
+        productModal.addEventListener('show.bs.modal', function (event) {
+            document.body.classList.add('modal-open');
+            document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = '0px';
+        });
+        
+        productModal.addEventListener('hidden.bs.modal', function (event) {
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+        });
+
+        // Function to change main image when thumbnail is clicked
+        function changeMainImage(imageSrc, thumbnailElement) {
+            document.getElementById('mainProductImage').src = imageSrc;
+            
+            document.querySelectorAll('.thumbnail-item').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            thumbnailElement.classList.add('active');
+        }
+
+        // Zoom functionality
+        function openZoomModal(imageSrc) {
+            const zoomOverlay = document.getElementById('zoomOverlay');
+            const zoomedImage = document.getElementById('zoomedImage');
+            
+            zoomedImage.src = imageSrc;
+            zoomOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeZoomModal() {
+            const zoomOverlay = document.getElementById('zoomOverlay');
+            zoomOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Close zoom modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeZoomModal();
+            }
+        });
+
+        function showProductDetail(productId) {
+            const product = productData[productId];
+            if (!product) return;
+
+            // Update modal content
+            document.getElementById('modalProductTitle').textContent = product.title;
+            document.getElementById('modalProductPrice').textContent = product.price;
+            document.getElementById('modalProductDescription').textContent = product.description;
+
+            // Update main image
+            const mainImage = document.getElementById('mainProductImage');
+            mainImage.src = product.images[0];
+            mainImage.alt = product.title;
+
+            // Create thumbnail gallery
+            const thumbnailGallery = document.getElementById('thumbnailGallery');
+            thumbnailGallery.innerHTML = '';
+            
+            product.images.forEach((imageSrc, index) => {
+                const thumbnailDiv = document.createElement('div');
+                thumbnailDiv.className = `thumbnail-item ${index === 0 ? 'active' : ''}`;
+                thumbnailDiv.onclick = () => changeMainImage(imageSrc, thumbnailDiv);
+                
+                const thumbnailImg = document.createElement('img');
+                thumbnailImg.src = imageSrc;
+                thumbnailImg.alt = `${product.title} - Image ${index + 1}`;
+                
+                thumbnailDiv.appendChild(thumbnailImg);
+                thumbnailGallery.appendChild(thumbnailDiv);
+            });
+
+            // Update features
+            const featuresContainer = document.getElementById('modalProductFeatures');
+            featuresContainer.innerHTML = '';
+            product.features.forEach(feature => {
+                const badge = document.createElement('span');
+                badge.className = 'feature-badge';
+                badge.textContent = feature;
+                featuresContainer.appendChild(badge);
+            });
+
+            // Update specifications
+            const specsContainer = document.getElementById('modalProductSpecs');
+            specsContainer.innerHTML = '';
+            Object.entries(product.specs).forEach(([key, value]) => {
+                const specItem = document.createElement('div');
+                specItem.className = 'spec-item';
+                specItem.innerHTML = `
+                    <span class="spec-label">${key}:</span>
+                    <span class="spec-value">${value}</span>
+                `;
+                specsContainer.appendChild(specItem);
+            });
+            
+            // Show modal
+            const modal = new bootstrap.Modal(productModal);
+            modal.show();
+        }
+
+        // Smooth page transitions
+        document.addEventListener("DOMContentLoaded", function () {
+            const page = document.querySelector("body");
+            page.classList.add("fade-page");
+
+            setTimeout(() => {
+                page.classList.add("show");
+            }, 50);
+
+            // Initialize product grid animation
+            setTimeout(() => {
+                document.getElementById('productGrid').classList.add('loaded');
+            }, 300);
+
+            const links = document.querySelectorAll("a[href]");
+
+            links.forEach(link => {
+                if (link.hostname === window.location.hostname && !link.href.includes("#")) {
+                    link.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const target = this.href;
+                        page.classList.remove("show");
+                        setTimeout(() => {
+                            window.location.href = target;
+                        }, 300);
+                    });
+                }
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Parallax effect for background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const background = document.querySelector('.hero-background');
+            if (background) {
+                background.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Product circle hover effects
+        document.querySelectorAll('.product-circle').forEach(circle => {
+            circle.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            
+            circle.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>

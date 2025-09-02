@@ -1,0 +1,862 @@
+/* PT Surya Abadi Raya - Main Stylesheet */
+
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.section-heading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #8B0000;
+    margin-bottom: 0.5rem;
+}
+
+.section-subheading {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
+
+a {
+    color: #8B0000;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: #600000;
+    text-decoration: underline;
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.navbar-brand > img{
+    width: 130px;
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 0.8rem 1rem !important;
+}
+.custom-navbar {
+    background-color: #8B0000 !important; /* warna gelap netral Bootstrap */
+}
+/* Hero Section */
+.hero-section {
+    /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x800'); */
+    background-image: url(images/banner/2.png);
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero-content {
+    z-index: 1;
+    padding: 2rem 0;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-content .lead {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Services Cards */
+.service-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    height: 100%; /* Pastikan semua card punya tinggi sama */
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.service-card .card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+}
+
+.service-card .card-text {
+    flex-grow: 1; /* Biarkan text area mengambil sisa ruang */
+    margin-bottom: 1.5rem;
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #8B0000;
+}
+
+/* Styling untuk tombol Learn More */
+.service-card .btn-outline-danger {
+    background-color: transparent;
+    border-color: #8B0000;
+    color: #8B0000;
+    transition: all 0.3s ease;
+}
+
+.service-card .btn-outline-danger:hover {
+    background-color: #8B0000;
+    border-color: #8B0000;
+    color: white;
+}
+
+/* Product Cards - Updated for Portrait Images */
+.product-card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Portrait Image Styling - No Whitespace */
+.product-img {
+    width: 100%;
+    height: 360px; /* Tinggi yang sesuai untuk portrait */
+    object-fit: cover; /* Foto utuh tanpa terpotong */
+    object-position: center;
+    background-color: #ffffff; /* Background putih seamless dengan card */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.product-card .card-body {
+    padding: 1.25rem;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    border-top: none;
+}
+
+.product-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-rating {
+    color: #ffc107;
+    font-size: 1.2rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding: 0 0.5rem;
+}
+
+.testimonial-text::before {
+    content: '"';
+    font-size: 3rem;
+    color: #e9ecef;
+    position: absolute;
+    left: -1rem;
+    top: -1.5rem;
+    font-family: serif;
+}
+
+.testimonial-author h5 {
+    color: #8B0000;
+    margin-bottom: 0.25rem;
+}
+
+/* Call to Action Section */
+.cta-section {
+    background: linear-gradient(135deg, #8B0000 0%, #8B0000 100%);
+    padding: 4rem 0;
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x400');
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 0;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.breadcrumb {
+    background-color: transparent;
+}
+
+.breadcrumb-item a {
+    color: #ffffff;
+}
+
+.breadcrumb-item.active {
+    color: #ced4da;
+}
+
+/* About Page */
+.about-image {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.company-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.value-item {
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+}
+
+.value-item i {
+    font-size: 2rem;
+    color: #8B0000;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.mission-card, .vision-card {
+    height: 100%;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.mission-card:hover, .vision-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mission-card .card-title, .vision-card .card-title {
+    color: #8B0000;
+    margin-bottom: 1rem;
+}
+
+.mission-card i, .vision-card i {
+    color: #8B0000;
+}
+
+.business-area-image {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.business-area-content {
+    padding: 1.5rem;
+}
+
+.business-area-content h3 {
+    color: #8B0000;
+    margin-bottom: 1rem;
+}
+
+/* Team Section */
+.team-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.team-member-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center top;
+}
+
+.team-position {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.social-links a {
+    color: #8B0000;
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* Gallery Page */
+.gallery-container {
+    margin-bottom: 2rem;
+}
+
+.gallery-item a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}   
+
+.gallery-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(139, 0, 0, 0.7); /* warna merah transparan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-info {
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.gallery-info h5 {
+    margin-bottom: 0.5rem;
+}
+/* Contact Page */
+.contact-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon {
+    font-size: 3rem;
+    color: #8B0000;
+}
+
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Hover Effect Class */
+.contact-card.hover-effect {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card.hover-effect:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Footer */
+footer {
+    margin-top: 2rem;
+}
+
+footer h5 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    color: #f8f9fa !important;
+}
+
+/* Placeholder backgrounds for development */
+.bg-placeholder-1 { background-image: url('https://via.placeholder.com/600x400/007bff/ffffff?text=Corporate+Uniforms'); }
+.bg-placeholder-2 { background-image: url('https://via.placeholder.com/600x400/0056b3/ffffff?text=Casual+Wear'); }
+.bg-placeholder-3 { background-image: url('https://via.placeholder.com/600x400/004085/ffffff?text=Specialized+Workwear'); }
+.bg-placeholder-4 { background-image: url('https://via.placeholder.com/600x400/17a2b8/ffffff?text=Our+Company'); }
+.bg-placeholder-5 { background-image: url('https://via.placeholder.com/600x400/007bff/ffffff?text=Garment+Production'); }
+.bg-placeholder-6 { background-image: url('https://via.placeholder.com/600x400/6c757d/ffffff?text=Outsourcing+Services'); }
+.bg-placeholder-7 { background-image: url('https://via.placeholder.com/600x400/28a745/ffffff?text=Job+Training'); }
+.bg-placeholder-8 { background-image: url('https://via.placeholder.com/600x400/343a40/ffffff?text=CEO'); }
+.bg-placeholder-9 { background-image: url('https://via.placeholder.com/600x400/343a40/ffffff?text=Operations+Director'); }
+.bg-placeholder-10 { background-image: url('https://via.placeholder.com/600x400/343a40/ffffff?text=Production+Manager'); }
+.bg-placeholder-11 { background-image: url('https://via.placeholder.com/600x400/343a40/ffffff?text=HR+Director'); }
+.bg-placeholder-12 { background-image: url('https://via.placeholder.com/600x400/007bff/ffffff?text=Corporate+Uniforms'); }
+.bg-placeholder-13 { background-image: url('https://via.placeholder.com/600x400/0056b3/ffffff?text=Casual+Wear'); }
+.bg-placeholder-14 { background-image: url('https://via.placeholder.com/600x400/004085/ffffff?text=Workwear+Line'); }
+.bg-placeholder-15 { background-image: url('https://via.placeholder.com/600x400/17a2b8/ffffff?text=Production+Floor'); }
+.bg-placeholder-16 { background-image: url('https://via.placeholder.com/600x400/28a745/ffffff?text=Design+Studio'); }
+.bg-placeholder-17 { background-image: url('https://via.placeholder.com/600x400/ffc107/000000?text=Quality+Control'); }
+.bg-placeholder-18 { background-image: url('https://via.placeholder.com/600x400/dc3545/ffffff?text=Sewing+Training'); }
+.bg-placeholder-19 { background-image: url('https://via.placeholder.com/600x400/6f42c1/ffffff?text=Business+Workshop'); }
+.bg-placeholder-20 { background-image: url('https://via.placeholder.com/600x400/20c997/ffffff?text=Networking+Event'); }
+.bg-placeholder-21 { background-image: url('https://via.placeholder.com/600x400/e83e8c/ffffff?text=Company+Gathering'); }
+.bg-placeholder-22 { background-image: url('https://via.placeholder.com/600x400/fd7e14/ffffff?text=Fashion+Showcase'); }
+.bg-placeholder-map { background-color: #e9ecef; }
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .hero-section {
+        height: 60vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .product-img {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 50vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content .lead {
+        font-size: 1.2rem;
+    }
+    
+    .section-heading {
+        font-size: 1.8rem;
+    }
+    
+    .service-icon, .contact-icon {
+        font-size: 2.5rem;
+    }
+    
+    .about-image, .business-area-image {
+        height: 300px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .product-img {
+        height: 320px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        height: 40vh;
+        min-height: 400px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content .lead {
+        font-size: 1rem;
+    }
+    
+    .company-values {
+        gap: 1rem;
+    }
+    
+    .value-item {
+        min-width: 80px;
+    }
+    
+    .value-item i {
+        font-size: 1.5rem;
+    }
+    
+    .section-heading {
+        font-size: 1.5rem;
+    }
+    
+    .product-img {
+        height: 280px;
+    }
+}
+
+.owl-carousel .item {
+  text-align: center;
+  /* padding: 10px; */
+  
+}
+
+.owl-carousel .item img {
+  width: 70px;        /* atur ukuran gambar sesuai kebutuhan */
+  height: 70px;        /* fix height supaya seragam */
+  object-fit: contain; 
+  display: inline-block;
+}
+
+.img-sec img {
+    display: flex;
+    width: 550px;
+}
+
+ul.checklist {
+  list-style: none;
+  padding-left: 20px;
+}
+
+ul.checklist li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: #8B0000;
+    border-color: #8B0000;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #600000;
+    border-color: #600000;
+}
+#carRentalCarousel img {
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    background: #f1f3f5;
+    border-radius: 10px;
+}
+
+/* Supaya responsif di layar kecil */
+@media (max-width: 768px) {
+    #carRentalCarousel img {
+        height: 250px;
+    }
+}
+.gallery-img {
+  width: 100%;
+  height: 250px; /* Bisa disesuaikan, misal 300px */
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-caption {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.gallery-caption h5 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.gallery-caption p {
+  margin: 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+.gallery-caption p,
+.gallery-caption a {
+    color: #8B0000 !important;
+    text-decoration: none;
+}
+
+.gallery-caption p:hover,
+.gallery-caption a:hover {
+    color: #600000 !important;
+    text-decoration: underline;
+}
+.business-area-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.carousel img {
+  border-radius: 12px;
+  object-fit: cover;
+  height: 100%;
+  max-height: 350px;
+}
+
+/* Smooth Page Transition */
+.fade-page {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fade-page.show {
+    opacity: 1;
+}
+.client-section {
+    background: linear-gradient(to right, #e9ecef, #ffffff);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.client-section .section-heading,
+.client-section .section-subheading {
+    color: white;
+}
+
+.client-section .item img {
+    max-height: 80px;
+    margin: 0 auto;
+    display: block;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease-in-out;
+}
+
+.client-section .item img:hover {
+    transform: scale(1.05);
+}
+.bg-brand-red {
+  background-color: #8B0000;
+}
+.bg-brand-red h3,
+.bg-brand-red small {
+  color: #fff;
+}
+.btn-brand {
+    background-color: #8B0000;
+    color: #fff;
+    border: none;
+}
+.btn-brand:hover {
+    background-color: #600000; /* lebih gelap saat hover */
+    color: #fff;
+}
+.btn-outline-brand {
+    color: #8B0000;
+    border: 1px solid #8B0000;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-brand:hover {
+    background-color: #8B0000;
+    color: #fff;
+}
+/* ===== Header Galeri ===== */
+.gallery-header {
+  padding: 18px 0 10px;
+  background:
+    radial-gradient(1200px 400px at 10% -20%, rgba(139,0,0,0.10), transparent 60%),
+    radial-gradient(1200px 400px at 90% -20%, rgba(139,0,0,0.10), transparent 60%);
+}
+.gallery-header .breadcrumb .breadcrumb-item a{ color:#8B0000; text-decoration:none; }
+.gallery-header .breadcrumb .breadcrumb-item + .breadcrumb-item::before{ color:#b6b6b6; }
+.gallery-header .hero-box{
+  width:100%;
+  border-radius:18px;
+  padding:22px 24px;
+  background: linear-gradient(135deg, #8B0000 0%, #B22222 60%, #a91e1e 100%);
+  color:#fff;
+  box-shadow: 0 8px 24px rgba(139,0,0,0.18);
+}
+.gallery-header .hero-title{ font-weight:800; letter-spacing:.2px; }
+.gallery-header .hero-sub{ opacity:.95; }
+
+.btn-cta{
+  background:#fff; color:#8B0000; font-weight:700; border-radius:12px; padding:10px 16px;
+  box-shadow:0 6px 16px rgba(0,0,0,.08); border:0;
+}
+.btn-cta:hover{ color:#fff; background:#87888a; }
+
+    .stat-card{
+  background:#fff; border-radius:14px; padding:14px; text-align:center;
+  border:1px solid #f0f0f0; box-shadow:0 8px 20px rgba(0,0,0,.04);
+}
+.stat-card i{ font-size:1.4rem; color:#8B0000; }
+.stat-card .stat-num{ font-size:1.35rem; font-weight:800; line-height:1; margin-bottom:2px; color:#2b2b2b;}
+.stat-card .stat-label{ font-size:.9rem; color:#6c757d; }
+
+/* Responsive tweaks */
+@media (max-width: 575.98px){
+  .gallery-header .hero-title{ font-size:1.4rem; }
+  .btn-cta{ width:100%; text-align:center; }
+}
+/* Efek Muncul dari Atas */
+.fade-in-down {
+  animation: fadeInDown 0.9s ease-out forwards;
+  opacity: 0;
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efek Muncul dari Bawah */
+.fade-in-up {
+  animation: fadeInUp 0.9s ease-out forwards;
+  opacity: 0;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Muncul dari kiri */
+.slide-in-left {
+  animation: slideInLeft 0.9s ease-out forwards;
+  opacity: 0;
+}
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Muncul dari bawah */
+.slide-in-up {
+  animation: slideInUp 0.9s ease-out forwards;
+  opacity: 0;
+}
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade-in dari atas (untuk tombol) */
+.fade-in-down {
+  animation: fadeInDown 0.9s ease-out forwards;
+  opacity: 0;
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ===== Scroll Reveal Base ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: transform .8s ease, opacity .8s ease;
+  will-change: transform, opacity;
+}
+
+/* Saat terlihat di viewport */
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Arah animasi */
+.from-left  { transform: translateX(-40px); }
+.from-right { transform: translateX( 40px); }
+.from-up    { transform: translateY( 28px); }
+
+/* Delay bertahap */
+.delay-1 { transition-delay: .10s; }
+.delay-2 { transition-delay: .20s; }
+.delay-3 { transition-delay: .30s; }
+.delay-4 { transition-delay: .40s; }
+
+/* Aksesibilitas: nonaktifkan animasi jika user pilih reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.visible {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

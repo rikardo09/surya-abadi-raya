@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PT Surya Abadi Raya - Home</title>
+
+  <!-- SEO + Open Graph -->
+  <meta name="description" content="PT Surya Abadi Raya â€" Mitra terpercaya penyedia garment berkualitas, layanan outsourcing, pelatihan kerja, dan rental mobil." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://domainmu.com/" />
+  <meta property="og:title" content="PT Surya Abadi Raya" />
+  <meta property="og:description" content="Mitra terpercaya dalam penyediaan garment dan layanan profesional." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://domainmu.com/" />
+  <meta property="og:image" content="https://domainmu.com/assets/images/banner/2.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/logo/favicon.png" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+
+  <!-- Owl Carousel CSS (lokal) -->
+  <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.theme.default.min.css" />
+
+  <!-- Preload hero image pertama untuk LCP -->
+  <link rel="preload" as="image" href="assets/images/banner/2.png" imagesrcset="assets/images/banner/2.png 1920w" imagesizes="100vw" />
+
+  <!-- Custom kecil sinkron dengan style.css -->
+  <style>
+    .custom-navbar {
+      background: linear-gradient(to right, #fdfdfd 0%, #B22222 50%, #8B0000 100%) !important;
+      box-shadow: 0 2px 10px rgba(139, 0, 0, 0.3);
+    }
+    .custom-navbar .navbar-brand, .custom-navbar .nav-link { color:#fff !important; font-weight:500; }
+    .custom-navbar .nav-link:hover { color:#FFE4E1 !important; text-shadow:0 1px 3px rgba(0,0,0,.3); }
+    .custom-navbar .nav-link.active { color:#fff !important; font-weight:700 !important; text-shadow:0 2px 4px rgba(0,0,0,.8) !important; }
+
+    /* Hero tambahan kecil */
+    .hero-section { height: 400px; background-position:center; background-size:cover; background-repeat:no-repeat; }
+    @media (min-width: 992px){ .hero-section { height: 520px; } }
+    .hero-overlay { position:absolute; inset:0; background-color:rgba(0,0,0,.4); }
+    .hero-content { 
+      position:absolute; 
+      bottom:20px; 
+      left:20px; 
+      text-align:left; 
+      padding-left: 20px;
+      max-width: 80%;
+    }
+    .hero-carousel .owl-dots { 
+      position:absolute; 
+      left:50%; 
+      transform:translateX(-50%); 
+      bottom:16px; 
+    }
+    @media (max-width: 768px) {
+      .hero-content {
+        left: 15px;
+        padding-left: 15px;
+        max-width: 85%;
+      }
+    }
+
+    /* Client logos selalu berwarna */
+    .owl-client .item img { max-height:60px; object-fit:contain; opacity:1; filter:none; transition:none; }
+
+    /* SIMPLIFIED PRODUCT SECTION - No animations or hover effects */
+    .owl-produk {
+      opacity: 1;
+    }
+
+    /* Static product image - no hover effects */
+    .product-img {
+      height: 400px;
+      object-fit: cover;
+    }
+
+    /* Static product card - no hover effects, no cursor pointer */
+    .product-card {
+      border: 1px solid #dee2e6 !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+      cursor: default; /* Remove pointer cursor since it's not clickable */
+    }
+
+    .product-card .card-body {
+      background-color: #f8f9fa !important;
+    }
+
+    .product-card .card-title {
+      color: #8B0000 !important;
+    }
+
+    /* Simple owl carousel - no heavy transitions */
+    .owl-produk .owl-stage {
+      transition: transform 0.3s ease !important;
+    }
+
+    .owl-produk .owl-item {
+      opacity: 1;
+    }
+
+    /* Product section styling - White background */
+    .py-5.bg-light {
+      background-color: #ffffff !important;
+    }
+
+    /* Simple section headings */
+    .section-heading, .section-subheading {
+      opacity: 1;
+    }
+
+    /* Simple button transitions */
+    .btn-primary {
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(139,0,0,0.2);
+    }
+
+    .custom-footer {
+      background: linear-gradient(135deg, #252c50 10%, #3c3e58ff 50%, #292b37ff 100%) !important;
+      color:#fff;
+    }
+    .custom-footer h5 { color:#E3F2FD; font-weight:600; }
+    .custom-footer a { color:#fff !important; transition: color .3s; }
+
+    body.fade-page { opacity:0; transition:opacity .3s ease; }
+    body.fade-page.show { opacity:1; }
+
+    /* Car Rental Section Styling */
+    .car-rental-section {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .feature-item {
+      padding: 1rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 5px 20px rgba(139, 0, 0, 0.1);
+    }
+
+    .rental-image-container {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .rental-showcase {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .rental-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(139, 0, 0, 0.9);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 768px) {
+      .feature-item:hover {
+        transform: translateY(-5px);
+      }
+      
+      #carRentalCarousel img {
+        height: 250px;
+      }
+      
+      .carousel-caption {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.5rem;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+      }
+    }
+
+  </style>
+</head>
+<body class="fade-page">
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.php">
+        <img src="assets/images/logo/logo SAR.png" alt="PT Surya Abadi Raya" loading="lazy" decoding="async" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.php">Tentang Kami</a></li>
+          <li class="nav-item"><a class="nav-link" href="produk.php">Produk</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.php">Galeri</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php#contact">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO CAROUSEL (tetap 4 slide garment) -->
+  <div class="hero-carousel owl-carousel owl-theme">
+    <header class="hero-section position-relative" style="background-image:url('assets/images/banner/2.png');">
+      <div class="hero-overlay"></div>
+      <div class="container h-100">
+        <div class="hero-content text-white">
+          <p class="lead mb-3">Mitra Terpercaya dalam Penyediaan Garment Berkualitas dan Layanan Profesional</p>
+          <a href="index.php#contact" class="btn btn-primary btn-lg">Pesan Sekarang <i class="bi bi-chevron-right"></i></a>
+        </div>
+      </div>
+    </header>
+    <header class="hero-section position-relative" style="background-image:url('assets/images/banner/banner2.png');">
+      <div class="hero-overlay"></div>
+      <div class="container h-100">
+        <div class="hero-content text-white">
+          <a href="index.php#contact" class="btn btn-primary btn-lg">Pesan Sekarang <i class="bi bi-chevron-right"></i></a>
+        </div>
+      </div>
+    </header>
+        <header class="hero-section position-relative" style="background-image:url('assets/images/galeri/banner5.png');">
+      <div class="hero-overlay"></div>
+      <div class="container h-100">
+        <div class="hero-content text-white" style="right: 20px; left: auto; text-align: right; padding-right: 20px; padding-left: 0;">
+          <a href="index.php#contact" class="btn btn-lg" style="background-color: #ffffff; color: #8B0000; border: 2px solid #8B0000; font-weight: 600;">Pesan Sekarang <i class="bi bi-chevron-right"></i></a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- PRODUK -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-heading">Jelajahi Koleksi Garment Unggulan Kami</h2>
+        <p class="section-subheading">Elegan, Tahan Lama, dan Nyaman dalam Setiap Jahitan</p>
+      </div>
+
+      <div class="owl-produk owl-carousel owl-theme">
+        <div class="item">
+          <div class="card product-card text-center h-100">
+            <img src="assets/images/galeri/tri.png" alt="Seragam Magang" class="card-img-top product-img" style="height:400px; object-fit:cover;" loading="lazy" decoding="async" />
+            <div class="card-body"><h4 class="card-title">Seragam Magang</h4></div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card product-card text-center h-100">
+            <img src="assets/images/galeri/trix.png" alt="Set Seragam" class="card-img-top product-img" style="height:400px; object-fit:cover;" loading="lazy" decoding="async" />
+            <div class="card-body"><h4 class="card-title">Set Seragam</h4></div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card product-card text-center h-100">
+            <img src="assets/images/galeri/polo.png" alt="Polo" class="card-img-top product-img" style="height:400px; object-fit:cover;" loading="lazy" decoding="async" />
+            <div class="card-body"><h4 class="card-title">Polo</h4></div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card product-card text-center h-100">
+            <img src="assets/images/galeri/sunstar.png" alt="Seragam Industri" class="card-img-top product-img" style="height:400px; object-fit:cover;" loading="lazy" decoding="async" />
+            <div class="card-body"><h4 class="card-title">Seragam Perusahaan</h4></div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card product-card text-center h-100">
+            <img src="assets/images/galeri/anti statik.png" alt="Anti Statik" class="card-img-top product-img" style="height:400px; object-fit:cover;" loading="lazy" decoding="async" />
+            <div class="card-body"><h4 class="card-title">Anti Statik</h4></div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card product-card text-center h-100">
+            <img src="assets/images/galeri/apron.png" alt="Apron" class="card-img-top product-img" style="height:400px; object-fit:cover;" loading="lazy" decoding="async" />
+            <div class="card-body"><h4 class="card-title">Apron</h4></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="produk.php" class="btn btn-primary">View More Products</a>
+      </div>
+    </div>
+  </section>
+
+<!-- CAR RENTAL SECTION -->
+<section class="py-5 car-rental-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-heading">Layanan Rental Mobil Terpercaya</h2>
+      <p class="section-subheading">Solusi Transportasi Profesional untuk Kebutuhan Bisnis dan Pribadi</p>
+    </div>
+
+    <!-- Row 1 -->
+    <div class="row align-items-center mb-5">
+      <!-- Text -->
+      <div class="col-lg-6 mb-4">
+        <div class="rental-features">
+          <div class="feature-item d-flex align-items-start mb-4">
+            <div class="feature-icon me-3">
+              <i class="bi bi-shield-check fs-2" style="color: #8B0000;"></i>
+            </div>
+            <div>
+              <h4 style="color: #8B0000;">Armada Terawat & Berkualitas</h4>
+              <p>Kendaraan dalam kondisi prima dengan perawatan berkala dan asuransi lengkap untuk keamanan perjalanan Anda.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item d-flex align-items-start mb-4">
+            <div class="feature-icon me-3">
+              <i class="bi bi-person-check fs-2" style="color: #8B0000;"></i>
+            </div>
+            <div>
+              <h4 style="color: #8B0000;">Driver Profesional</h4>
+              <p>Tim driver berpengalaman, berlisensi, dan memahami rute dengan baik untuk memberikan layanan terbaik.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="col-lg-6">
+        <div class="rental-image-container">
+          <img src="assets/images/galeri/carr.png" alt="Armada Rental Mobil PT Surya Abadi Raya" class="img-fluid rental-showcase" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row align-items-center mb-5">
+      <!-- Image (left in desktop) -->
+      <div class="col-lg-6 order-lg-1 order-2">
+        <div class="rental-image-container">
+          <img src="assets/images/galeri/elf.jpeg" alt="Armada Rental Mobil PT Surya Abadi Raya" class="img-fluid rental-showcase" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <!-- Text (right in desktop) -->
+      <div class="col-lg-6 order-lg-2 order-1 mb-4">
+        <div class="rental-features">
+          <div class="feature-item d-flex align-items-start mb-4">
+            <div class="feature-icon me-3">
+              <i class="bi bi-clock fs-2" style="color: #8B0000;"></i>
+            </div>
+            <div>
+              <h4 style="color: #8B0000;">Layanan 24/7</h4>
+              <p>Siap melayani kebutuhan transportasi Anda kapan saja, termasuk untuk acara mendadak dan perjalanan urgent.</p>
+            </div>
+          </div>
+
+          <div class="feature-item d-flex align-items-start">
+            <div class="feature-icon me-3">
+              <i class="bi bi-wallet2 fs-2" style="color: #8B0000;"></i>
+            </div>
+            <div>
+              <h4 style="color: #8B0000;">Harga Kompetitif</h4>
+              <p>Tarif transparan tanpa biaya tersembunyi, dengan paket fleksibel untuk harian, mingguan, atau bulanan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="text-center mt-4">
+      <a href="index.php#contact" class="btn btn-brand btn-lg">Konsultasi Sekarang</a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- SERVICES -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-heading">Our Services</h2>
+        <p class="section-subheading">Solusi Unggul untuk Kebutuhan Bisnis Anda</p>
+      </div>
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <div class="card service-card h-100">
+            <div class="card-body text-center">
+              <div class="service-icon"><i class="bi bi-scissors"></i></div>
+              <h3 class="card-title">Garment Production</h3>
+              <p class="card-text">Spesialisasi produksi pakaian berkualitas dengan standar tinggi dan ketepatan waktu.</p>
+              <a href="about.php#garment" class="btn btn-outline-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card service-card h-100">
+            <div class="card-body text-center">
+              <div class="service-icon"><i class="bi bi-people"></i></div>
+              <h3 class="card-title">Outsourcing Services</h3>
+              <p class="card-text">Solusi kepegawaian profesional agar Anda fokus pada bisnis inti.</p>
+              <a href="about.php#outsourcing" class="btn btn-outline-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card service-card h-100">
+            <div class="card-body text-center">
+              <div class="service-icon"><i class="bi bi-mortarboard"></i></div>
+              <h3 class="card-title">Job Training Institute</h3>
+              <p class="card-text">Pelatihan komprehensif untuk meningkatkan skill dan peluang karier.</p>
+              <a href="about.php#training" class="btn btn-outline-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card service-card h-100">
+            <div class="card-body text-center">
+              <div class="service-icon"><i class="bi bi-car-front"></i></div>
+              <h3 class="card-title">Car Rental</h3>
+              <p class="card-text">Rental mobil terpercaya, opsi dengan driver profesional untuk perjalanan bisnis & pribadi.</p>
+              <a href="about.php#carrental" class="btn btn-outline-danger">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA -->
+  <section class="py-5 bg-primary text-white cta-section">
+    <div class="container text-center">
+      <h2>Mari Jalin Kemitraan Profesional</h2>
+      <p class="lead mb-4">Hubungi kami hari ini untuk mendiskusikan bagaimana kami dapat membantu perkembangan bisnis Anda.</p>
+      <a href="index.php#contact" class="btn btn-light btn-lg">Hubungi Kami</a>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="section-heading">Mengapa Memilih Kami?</h2>
+          <p>Kami hadir memberikan solusi terbaik: dari seragam kantor, baju komunitas, hingga produksi massal.</p>
+<ul class="checklist">
+            <li><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Kualitas Terbaik:</strong> Jahitan rapi, bahan berkualitas, standar produksi tinggi.</li>
+            <li><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Harga Terjangkau:</strong> Kompetitif tanpa mengorbankan kualitas.</li>
+            <li><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Produksi Cepat & Tepat Waktu:</strong> Tim berpengalaman dengan sistem terpadu.</li>
+            <li><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Layanan Custom:</strong> Desain fleksibel - logo, model, material.</li>
+            <li><i class="bi bi-check-circle-fill text-success me-2"></i><strong>Dipercaya Banyak Perusahaan:</strong> Melayani instansi & korporat di Indonesia.</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <img src="assets/images/galeri/gallery19.jpg" alt="Produksi PT Surya Abadi Raya" class="img-fluid rounded" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CLIENTS -->
+  <section class="py-5 client-section text-white">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-heading" style="color:#8B0000;">Mitra Kami</h2>
+        <p class="section-subheading" style="color:#8B0000;">Perusahaan yang telah mempercayakan layanan kami</p>
+      </div>
+      <div class="row">
+        <div class="col-md-12 owl-client owl-carousel">
+          <div class="item"><img src="assets/images/cust-logo/advik.jpg" alt="Advik" loading="lazy" decoding="async" /></div>
+          <div class="item"><img src="assets/images/cust-logo/asahi.png" alt="Asahi" loading="lazy" decoding="async" /></div>
+          <div class="item"><img src="assets/images/cust-logo/bji.png" alt="BJI" loading="lazy" decoding="async" /></div>
+          <div class="item"><img src="assets/images/cust-logo/client-heesung.jpg" alt="Heesung" loading="lazy" decoding="async" /></div>
+          <div class="item"><img src="assets/images/cust-logo/client-itron.jpg" alt="Itron" loading="lazy" decoding="async" /></div>
+          <div class="item"><img src="assets/images/cust-logo/seongjin.jpeg" alt="Seongjin" loading="lazy" decoding="async" /></div>
+          <div class="item"><img src="assets/images/cust-logo/sekisui.png" alt="Sekisui" loading="lazy" decoding="async" /></div>
+          <div class="item"><img src="assets/images/cust-logo/sari roti.png" alt="Sari Roti" loading="lazy" decoding="async" /></div>
+          <div class="item"><img src="assets/images/cust-logo/toyodenso.jpg" alt="Toyodenso" loading="lazy" decoding="async" /></div>
+          <div class="item"><img src="assets/images/cust-logo/client-sunstar.jpg" alt="Sunstar" loading="lazy" decoding="async" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section class="py-5 bg-light" id="contact">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-heading">Contact Us</h2>
+        <p class="section-subheading">Hubungi kami untuk pertanyaan apa pun atau untuk memulai percakapan.</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="card contact-card h-100">
+            <div class="card-body text-center">
+              <div class="contact-icon mb-3"><i class="bi bi-telephone fs-2" style="color:#8B0000;"></i></div>
+              <h4 class="mb-3" style="color:#8B0000;">Contact Us</h4>
+              <p>Telp : (021) - 8932 5738</p>
+              <p>General Inquiries:<br />surya.abadiraya@gmail.com</p>
+              <p>Senin - Jumat<br />8:00 - 17:00</p>
+              <div class="contact-icon my-4"><i class="bi bi-geo-alt fs-2" style="color:#8B0000;"></i></div>
+              <h4 class="mb-3" style="color:#8B0000;">Visit Us</h4>
+              <p>Ruko Central Business District (CBD) <br />Blok E20 - E21 Jl. Niaga Raya Kawasan Industri Jababeka II <br />Cikarang â€" Bekasi 17550</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="card contact-card h-100">
+            <div class="card-body p-0">
+              <iframe
+                title="Lokasi PT Surya Abadi Raya"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.7249390281163!2d107.14534361081647!3d-6.299828661630648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699b2673731c53%3A0xda06ebfdaa721c69!2sPT.%20Surya%20Abadi%20Raya!5e0!3m2!1sid!2sid!4v1753689933418!5m2!1sid!2sid"
+                width="100%" height="100%" style="border:0; min-height: 450px;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- FOOTER -->
+<footer class="custom-footer py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>PT Surya Abadi Raya</h5>
+        <p>Your trusted partner for quality garments and professional services.</p>
+        <p>Member of <a href="https://mardizu.co.id/" target="_blank" style="color:#fff; text-decoration:underline;">Mardizu</a></p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="index.php">Beranda</a></li>
+          <li><a href="about.php">Tentang Kami</a></li>
+          <li><a href="produk.php">Produk</a></li>
+          <li><a href="gallery.php">Galeri</a></li>
+          <li><a href="index.php#contact">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Contact Us</h5>
+        <address>
+          <p><i class="bi bi-geo-alt"></i> Ruko Central Business District (CBD) Blok C12 - C15 Jl. Niaga Raya Kawasan Industri Jababeka II Cikarang – Bekasi 17550</p>
+          <p><i class="bi bi-envelope"></i> surya.abadiraya@gmail.com</p>
+        </address>
+      </div>
+    </div>
+    <hr />
+    <div class="text-center"><p>&copy; 2025 PT Surya Abadi Raya. All Rights Reserved.</p></div>
+  </div>
+</footer>
+
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="assets/OwlCarousel/dist/owl.carousel.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      // Client logos
+      $('.owl-client').owlCarousel({
+        loop:true, margin:10, dots:true, autoplay:true, autoplayTimeout:2000,
+        responsive:{ 0:{items:1}, 600:{items:3}, 1000:{items:7} }
+      });
+
+      // Simplified Produk carousel - removed heavy animations
+      $('.owl-produk').owlCarousel({
+        loop: true,
+        margin: 20,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 3500,
+        autoplayHoverPause: true,
+        smartSpeed: 600,
+        responsive: {
+          0: {
+            items: 1,
+            margin: 10
+          },
+          600: {
+            items: 2,
+            margin: 15
+          },
+          1000: {
+            items: 4,
+            margin: 20
+          }
+        }
+      });
+
+      // Hero carousel
+      $('.hero-carousel').owlCarousel({
+        items:1, loop:true, autoplay:true, autoplayTimeout:4500,
+        autoplayHoverPause:false, smartSpeed:700, dots:false, nav:false,
+        touchDrag:true, mouseDrag:true, autoHeight:true
+      });
+    });
+  </script>
+
+  <!-- Smooth fade page -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const page = document.querySelector("body");
+      page.classList.add("fade-page");
+      setTimeout(() => { page.classList.add("show"); }, 50);
+
+      const links = document.querySelectorAll("a[href]");
+      links.forEach(link => {
+        if (link.hostname === window.location.hostname && !link.href.includes("#")) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = this.href;
+            page.classList.remove("show");
+            setTimeout(() => { window.location.href = target; }, 300);
+          });
+        }
+      });
+    });
+  </script>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"PT Surya Abadi Raya",
+    "url":"https://domainmu.com/",
+    "logo":"https://domainmu.com/assets/images/logo/logo SAR.png",
+    "telephone":"+62-21-89325738",
+    "email":"surya.abadiraya@gmail.com",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Ruko CBD Blok E20-E21, Jl. Niaga Raya, Jababeka II",
+      "addressLocality":"Cikarang",
+      "addressRegion":"Bekasi",
+      "postalCode":"17550",
+      "addressCountry":"ID"
+    },
+    "sameAs":[]
+  }
+  </script>
+</body>
+</html>
