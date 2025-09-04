@@ -1,15 +1,9 @@
-<?php
-// You can add PHP variables or logic here if needed
-$page_title = "About Us - PT Surya Abadi Raya";
-$company_name = "PT Surya Abadi Raya";
-$current_year = date('Y');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $page_title; ?></title>
+    <title>About Us - PT Surya Abadi Raya</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -243,7 +237,7 @@ $current_year = date('Y');
       <!-- Image Column -->
       <div class="col-lg-6 mb-5 mb-lg-0">
         <div class="company-image-wrapper position-relative reveal from-left">
-          <img src="assets/images/banner/1.jpeg" alt="<?php echo $company_name; ?>" class="img-fluid rounded-3 shadow-lg">
+          <img src="assets/images/banner/1.jpeg" alt="PT Surya Abadi Raya" class="img-fluid rounded-3 shadow-lg">
         </div>
       </div>
 
@@ -264,7 +258,7 @@ $current_year = date('Y');
               <div class="text-icon mb-2">
                 <i class="bi bi-building" style="color: #8B0000;"></i>
               </div>
-              <p class="mb-0"><?php echo $company_name; ?> didirikan pada tahun 2017 dengan visi menjadi penyedia garmen berkualitas dan layanan profesional terkemuka di Indonesia. Selama bertahun-tahun, kami telah memperluas operasi kami hingga mencakup pelatihan kerja dan layanan alih daya, tetapi fokus utama kami tetap pada produksi garmen berkualitas tinggi untuk berbagai industri.</p>
+              <p class="mb-0">PT Surya Abadi Raya didirikan pada tahun 2017 dengan visi menjadi penyedia garmen berkualitas dan layanan profesional terkemuka di Indonesia. Selama bertahun-tahun, kami telah memperluas operasi kami hingga mencakup pelatihan kerja dan layanan alih daya, tetapi fokus utama kami tetap pada produksi garmen berkualitas tinggi untuk berbagai industri.</p>
             </div>
 
             <div class="company-text-block reveal from-up delay-3">
@@ -452,8 +446,8 @@ $current_year = date('Y');
                         <p class="lead">Solusi penyediaan tenaga kerja profesional untuk kebutuhan bisnis Anda.</p>
                         <ul>
                             <li>Satpam</li>
-                            <li>Layanan Kebersihan</li>
-                            <li>Sopir</li>
+                            <li>Cleaning Service</li>
+                            <li>Driver</li>
                             <li>Operator Produksi</li>
                             <li>Staf Administrasi</li>
                         </ul>
@@ -585,57 +579,106 @@ $current_year = date('Y');
             </tr>
           </thead>
           <tbody>
-          <?php
-          // Format item:
-          // [nama, alamat_tampil, (opsional) url_maps / (opsional) ['lat'=>..., 'lng'=>...]]
-          $clients = [
-            // SUNSTAR: pakai link maps langsung (yang kamu kirim)
-            ['PT Sunstar Engineering Indonesia', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/GMHNCoRQSsqDZdQ8A'],
-            ['PT Heesung Electronics Jakarta', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/KK2SbkTPFp1XCyNg8'],
-            ['PT Berjaya Nawaplastic Indonesia', 'Cikarang, Bekasi' , 'https://maps.app.goo.gl/tTj9pu1HWcmXzepRA'],
-            ['PT Shinsung Automotive Indonesia', 'Cikarang, Bekasi' , 'https://maps.app.goo.gl/sZ1e1cVAznb9X5eLA'],
-            ['PT Nippo Mechatronics Indonesia', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/rVhUbKkZqv2j8eDv5'],
-            ['PT Unifoods Indonesia', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/Nv6ck6SjVLCLnDp87'],
-            ['PT Haeng Sung Raya Indonesia', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/ifdjpCEnWfULHnVv8'],
-            ['PT Kimpai Dyna Tube', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/Jiy2w1L3R4fPss9N8'],
-            ['PT Naga Sinar Terang', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/PMtAZmqtrqtAEnaK6'],
-            ['PT Neohyolim', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/s61sAQhtse9qS3DE6'],
-            
-            // Additional 10 clients to reach 20 total
-            ['PT Topline Evergreen Manufacturing', 'Cikarang, Bekasi', 'https://maps.app.goo.gl/zRvgCwR1x9uENXE7A'],
-            ['PT GUUD Logistics Indonesia', 'Sunter,Jakarta', 'https://maps.app.goo.gl/iHrtY7zsvnrHYcxM6'],
-            ['PT Dela Cemara Indah', 'Cibitung,Bekasi', 'https://maps.app.goo.gl/rw4CHREmxWU8TdT9A'],
-            ['PT Woo In', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/vKXFr4op6qGJCtkK8'],
-            ['PT Dnt Indonesia', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/TSqinDWr8VHfws5S8'],
-            ['PT MICS Steel Indonesia', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/VnzgFrEWouxBYxbi8'],
-            ['PT Yasufuku Indonesia', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/zUMiJNKL9icqDSug9'],
-            ['LPK Horenso Indonesia', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/nWrwNNqNv13PyeAK9'],
-            ['LPK Mitra Industri', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/XzDQkhFMiwfByrDQ8'],
-            ['PT New Optics', 'Cikarang,Bekasi', 'https://maps.app.goo.gl/4S9CvpRpeoFXgGod6']
-          ];
-
-          function buildMapsUrl($item) {
-            // 1) Kalau ada URL langsung, pakai itu
-            if (isset($item[2]) && is_string($item[2])) return $item[2];
-            // 2) Kalau ada koordinat, pakai lat,lng
-            if (isset($item[2]) && is_array($item[2]) && isset($item[2]['lat'],$item[2]['lng'])) {
-              return "https://www.google.com/maps/search/?api=1&query={$item[2]['lat']},{$item[2]['lng']}";
-            }
-            // 3) Fallback: query "Nama Perusahaan, Alamat"
-            return "https://www.google.com/maps/search/?api=1&query=" . urlencode($item[0] . ', ' . $item[1]);
-          }
-
-          $no = 1;
-          foreach ($clients as $c) {
-            $mapUrl = buildMapsUrl($c);
-            echo "<tr>";
-            echo "<td class='fw-medium'>{$no}</td>";
-            echo "<td class='fw-medium'>{$c[0]}</td>";
-            echo "<td class='fw-medium'><a href='{$mapUrl}' target='_blank' class='text-decoration-none text-dark'>{$c[1]}</a></td>";
-            echo "</tr>";
-            $no++;
-          }
-          ?>
+            <tr>
+              <td class='fw-medium'>1</td>
+              <td class='fw-medium'>PT Sunstar Engineering Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/GMHNCoRQSsqDZdQ8A' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>2</td>
+              <td class='fw-medium'>PT Heesung Electronics Jakarta</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/KK2SbkTPFp1XCyNg8' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>3</td>
+              <td class='fw-medium'>PT Berjaya Nawaplastic Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/tTj9pu1HWcmXzepRA' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>4</td>
+              <td class='fw-medium'>PT Shinsung Automotive Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/sZ1e1cVAznb9X5eLA' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>5</td>
+              <td class='fw-medium'>PT Nippo Mechatronics Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/rVhUbKkZqv2j8eDv5' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>6</td>
+              <td class='fw-medium'>PT Unifoods Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/Nv6ck6SjVLCLnDp87' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>7</td>
+              <td class='fw-medium'>PT Haeng Sung Raya Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/ifdjpCEnWfULHnVv8' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>8</td>
+              <td class='fw-medium'>PT Kimpai Dyna Tube</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/Jiy2w1L3R4fPss9N8' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>9</td>
+              <td class='fw-medium'>PT Naga Sinar Terang</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/PMtAZmqtrqtAEnaK6' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>10</td>
+              <td class='fw-medium'>PT Neohyolim</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/s61sAQhtse9qS3DE6' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>11</td>
+              <td class='fw-medium'>PT Topline Evergreen Manufacturing</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/zRvgCwR1x9uENXE7A' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>12</td>
+              <td class='fw-medium'>PT GUUD Logistics Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/iHrtY7zsvnrHYcxM6' target='_blank' class='text-decoration-none text-dark'>Sunter,Jakarta</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>13</td>
+              <td class='fw-medium'>PT Dela Cemara Indah</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/rw4CHREmxWU8TdT9A' target='_blank' class='text-decoration-none text-dark'>Cibitung,Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>14</td>
+              <td class='fw-medium'>PT Woo In</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/vKXFr4op6qGJCtkK8' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>15</td>
+              <td class='fw-medium'>PT Dnt Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/TSqinDWr8VHfws5S8' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>16</td>
+              <td class='fw-medium'>PT MICS Steel Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/VnzgFrEWouxBYxbi8' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>17</td>
+              <td class='fw-medium'>PT Yasufuku Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/zUMiJNKL9icqDSug9' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>18</td>
+              <td class='fw-medium'>LPK Horenso Indonesia</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/nWrwNNqNv13PyeAK9' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>19</td>
+              <td class='fw-medium'>LPK Mitra Industri</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/XzDQkhFMiwfByrDQ8' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
+            </tr>
+            <tr>
+              <td class='fw-medium'>20</td>
+              <td class='fw-medium'>PT New Optics</td>
+              <td class='fw-medium'><a href='https://maps.app.goo.gl/4S9CvpRpeoFXgGod6' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
+            </tr>
           </tbody>
         </table>
       </div>
