@@ -1,0 +1,346 @@
+[
+ {
+  "cat": "products",
+  "caption": "Seragam Kerja Lengan Panjang",
+  "thumb": "assets/img/g-sunstar-t.webp",
+  "full": "assets/img/g-sunstar-l.webp",
+  "tw": 560,
+  "th": 794
+ },
+ {
+  "cat": "production",
+  "caption": "Ruang Produksi Penjahitan",
+  "thumb": "assets/img/g-gallery10-t.webp",
+  "full": "assets/img/g-gallery10-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "Seragam Kerja Lapangan",
+  "thumb": "assets/img/g-trix-t.webp",
+  "full": "assets/img/g-trix-l.webp",
+  "tw": 560,
+  "th": 796
+ },
+ {
+  "cat": "services",
+  "caption": "Petugas Kebersihan di Area Kerja",
+  "thumb": "assets/img/g-clean3-t.webp",
+  "full": "assets/img/g-clean3-l.webp",
+  "tw": 560,
+  "th": 1247
+ },
+ {
+  "cat": "production",
+  "caption": "Penjahit Merapikan Bahan Merah",
+  "thumb": "assets/img/g-gallery18-t.webp",
+  "full": "assets/img/g-gallery18-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "Apron Kerja Jeans",
+  "thumb": "assets/img/g-apron-t.webp",
+  "full": "assets/img/g-apron-l.webp",
+  "tw": 530,
+  "th": 603
+ },
+ {
+  "cat": "products",
+  "caption": "Seragam Kerja Lengan Pendek",
+  "thumb": "assets/img/g-advik-t.webp",
+  "full": "assets/img/g-advik-l.webp",
+  "tw": 560,
+  "th": 792
+ },
+ {
+  "cat": "production",
+  "caption": "Tim Penjahit Bekerja",
+  "thumb": "assets/img/g-gallery7-t.webp",
+  "full": "assets/img/g-gallery7-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "Seragam Anti Statik (ESD)",
+  "thumb": "assets/img/g-anti-statik-t.webp",
+  "full": "assets/img/g-anti-statik-l.webp",
+  "tw": 354,
+  "th": 472
+ },
+ {
+  "cat": "services",
+  "caption": "Pembersihan Area Produksi",
+  "thumb": "assets/img/g-clean-t.webp",
+  "full": "assets/img/g-clean-l.webp",
+  "tw": 560,
+  "th": 448
+ },
+ {
+  "cat": "training",
+  "caption": "Kelas Pelatihan Kerja",
+  "thumb": "assets/img/g-lpk-t.webp",
+  "full": "assets/img/g-lpk-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "T-shirt Lengan Panjang",
+  "thumb": "assets/img/g-tri-t.webp",
+  "full": "assets/img/g-tri-l.webp",
+  "tw": 428,
+  "th": 605
+ },
+ {
+  "cat": "production",
+  "caption": "Menjahit Bahan Biru",
+  "thumb": "assets/img/g-gallery2-t.webp",
+  "full": "assets/img/g-gallery2-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "Seragam Training dengan Goodie Bag",
+  "thumb": "assets/img/g-set-training-t.webp",
+  "full": "assets/img/g-set-training-l.webp",
+  "tw": 423,
+  "th": 604
+ },
+ {
+  "cat": "production",
+  "caption": "Lini Jahit Produksi",
+  "thumb": "assets/img/g-gallery22-t.webp",
+  "full": "assets/img/g-gallery22-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "Set Seragam Kerja Lengkap",
+  "thumb": "assets/img/g-set-nidec-t.webp",
+  "full": "assets/img/g-set-nidec-l.webp",
+  "tw": 560,
+  "th": 792
+ },
+ {
+  "cat": "services",
+  "caption": "Driver Profesional",
+  "thumb": "assets/img/g-drive3-t.webp",
+  "full": "assets/img/g-drive3-l.webp",
+  "tw": 560,
+  "th": 996
+ },
+ {
+  "cat": "products",
+  "caption": "Seragam Kerja Dua Warna",
+  "thumb": "assets/img/g-namicoh-t.webp",
+  "full": "assets/img/g-namicoh-l.webp",
+  "tw": 560,
+  "th": 792
+ },
+ {
+  "cat": "production",
+  "caption": "Penjahit di Mesin Jahit",
+  "thumb": "assets/img/g-gallery21-t.webp",
+  "full": "assets/img/g-gallery21-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "Polo Shirt Kerja Hitam",
+  "thumb": "assets/img/g-polo-t.webp",
+  "full": "assets/img/g-polo-l.webp",
+  "tw": 424,
+  "th": 603
+ },
+ {
+  "cat": "production",
+  "caption": "Pembuatan Pola Pakaian",
+  "thumb": "assets/img/g-gallery19-t.webp",
+  "full": "assets/img/g-gallery19-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "Polo Shirt Kerja Biru",
+  "thumb": "assets/img/g-polo-2-t.webp",
+  "full": "assets/img/g-polo-2-l.webp",
+  "tw": 560,
+  "th": 802
+ },
+ {
+  "cat": "services",
+  "caption": "Tim Keamanan (Satpam)",
+  "thumb": "assets/img/g-satpam-t.webp",
+  "full": "assets/img/g-satpam-l.webp",
+  "tw": 560,
+  "th": 315
+ },
+ {
+  "cat": "products",
+  "caption": "Kaos Cotton Combed Sablon",
+  "thumb": "assets/img/g-kaos-t.webp",
+  "full": "assets/img/g-kaos-l.webp",
+  "tw": 560,
+  "th": 795
+ },
+ {
+  "cat": "production",
+  "caption": "Pemotongan Kain Presisi",
+  "thumb": "assets/img/g-potong1-t.webp",
+  "full": "assets/img/g-potong1-l.webp",
+  "tw": 560,
+  "th": 747
+ },
+ {
+  "cat": "products",
+  "caption": "Rompi Safety — Tampak Belakang",
+  "thumb": "assets/img/g-rompi-3-t.webp",
+  "full": "assets/img/g-rompi-3-l.webp",
+  "tw": 426,
+  "th": 605
+ },
+ {
+  "cat": "products",
+  "caption": "Rompi Safety Reflektif",
+  "thumb": "assets/img/g-rompi-2-t.webp",
+  "full": "assets/img/g-rompi-2-l.webp",
+  "tw": 560,
+  "th": 792
+ },
+ {
+  "cat": "services",
+  "caption": "Truk Operasional",
+  "thumb": "assets/img/g-truk-t.webp",
+  "full": "assets/img/g-truk-l.webp",
+  "tw": 560,
+  "th": 315
+ },
+ {
+  "cat": "production",
+  "caption": "Pemotongan Kain yang Teliti",
+  "thumb": "assets/img/g-potong2-t.webp",
+  "full": "assets/img/g-potong2-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "Rompi Jaring Staff Magang",
+  "thumb": "assets/img/g-rompi-1-t.webp",
+  "full": "assets/img/g-rompi-1-l.webp",
+  "tw": 560,
+  "th": 792
+ },
+ {
+  "cat": "production",
+  "caption": "Mesin Jahit Industri",
+  "thumb": "assets/img/g-mesin4-t.webp",
+  "full": "assets/img/g-mesin4-l.webp",
+  "tw": 560,
+  "th": 747
+ },
+ {
+  "cat": "products",
+  "caption": "Jaket Kerja Navy",
+  "thumb": "assets/img/g-unggul-semesta-t.webp",
+  "full": "assets/img/g-unggul-semesta-l.webp",
+  "tw": 560,
+  "th": 792
+ },
+ {
+  "cat": "training",
+  "caption": "Sesi Materi Pelatihan",
+  "thumb": "assets/img/g-lpk2-t.webp",
+  "full": "assets/img/g-lpk2-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "products",
+  "caption": "Set Seragam Kerja Biru Keabuan",
+  "thumb": "assets/img/g-set-yasufuku-t.webp",
+  "full": "assets/img/g-set-yasufuku-l.webp",
+  "tw": 560,
+  "th": 792
+ },
+ {
+  "cat": "services",
+  "caption": "Armada Mobil Sewa",
+  "thumb": "assets/img/g-car-t.webp",
+  "full": "assets/img/g-car-l.webp",
+  "tw": 560,
+  "th": 420
+ },
+ {
+  "cat": "production",
+  "caption": "Mesin Jahit Khusus",
+  "thumb": "assets/img/g-mesin-t.webp",
+  "full": "assets/img/g-mesin-l.webp",
+  "tw": 560,
+  "th": 747
+ },
+ {
+  "cat": "products",
+  "caption": "Seragam Kerja Lengan Panjang Biru Muda",
+  "thumb": "assets/img/g-sekisui-t.webp",
+  "full": "assets/img/g-sekisui-l.webp",
+  "tw": 560,
+  "th": 792
+ },
+ {
+  "cat": "products",
+  "caption": "Topi Jaring Kuning",
+  "thumb": "assets/img/g-topi5-t.webp",
+  "full": "assets/img/g-topi5-l.webp",
+  "tw": 354,
+  "th": 472
+ },
+ {
+  "cat": "production",
+  "caption": "Mesin Heat Press",
+  "thumb": "assets/img/g-mesin2-t.webp",
+  "full": "assets/img/g-mesin2-l.webp",
+  "tw": 560,
+  "th": 747
+ },
+ {
+  "cat": "products",
+  "caption": "Topi Biru dengan Aksen Strip",
+  "thumb": "assets/img/g-topi2-t.webp",
+  "full": "assets/img/g-topi2-l.webp",
+  "tw": 354,
+  "th": 472
+ },
+ {
+  "cat": "services",
+  "caption": "Armada ELF",
+  "thumb": "assets/img/g-elf-t.webp",
+  "full": "assets/img/g-elf-l.webp",
+  "tw": 560,
+  "th": 344
+ },
+ {
+  "cat": "production",
+  "caption": "Pelipatan & Finishing Rapi",
+  "thumb": "assets/img/g-potrait6-t.webp",
+  "full": "assets/img/g-potrait6-l.webp",
+  "tw": 285,
+  "th": 380
+ },
+ {
+  "cat": "products",
+  "caption": "Topi Putih Aksen Hijau",
+  "thumb": "assets/img/g-topi4-t.webp",
+  "full": "assets/img/g-topi4-l.webp",
+  "tw": 354,
+  "th": 472
+ }
+]

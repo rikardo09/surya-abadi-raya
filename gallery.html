@@ -1,782 +1,375 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - PT Surya Abadi Raya</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/style.css">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-
-    <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.theme.default.min.css" />
-    
-    <style>
-        /* Custom Navbar Styling - Simple Active State */
-        .custom-navbar {
-            background: linear-gradient(to right, #fdfdfd 0%, #B22222 50%, #8B0000 100%) !important;
-            box-shadow: 0 2px 10px rgba(139, 0, 0, 0.3);
-        }
-
-        .custom-navbar .navbar-brand,
-        .custom-navbar .nav-link {
-            color: white !important;
-            font-weight: 500;
-        }
-
-        .custom-navbar .nav-link:hover {
-            color: #FFE4E1 !important;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .custom-navbar .nav-link.active {
-            color: #FFFFFF !important;
-            font-weight: 700 !important;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
-        }
-            
-        /* Custom Footer Styling */
-        .custom-footer {
-            background: linear-gradient(135deg, #252c50  10%, #3c3e58ff 50%, #292b37ff 100%) !important;
-            color: white;
-        }
-        
-        .custom-footer h5 {
-            color: #E3F2FD;
-            font-weight: 600;
-        }
-        
-        .custom-footer a {
-            color: #ffffff !important;
-            transition: color 0.3s ease;
-        }
-        
-        .custom-footer a:hover {
-            color: #ffffff !important;
-        }
-        
-        .custom-footer hr {
-            border-color: #3949ab;
-        }
-
-                
-        /* Page Transition Effects */
-        .fade-page {
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .fade-page.show {
-            opacity: 1;
-        }
-
-        /* Gallery Container - Simple Masonry */
-        .gallery-container {
-            column-count: 4;
-            column-gap: 20px;
-            padding: 20px 0;
-        }
-
-        .gallery-item {
-            break-inside: avoid;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Gallery Card */
-        .gallery-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .gallery-card:hover {
-            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.2);
-        }
-
-        /* Images */
-        .gallery-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-card:hover .gallery-img {
-            transform: scale(1.05);
-        }
-
-        /* Overlay */
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(139, 0, 0, 0.8), rgba(220, 20, 60, 0.6));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-card:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-overlay i {
-            color: white;
-            font-size: 2rem;
-        }
-
-        /* Filter Pills */
-        #galleryFilter .nav-link {
-            color: #8B0000;
-            background: transparent;
-            border: none;
-            border-bottom: 3px solid transparent;
-            margin: 5px;
-            border-radius: 0;
-            padding: 10px 20px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        #galleryFilter .nav-link:hover {
-            background: rgba(139, 0, 0, 0.05);
-            transform: translateY(-2px);
-            border-bottom-color: rgba(139, 0, 0, 0.3);
-        }
-
-        #galleryFilter .nav-link.active {
-            background: transparent;
-            color: #8B0000;
-            border-bottom-color: #8B0000;
-            font-weight: 600;
-        }
-
-        /* Modal */
-        .image-modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-        }
-
-        .image-modal.show {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content-img {
-            max-width: 70%;
-            max-height: 70%;
-            position: relative;
-        }
-
-        .modal-img {
-            width: 100%;
-            height: auto;
-            max-height: 70vh;
-            border-radius: 6px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: #8B0000;
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 4px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .close-btn:hover {
-            background: #B22222;
-        }
-
-        /* Hidden class for filtering */
-        .gallery-item.hidden {
-            display: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .gallery-container {
-                column-count: 3;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .gallery-container {
-                column-count: 2;
-                column-gap: 15px;
-            }
-            
-            .gallery-item {
-                margin-bottom: 15px;
-            }
-
-            #galleryFilter .nav-link {
-                font-size: 0.9rem;
-                padding: 8px 16px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .gallery-container {
-                column-count: 1;
-            }
-
-            #galleryFilter .nav-link {
-                font-size: 0.85rem;
-                padding: 6px 12px;
-                margin: 3px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri | PT Surya Abadi Raya</title>
+  <meta name="description" content="Galeri foto PT Surya Abadi Raya: produk garment, proses produksi, layanan dan fasilitas, serta pelatihan kerja." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#8b0000" />
+  <link rel="canonical" href="https://rikardo09.github.io/surya-abadi-raya/gallery.html" />
+  <meta property="og:title" content="Galeri | PT Surya Abadi Raya" />
+  <meta property="og:description" content="Galeri foto PT Surya Abadi Raya: produk garment, proses produksi, layanan dan fasilitas, serta pelatihan kerja." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:url" content="https://rikardo09.github.io/surya-abadi-raya/gallery.html" />
+  <meta property="og:image" content="https://rikardo09.github.io/surya-abadi-raya/assets/img/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/images/logo/favicon.png" />
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="assets/home.css" />
+  <link rel="stylesheet" href="assets/pages.css" />
+  <script src="assets/pages.js" defer></script>
 </head>
-<body class="fade-page">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="assets/images/logo/logo SAR.png" alt="" srcset=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">Tentang Kami</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produk.html">Produk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="gallery.html">Galeri</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#contact">Kontak</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ====== GALERI HEADER ====== -->
-    <section class="gallery-header position-relative">
-        <div class="container">
-            <div class="hero-box d-flex align-items-center justify-content-between flex-wrap gap-3">
-                <div class="hero-text">
-                    <h1 class="hero-title mb-1 slide-in-left">Galeri Visual</h1>
-                    <p class="hero-sub mb-0 slide-in-up">Telusuri hasil karya dan proses produksi kami yang terkurasi.</p>
-                </div>
-                <a href="index.html#contact" class="btn btn-cta fade-in-down">
-                    <i class="bi bi-chat-dots me-2"></i>Hubungi Kami
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Filter - Enhanced Version -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <ul class="nav nav-pills justify-content-center mb-5" id="galleryFilter">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#" data-filter="all">
-                                <i class="bi bi-grid-fill me-2"></i>Semua Kategori
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-filter="products">
-                                <i class="bi bi-bag-check me-2"></i>Produk Unggulan
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-filter="services">
-                                <i class="bi bi-tools me-2"></i>Layanan & Fasilitas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-filter="training">
-                                <i class="bi bi-mortarboard-fill me-2"></i>Pelatihan Kerja
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-filter="production">
-                                <i class="bi bi-person-lines-fill me-2"></i> Proses Produksi
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery - Enhanced Version -->
-    <section class="pb-5">
-        <div class="container">
-            <div class="gallery-container">
-
-                <!-- Products -->
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/sunstar.png', 'Seragam Sunstar - Kualitas tinggi untuk kerja tanpa hambatan')">
-                        <img src="assets/images/galeri/sunstar.png" class="gallery-img" alt="Seragam Perusahaan">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/trix.png', 'Seragam Trix - Mendukung produktivitas dengan gaya profesional')">
-                        <img src="assets/images/galeri/trix.png" class="gallery-img" alt="Seragam Kerja Formal">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/apron.png', 'Apron Profesional - Kualitas prima untuk tampilan rapi dan profesional')">
-                        <img src="assets/images/galeri/apron.png" class="gallery-img" alt="Apron Berkualitas">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/advik.png', 'Seragam Advik - Busana tahan lama untuk lingkungan industri')">
-                        <img src="assets/images/galeri/advik.png" class="gallery-img" alt="Seragam Industri">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/anti statik.png', 'Seragam Anti Statik - Keamanan kerja tanpa gangguan muatan statis')">
-                        <img src="assets/images/galeri/anti statik.png" class="gallery-img" alt="Seragam Anti Statik">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/tri.png', 'Seragam Magang - Nyaman dipakai untuk aktivitas pembelajaran')">
-                        <img src="assets/images/galeri/tri.png" class="gallery-img" alt="Seragam Pelatihan">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/set training.png', 'Set Seragam Training Praktis Serbaguna Berkualitas')">
-                        <img src="assets/images/galeri/set training.png" class="gallery-img" alt="Seragam Pelatihan">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/set nidec.png', 'Set Seragam Kerja - Nyaman dipakai untuk aktivitas pembelajaran')">
-                        <img src="assets/images/galeri/set nidec.png" class="gallery-img" alt="Seragam Pelatihan">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/namicoh.png', 'Seragam Namicoh - Desain profesional dengan kualitas terjamin')">
-                        <img src="assets/images/galeri/namicoh.png" class="gallery-img" alt="Seragam Perusahaan">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/polo.png', 'Polo Shirt Kerja - Desain minimalis untuk tampilan kasual profesional')">
-                        <img src="assets/images/galeri/polo.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/polo 2.png', 'Polo Shirt Kerja - Desain minimalis untuk tampilan kasual profesional')">
-                        <img src="assets/images/galeri/polo 2.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/kaos.png', 'Kaos Family Gathering Nyaman Dipakai')">
-                        <img src="assets/images/galeri/kaos.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/rompi 3.png', 'Rompi - Rompi Kerja Lapangan Praktis')">
-                        <img src="assets/images/galeri/rompi 3.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/rompi 2.png', 'Rompi - Rompi Kerja Lapangan Praktis')">
-                        <img src="assets/images/galeri/rompi 2.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/rompi 1.png', 'Rompi - Rompi Kerja Lapangan Praktis')">
-                        <img src="assets/images/galeri/rompi 1.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/unggul semesta.png', 'Seragam Kerja Lengan Panjang Modern')">
-                        <img src="assets/images/galeri/unggul semesta.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/set yasufuku.png', 'Set Seragam Kerja Lengkap Profesional')">
-                        <img src="assets/images/galeri/set yasufuku.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/sekisui.png', 'Seragam Kerja Lengan Panjang Modern')">
-                        <img src="assets/images/galeri/sekisui.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/TOPI5.png', 'Pilihan Topi Kerja untuk Kegiatan Anda')">
-                        <img src="assets/images/galeri/TOPI5.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/TOPI2.png', 'Topi kerja fungsional dengan bahan lembut dan tidak panas')">
-                        <img src="assets/images/galeri/TOPI2.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="products">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/TOPI4.png', 'Perlindungan kepala dengan topi kerja yang nyaman dan awet')">
-                        <img src="assets/images/galeri/TOPI4.png" class="gallery-img" alt="Seragam Polo">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-
-                <!-- Services -->
-                <div class="gallery-item" data-category="services">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/clean3.jpeg', 'Layanan Cleaning Service - Standar kebersihan profesional')">
-                        <img src="assets/images/galeri/clean3.jpeg" class="gallery-img" alt="Layanan Kebersihan">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="services">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/clean.jpg', 'Lingkungan Kerja Bersih - Menciptakan suasana kerja yang sehat')">
-                        <img src="assets/images/galeri/clean.jpg" class="gallery-img" alt="Area Kerja Bersih">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="services">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/drive3.jpeg', 'Driver Profesional - Layanan transportasi dengan standar keselamatan tinggi')">
-                        <img src="assets/images/galeri/drive3.jpeg" class="gallery-img" alt="Driver Profesional">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="services">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/satpam.jpeg', 'Security Service - Menjamin keamanan lingkungan kerja 24/7')">
-                        <img src="assets/images/galeri/satpam.jpeg" class="gallery-img" alt="Petugas Keamanan">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="services">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/truk.jpeg', 'Armada Truk - Kendaraan operasional terawat untuk distribusi')">
-                        <img src="assets/images/galeri/truk.jpeg" class="gallery-img" alt="Truk Operasional">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="services">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/car.jpeg', 'Mobil Operasional - Kendaraan standar untuk kebutuhan mobilitas')">
-                        <img src="assets/images/galeri/car.jpeg" class="gallery-img" alt="Mobil Operasional">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="services">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/elf.jpeg', 'Elf Transportasi - Kendaraan berkapasitas besar untuk rombongan')">
-                        <img src="assets/images/galeri/elf.jpeg" class="gallery-img" alt="Mobil Operasional">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <!-- Training -->
-                <div class="gallery-item" data-category="training">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/lpk.jpeg', 'Lembaga Pelatihan Kerja - Program pelatihan menjahit profesional')">
-                        <img src="assets/images/galeri/lpk.jpeg" class="gallery-img" alt="Pelatihan Menjahit">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="training">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/lpk2.jpeg', 'Workshop Pelatihan - Pembelajaran praktis dengan instruktur berpengalaman')">
-                        <img src="assets/images/galeri/lpk2.jpeg" class="gallery-img" alt="Workshop Pelatihan">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <!-- Production -->
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery10.jpg', 'Tim Produksi Berpengalaman - Profesional dengan dedikasi tinggi')">
-                        <img src="assets/images/galeri/gallery10.jpg" class="gallery-img" alt="Tim Garment Berpengalaman">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery18.jpg', 'Tim Ahli Garment - Spesialis produksi dengan standar kualitas tinggi')">
-                        <img src="assets/images/galeri/gallery18.jpg" class="gallery-img" alt="Tim Ahli Garment">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery7.jpg', 'Proses Produksi Profesional - Transformasi desain menjadi produk berkualitas')">
-                        <img src="assets/images/galeri/gallery7.jpg" class="gallery-img" alt="Tim Garment Profesional">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery2.jpg', 'Tim Solid Production - Sinergi sempurna untuk hasil optimal')">
-                        <img src="assets/images/galeri/gallery2.jpg" class="gallery-img" alt="Tim Solid Garment">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery22.jpg', 'Quality Control - Kontrol kualitas dan ketelitian setiap detail')">
-                        <img src="assets/images/galeri/gallery22.jpg" class="gallery-img" alt="Jahitan Berkualitas">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery21.jpg', 'Craftsmanship Excellence - Keahlian tangan profesional')">
-                        <img src="assets/images/galeri/gallery21.jpg" class="gallery-img" alt="Tim Terampil Garment">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/gallery19.jpg', 'Production Team Excellence - Komitmen pada kualitas produk')">
-                        <img src="assets/images/galeri/gallery19.jpg" class="gallery-img" alt="Tim Garment Dedikasi Tinggi">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/potong1.jpeg', 'Cutting Process - Pemotongan kain dengan presisi teknologi modern')">
-                        <img src="assets/images/galeri/potong1.jpeg" class="gallery-img" alt="Pemotongan Kain Presisi">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/potong2.jpeg', 'Precision Cutting - Standar pemotongan untuk konsistensi kualitas')">
-                        <img src="assets/images/galeri/potong2.jpeg" class="gallery-img" alt="Pemotongan Kain Teliti">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/mesin4.jpg', 'Modern Machinery - Teknologi terdepan untuk hasil maksimal')">
-                        <img src="assets/images/galeri/mesin4.jpg" class="gallery-img" alt="Mesin Jahit Modern">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/mesin.jpg', 'Industrial Equipment - Mesin berkualitas tinggi untuk produksi optimal')">
-                        <img src="assets/images/galeri/mesin.jpg" class="gallery-img" alt="Mesin Jahit Berkualitas">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/mesin2.jpg', 'Printing Technology - Teknologi cetak dengan hasil warna tajam')">
-                        <img src="assets/images/galeri/mesin2.jpg" class="gallery-img" alt="Mesin Jahit Presisi">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-category="production">
-                    <div class="gallery-card" onclick="openModal('assets/images/galeri/potrait6.jpg', 'Finishing Process - Proses finishing untuk hasil sempurna')">
-                        <img src="assets/images/galeri/potrait6.jpg" class="gallery-img" alt="Penyetrikaan Rapi">
-                        <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal -->
-    <div id="imageModal" class="image-modal" onclick="closeModal()">
-        <div class="modal-content-img" onclick="event.stopPropagation()">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
-            <img id="modalImage" class="modal-img" src="" alt="">
-            <div id="modalTitle" style="color: white; text-align: center; margin-top: 10px; font-size: 1.1rem;"></div>
-        </div>
+<body data-page="gallery">
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></symbol><symbol id="i-bag" viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></symbol><symbol id="i-check2-circle" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
+  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/></symbol><symbol id="i-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></symbol><symbol id="i-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/></symbol><symbol id="i-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></symbol><symbol id="i-chevron-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/></symbol><symbol id="i-envelope" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></symbol><symbol id="i-eye" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/></symbol><symbol id="i-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></symbol><symbol id="i-images" viewBox="0 0 16 16"><path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+  <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/></symbol><symbol id="i-list" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></symbol><symbol id="i-mortarboard" viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917zM8 8.46 1.758 5.965 8 3.052l6.242 2.913z"/>
+  <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46z"/></symbol><symbol id="i-person-badge" viewBox="0 0 16 16"><path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492z"/></symbol><symbol id="i-scissors" viewBox="0 0 16 16"><path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0m7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/></symbol><symbol id="i-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></symbol><symbol id="i-shield-check" viewBox="0 0 16 16"><path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/>
+  <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/></symbol><symbol id="i-stars" viewBox="0 0 16 16"><path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/></symbol><symbol id="i-tag" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0"/>
+  <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1m0 5.586 7 7L13.586 9l-7-7H2z"/></symbol><symbol id="i-telephone" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></symbol><symbol id="i-truck" viewBox="0 0 16 16"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/></symbol><symbol id="i-x-lg" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/></symbol><symbol id="i-zoom-in" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+  <path d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"/>
+  <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"/></symbol></svg>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="PT Surya Abadi Raya — Beranda">
+        <img src="assets/img/logo-sar.webp" alt="PT Surya Abadi Raya" width="360" height="149" />
+      </a>
+      <nav class="nav-links" id="menu" aria-label="Navigasi utama">
+        <a href="index.html">Beranda</a>
+        <a href="about.html">Tentang Kami</a>
+        <a href="produk.html">Produk</a>
+        <a href="gallery.html" class="active" aria-current="page">Galeri</a>
+        <a href="contact.html">Kontak</a>
+        <a href="contact.html#form" class="btn btn-light btn-sm nav-cta">Hubungi Kami</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Buka menu">
+        <svg class="i i-open" aria-hidden="true" focusable="false"><use href="#i-list"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x-lg"/></svg>
+      </button>
     </div>
+  </header>
 
-<!-- FOOTER -->
-<footer class="custom-footer py-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <h5>PT Surya Abadi Raya</h5>
-        <p>Your trusted partner for quality garments and professional services.</p>
-        <p>Member of <a href="https://mardizu.co.id/" target="_blank" style="color:#fff; text-decoration:underline;">Mardizu</a></p>
+  <main id="main">
+    <section class="phero tone-red" style="--wave:#fff">
+    <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
+    <span class="ring r1" aria-hidden="true"></span><span class="ring r2" aria-hidden="true"></span>
+      <div class="container phero-grid">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Beranda</a><span class="sep">/</span><span aria-current="page">Galeri</span></nav>
+          <span class="eyebrow">Galeri Visual</span>
+          <h1>Hasil Karya &amp; <span class="hl">Proses Produksi</span> Kami</h1>
+          <p class="phero-lead">Telusuri produk, ruang produksi, armada, dan kegiatan pelatihan kami. Klik foto mana pun untuk melihatnya lebih besar.</p>
+          <div class="phero-actions">
+            <a href="#foto" class="btn btn-light">Jelajahi Foto <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            <a href="produk.html" class="btn btn-ghost">Lihat Katalog</a>
+          </div>
+        </div>
+        <div class="art">
+          <div class="art-card tone-amber"><span class="art-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-images"/></svg></span><div><strong><span data-count="43">0</span> Foto</strong><span class="s">Dokumentasi pilihan</span></div></div>
+          <div class="art-card tone-teal"><span class="art-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg></span><div><strong><span data-count="13">0</span> Foto Produksi</strong><span class="s">Dari potong hingga finishing</span></div></div>
+          <div class="art-card tone-blue"><span class="art-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg></span><div><strong><span data-count="4">0</span> Kategori</strong><span class="s">Produk, layanan, pelatihan, produksi</span></div></div>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <h5>Quick Links</h5>
-        <ul class="list-unstyled">
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="about.html">Tentang Kami</a></li>
-          <li><a href="produk.html">Produk</a></li>
-          <li><a href="gallery.html">Galeri</a></li>
-          <li><a href="index.html#contact">Kontak</a></li>
-        </ul>
+      <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C240,90 480,0 720,36 C960,72 1200,92 1440,28 L1440,80 L0,80 Z"/></svg>
+    </section>
+
+    <section class="section anchor-fix" id="foto" style="padding-top:56px">
+      <div class="container">
+        <div class="gx-bar">
+          <div class="fchips" id="gx-chips" role="group" aria-label="Filter kategori foto"><button class="fchip tone-red" type="button" data-cat="all" aria-pressed="true">Semua <span class="n">43</span></button><button class="fchip tone-red" type="button" data-cat="products" aria-pressed="false"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk Unggulan <span class="n">21</span></button><button class="fchip tone-blue" type="button" data-cat="services" aria-pressed="false"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Layanan &amp; Fasilitas <span class="n">7</span></button><button class="fchip tone-amber" type="button" data-cat="training" aria-pressed="false"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-mortarboard"/></svg>Pelatihan Kerja <span class="n">2</span></button><button class="fchip tone-teal" type="button" data-cat="production" aria-pressed="false"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Proses Produksi <span class="n">13</span></button></div>
+          <p class="result-line" id="gx-line" role="status" aria-live="polite" style="margin:0"></p>
+        </div>
+        <div class="gx-grid">
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-sunstar-l.webp" data-caption="Seragam Kerja Lengan Panjang" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-sunstar-t.webp" width="560" height="794" alt="Seragam Kerja Lengan Panjang" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Seragam Kerja Lengan Panjang</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-gallery10-l.webp" data-caption="Ruang Produksi Penjahitan" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-gallery10-t.webp" width="560" height="420" alt="Ruang Produksi Penjahitan" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Ruang Produksi Penjahitan</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-trix-l.webp" data-caption="Seragam Kerja Lapangan" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-trix-t.webp" width="560" height="796" alt="Seragam Kerja Lapangan" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Seragam Kerja Lapangan</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="services" data-full="assets/img/g-clean3-l.webp" data-caption="Petugas Kebersihan di Area Kerja" data-tone="tone-blue" data-icon="truck" data-label="Layanan">
+          <img src="assets/img/g-clean3-t.webp" width="560" height="1247" alt="Petugas Kebersihan di Area Kerja" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Petugas Kebersihan di Area Kerja</strong><span class="gx-tag tone-blue"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Layanan</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-gallery18-l.webp" data-caption="Penjahit Merapikan Bahan Merah" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-gallery18-t.webp" width="560" height="420" alt="Penjahit Merapikan Bahan Merah" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Penjahit Merapikan Bahan Merah</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-apron-l.webp" data-caption="Apron Kerja Jeans" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-apron-t.webp" width="530" height="603" alt="Apron Kerja Jeans" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Apron Kerja Jeans</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-advik-l.webp" data-caption="Seragam Kerja Lengan Pendek" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-advik-t.webp" width="560" height="792" alt="Seragam Kerja Lengan Pendek" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Seragam Kerja Lengan Pendek</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-gallery7-l.webp" data-caption="Tim Penjahit Bekerja" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-gallery7-t.webp" width="560" height="420" alt="Tim Penjahit Bekerja" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Tim Penjahit Bekerja</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-anti-statik-l.webp" data-caption="Seragam Anti Statik (ESD)" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-anti-statik-t.webp" width="354" height="472" alt="Seragam Anti Statik (ESD)" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Seragam Anti Statik (ESD)</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="services" data-full="assets/img/g-clean-l.webp" data-caption="Pembersihan Area Produksi" data-tone="tone-blue" data-icon="truck" data-label="Layanan">
+          <img src="assets/img/g-clean-t.webp" width="560" height="448" alt="Pembersihan Area Produksi" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Pembersihan Area Produksi</strong><span class="gx-tag tone-blue"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Layanan</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="training" data-full="assets/img/g-lpk-l.webp" data-caption="Kelas Pelatihan Kerja" data-tone="tone-amber" data-icon="mortarboard" data-label="Pelatihan">
+          <img src="assets/img/g-lpk-t.webp" width="560" height="420" alt="Kelas Pelatihan Kerja" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Kelas Pelatihan Kerja</strong><span class="gx-tag tone-amber"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-mortarboard"/></svg>Pelatihan</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-tri-l.webp" data-caption="T-shirt Lengan Panjang" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-tri-t.webp" width="428" height="605" alt="T-shirt Lengan Panjang" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>T-shirt Lengan Panjang</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-gallery2-l.webp" data-caption="Menjahit Bahan Biru" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-gallery2-t.webp" width="560" height="420" alt="Menjahit Bahan Biru" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Menjahit Bahan Biru</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-set-training-l.webp" data-caption="Seragam Training dengan Goodie Bag" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-set-training-t.webp" width="423" height="604" alt="Seragam Training dengan Goodie Bag" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Seragam Training dengan Goodie Bag</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-gallery22-l.webp" data-caption="Lini Jahit Produksi" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-gallery22-t.webp" width="560" height="420" alt="Lini Jahit Produksi" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Lini Jahit Produksi</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-set-nidec-l.webp" data-caption="Set Seragam Kerja Lengkap" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-set-nidec-t.webp" width="560" height="792" alt="Set Seragam Kerja Lengkap" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Set Seragam Kerja Lengkap</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="services" data-full="assets/img/g-drive3-l.webp" data-caption="Driver Profesional" data-tone="tone-blue" data-icon="truck" data-label="Layanan">
+          <img src="assets/img/g-drive3-t.webp" width="560" height="996" alt="Driver Profesional" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Driver Profesional</strong><span class="gx-tag tone-blue"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Layanan</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-namicoh-l.webp" data-caption="Seragam Kerja Dua Warna" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-namicoh-t.webp" width="560" height="792" alt="Seragam Kerja Dua Warna" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Seragam Kerja Dua Warna</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-gallery21-l.webp" data-caption="Penjahit di Mesin Jahit" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-gallery21-t.webp" width="560" height="420" alt="Penjahit di Mesin Jahit" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Penjahit di Mesin Jahit</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-polo-l.webp" data-caption="Polo Shirt Kerja Hitam" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-polo-t.webp" width="424" height="603" alt="Polo Shirt Kerja Hitam" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Polo Shirt Kerja Hitam</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-gallery19-l.webp" data-caption="Pembuatan Pola Pakaian" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-gallery19-t.webp" width="560" height="420" alt="Pembuatan Pola Pakaian" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Pembuatan Pola Pakaian</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-polo-2-l.webp" data-caption="Polo Shirt Kerja Biru" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-polo-2-t.webp" width="560" height="802" alt="Polo Shirt Kerja Biru" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Polo Shirt Kerja Biru</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="services" data-full="assets/img/g-satpam-l.webp" data-caption="Tim Keamanan (Satpam)" data-tone="tone-blue" data-icon="truck" data-label="Layanan">
+          <img src="assets/img/g-satpam-t.webp" width="560" height="315" alt="Tim Keamanan (Satpam)" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Tim Keamanan (Satpam)</strong><span class="gx-tag tone-blue"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Layanan</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-kaos-l.webp" data-caption="Kaos Cotton Combed Sablon" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-kaos-t.webp" width="560" height="795" alt="Kaos Cotton Combed Sablon" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Kaos Cotton Combed Sablon</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-potong1-l.webp" data-caption="Pemotongan Kain Presisi" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-potong1-t.webp" width="560" height="747" alt="Pemotongan Kain Presisi" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Pemotongan Kain Presisi</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-rompi-3-l.webp" data-caption="Rompi Safety — Tampak Belakang" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-rompi-3-t.webp" width="426" height="605" alt="Rompi Safety — Tampak Belakang" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Rompi Safety — Tampak Belakang</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-rompi-2-l.webp" data-caption="Rompi Safety Reflektif" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-rompi-2-t.webp" width="560" height="792" alt="Rompi Safety Reflektif" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Rompi Safety Reflektif</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="services" data-full="assets/img/g-truk-l.webp" data-caption="Truk Operasional" data-tone="tone-blue" data-icon="truck" data-label="Layanan">
+          <img src="assets/img/g-truk-t.webp" width="560" height="315" alt="Truk Operasional" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Truk Operasional</strong><span class="gx-tag tone-blue"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Layanan</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-potong2-l.webp" data-caption="Pemotongan Kain yang Teliti" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-potong2-t.webp" width="560" height="420" alt="Pemotongan Kain yang Teliti" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Pemotongan Kain yang Teliti</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-rompi-1-l.webp" data-caption="Rompi Jaring Staff Magang" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-rompi-1-t.webp" width="560" height="792" alt="Rompi Jaring Staff Magang" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Rompi Jaring Staff Magang</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-mesin4-l.webp" data-caption="Mesin Jahit Industri" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-mesin4-t.webp" width="560" height="747" alt="Mesin Jahit Industri" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Mesin Jahit Industri</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-unggul-semesta-l.webp" data-caption="Jaket Kerja Navy" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-unggul-semesta-t.webp" width="560" height="792" alt="Jaket Kerja Navy" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Jaket Kerja Navy</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="training" data-full="assets/img/g-lpk2-l.webp" data-caption="Sesi Materi Pelatihan" data-tone="tone-amber" data-icon="mortarboard" data-label="Pelatihan">
+          <img src="assets/img/g-lpk2-t.webp" width="560" height="420" alt="Sesi Materi Pelatihan" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Sesi Materi Pelatihan</strong><span class="gx-tag tone-amber"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-mortarboard"/></svg>Pelatihan</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-set-yasufuku-l.webp" data-caption="Set Seragam Kerja Biru Keabuan" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-set-yasufuku-t.webp" width="560" height="792" alt="Set Seragam Kerja Biru Keabuan" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Set Seragam Kerja Biru Keabuan</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="services" data-full="assets/img/g-car-l.webp" data-caption="Armada Mobil Sewa" data-tone="tone-blue" data-icon="truck" data-label="Layanan">
+          <img src="assets/img/g-car-t.webp" width="560" height="420" alt="Armada Mobil Sewa" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Armada Mobil Sewa</strong><span class="gx-tag tone-blue"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Layanan</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-mesin-l.webp" data-caption="Mesin Jahit Khusus" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-mesin-t.webp" width="560" height="747" alt="Mesin Jahit Khusus" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Mesin Jahit Khusus</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-sekisui-l.webp" data-caption="Seragam Kerja Lengan Panjang Biru Muda" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-sekisui-t.webp" width="560" height="792" alt="Seragam Kerja Lengan Panjang Biru Muda" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Seragam Kerja Lengan Panjang Biru Muda</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-topi5-l.webp" data-caption="Topi Jaring Kuning" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-topi5-t.webp" width="354" height="472" alt="Topi Jaring Kuning" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Topi Jaring Kuning</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-mesin2-l.webp" data-caption="Mesin Heat Press" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-mesin2-t.webp" width="560" height="747" alt="Mesin Heat Press" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Mesin Heat Press</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-topi2-l.webp" data-caption="Topi Biru dengan Aksen Strip" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-topi2-t.webp" width="354" height="472" alt="Topi Biru dengan Aksen Strip" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Topi Biru dengan Aksen Strip</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="services" data-full="assets/img/g-elf-l.webp" data-caption="Armada ELF" data-tone="tone-blue" data-icon="truck" data-label="Layanan">
+          <img src="assets/img/g-elf-t.webp" width="560" height="344" alt="Armada ELF" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Armada ELF</strong><span class="gx-tag tone-blue"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Layanan</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="production" data-full="assets/img/g-potrait6-l.webp" data-caption="Pelipatan &amp; Finishing Rapi" data-tone="tone-teal" data-icon="scissors" data-label="Produksi">
+          <img src="assets/img/g-potrait6-t.webp" width="285" height="380" alt="Pelipatan &amp; Finishing Rapi" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Pelipatan &amp; Finishing Rapi</strong><span class="gx-tag tone-teal"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        <button type="button" class="gx-item" data-cat="products" data-full="assets/img/g-topi4-l.webp" data-caption="Topi Putih Aksen Hijau" data-tone="tone-red" data-icon="stars" data-label="Produk">
+          <img src="assets/img/g-topi4-t.webp" width="354" height="472" alt="Topi Putih Aksen Hijau" loading="lazy" decoding="async" />
+          <span class="gx-cap"><strong>Topi Putih Aksen Hijau</strong><span class="gx-tag tone-red"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Produk</span></span>
+          <span class="gx-zoom"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-zoom-in"/></svg></span>
+        </button>
+        </div>
+        <div class="gx-more" id="gx-more" hidden>
+          <button class="btn btn-outline" type="button"><span>Tampilkan lebih banyak</span> <svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg></button>
+          <small id="gx-more-note" class="result-line" style="margin:0"></small>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <h5>Contact Us</h5>
-        <address>
-          <p><i class="bi bi-geo-alt"></i> Ruko Central Business District (CBD) Blok C12 - C15 Jl. Niaga Raya Kawasan Industri Jababeka II Cikarang – Bekasi 17550</p>
-          <p><i class="bi bi-envelope"></i> surya.abadiraya@gmail.com</p>
-        </address>
+    </section>
+
+    <div class="cta-wrap">
+      <div class="container">
+        <div class="cta reveal">
+          <h2>Ingin Hasil Seperti Ini untuk Perusahaan Anda?</h2>
+          <p>Ceritakan kebutuhan Anda — kami siap membantu dari desain hingga pengiriman.</p>
+          <div class="hero-actions">
+            <a href="contact.html#form" class="btn btn-light btn-lg">Hubungi Kami <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            <a href="tel:+622189325738" class="btn btn-ghost"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-telephone"/></svg> (021) 8932 5738</a>
+          </div>
+        </div>
       </div>
     </div>
-    <hr />
-    <div class="text-center"><p>&copy; 2025 PT Surya Abadi Raya. All Rights Reserved.</p></div>
-  </div>
-</footer>
+  </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        // Simple Gallery Filter
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterLinks = document.querySelectorAll('#galleryFilter a');
-            const galleryItems = document.querySelectorAll('.gallery-item');
+  <dialog id="lb" class="lb" aria-label="Penampil foto">
+    <div class="lb-top">
+      <span class="lb-count" id="lb-count"></span>
+      <button class="lb-btn" id="lb-close" type="button" aria-label="Tutup"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x-lg"/></svg></button>
+    </div>
+    <div class="lb-stage">
+      <button class="lb-btn prev" type="button" aria-label="Foto sebelumnya"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron-left"/></svg></button>
+      <img id="lb-img" src="" alt="" />
+      <button class="lb-btn next" type="button" aria-label="Foto berikutnya"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></button>
+    </div>
+    <div class="lb-info">
+      <span class="gx-tag" id="lb-tag"></span>
+      <strong id="lb-cap"></strong>
+    </div>
+  </dialog>
 
-            filterLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="assets/img/logo-sar.webp" alt="PT Surya Abadi Raya" width="360" height="149" loading="lazy" />
+          <p>Mitra terpercaya untuk garment berkualitas dan layanan profesional.</p>
+          <p>Member of <a href="https://mardizu.co.id/" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;text-underline-offset:3px">Mardizu</a></p>
+        </div>
+        <div>
+          <h4>Tautan Cepat</h4>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="produk.html">Produk</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="contact.html">Kontak</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Kontak</h4>
+          <ul class="f-contact">
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg><address>Ruko Central Business District (CBD) Blok E20 – E21, Jl. Niaga Raya, Kawasan Industri Jababeka II, Cikarang – Bekasi 17550</address></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-telephone"/></svg><a href="tel:+622189325738">(021) 8932 5738</a></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-envelope"/></svg><a href="mailto:surya.abadiraya@gmail.com">surya.abadiraya@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; <span id="year">2026</span> PT Surya Abadi Raya. All Rights Reserved.</div>
+    </div>
+  </footer>
+  <button class="to-top" type="button" aria-label="Kembali ke atas"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron-up"/></svg></button>
 
-                    // Update active filter
-                    filterLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-
-                    const filter = this.getAttribute('data-filter');
-
-                    // Filter items
-                    galleryItems.forEach(item => {
-                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                            item.classList.remove('hidden');
-                        } else {
-                            item.classList.add('hidden');
-                        }
-                    });
-                });
-            });
-        });
-
-        // Modal Functions
-        function openModal(imageSrc, title) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const modalTitle = document.getElementById('modalTitle');
-            
-            modal.classList.add('show');
-            modalImg.src = imageSrc;
-            modalTitle.textContent = title;
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.classList.remove('show');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Smooth page transition script
-        document.addEventListener("DOMContentLoaded", function () {
-            const page = document.querySelector("body");
-            page.classList.add("fade-page");
-
-            // Show page with fade-in
-            setTimeout(() => {
-                page.classList.add("show");
-            }, 50);
-
-            // Fade-out when clicking internal links
-            const links = document.querySelectorAll("a[href]");
-
-            links.forEach(link => {
-                if (link.hostname === window.location.hostname && !link.href.includes("#")) {
-                    link.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        const target = this.href;
-                        page.classList.remove("show");
-                        setTimeout(() => {
-                            window.location.href = target;
-                        }, 300);
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>

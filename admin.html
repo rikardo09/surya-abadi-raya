@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin | PT Surya Abadi Raya</title>
+  <link rel="icon" href="assets/images/logo/favicon.png" />
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/admin.css" />
+</head>
+<body>
+  <!-- LOGIN -->
+  <main class="login" id="login">
+    <form class="login-card" id="login-form" autocomplete="off">
+      <img src="assets/img/logo-sar.webp" alt="PT Surya Abadi Raya" class="login-logo" width="120" />
+      <h1>Panel Admin</h1>
+      <p class="muted">Kelola galeri foto dan daftar customer website. Perubahan dikirim langsung ke repositori GitHub, lalu website otomatis diperbarui.</p>
+      <label>Token akses GitHub
+        <input id="token" type="password" placeholder="github_pat_…" required autocomplete="off" spellcheck="false" />
+      </label>
+      <details class="adv">
+        <summary>Pengaturan repositori</summary>
+        <div class="grid2">
+          <label>Pemilik <input id="owner" value="rikardo09" /></label>
+          <label>Repositori <input id="repo" value="surya-abadi-raya" /></label>
+        </div>
+      </details>
+      <label class="check"><input type="checkbox" id="remember" /> Ingat token di perangkat ini</label>
+      <p class="err" id="login-err" role="alert" hidden></p>
+      <button class="btn primary" type="submit" id="login-btn">Masuk</button>
+      <details class="howto">
+        <summary>Belum punya token? Cara membuatnya</summary>
+        <ol>
+          <li>Buka GitHub → foto profil → <b>Settings</b> → <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b>.</li>
+          <li>Pada <b>Repository access</b> pilih <b>Only select repositories</b> lalu pilih <code>surya-abadi-raya</code>.</li>
+          <li>Pada <b>Permissions → Repository permissions</b> atur <b>Contents</b> menjadi <b>Read and write</b>.</li>
+          <li>Klik <b>Generate token</b>, salin, lalu tempel di kolom di atas.</li>
+        </ol>
+        <p class="muted">Token hanya disimpan di browser ini dan dikirim ke GitHub saja. Jangan bagikan token kepada siapa pun.</p>
+      </details>
+    </form>
+  </main>
+
+  <!-- APLIKASI -->
+  <div class="app" id="app" hidden>
+    <header class="top">
+      <div class="top-in">
+        <div class="brand"><img src="assets/img/logo-sar.webp" alt="" width="64" /><div><strong>Panel Admin</strong><small id="repo-label"></small></div></div>
+        <nav class="tabs" role="tablist" aria-label="Menu admin">
+          <button role="tab" id="tab-gallery" aria-selected="true" data-tab="gallery">Galeri <span class="badge" id="n-gallery">0</span></button>
+          <button role="tab" id="tab-customers" aria-selected="false" data-tab="customers">Customer <span class="badge" id="n-customers">0</span></button>
+        </nav>
+        <div class="top-actions">
+          <a class="btn ghost" href="index.html" target="_blank" rel="noopener">Lihat website</a>
+          <button class="btn ghost" id="logout" type="button">Keluar</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <!-- GALERI -->
+      <section id="panel-gallery" role="tabpanel" aria-labelledby="tab-gallery">
+        <div class="head"><div><h2>Galeri Foto</h2><p class="muted">Tambah foto baru, ubah keterangan atau kategori, dan hapus foto yang tidak dipakai. Foto dikecilkan otomatis agar website tetap cepat.</p></div></div>
+
+        <div class="card add">
+          <h3>Tambah Foto</h3>
+          <div class="drop" id="g-drop" tabindex="0" role="button" aria-label="Pilih foto">
+            <input type="file" id="g-file" accept="image/*" multiple hidden />
+            <strong>Klik atau seret foto ke sini</strong>
+            <span class="muted">JPG, PNG, atau WebP — boleh lebih dari satu</span>
+          </div>
+          <div class="queue" id="g-queue" hidden>
+            <div class="queue-list" id="g-queue-list"></div>
+            <div class="row end">
+              <button class="btn ghost" id="g-queue-clear" type="button">Kosongkan</button>
+              <button class="btn primary" id="g-queue-add" type="button">Tambahkan ke galeri</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="chips" id="g-chips" role="group" aria-label="Filter kategori"></div>
+          <input class="search" id="g-q" type="search" placeholder="Cari keterangan…" aria-label="Cari foto" />
+        </div>
+        <div class="gal" id="g-grid"></div>
+        <p class="muted center" id="g-empty" hidden>Tidak ada foto.</p>
+      </section>
+
+      <!-- CUSTOMER -->
+      <section id="panel-customers" role="tabpanel" aria-labelledby="tab-customers" hidden>
+        <div class="head"><div><h2>Daftar Customer</h2><p class="muted">Tambah, ubah, atau hapus perusahaan yang tampil di halaman Tentang Kami. Logo bersifat opsional — bila kosong, tampil inisial perusahaan.</p></div>
+          <button class="btn primary" id="c-new" type="button">+ Tambah Customer</button></div>
+        <div class="toolbar"><input class="search" id="c-q" type="search" placeholder="Cari nama atau kota…" aria-label="Cari customer" /></div>
+        <div class="clist" id="c-list"></div>
+        <p class="muted center" id="c-empty" hidden>Tidak ada customer.</p>
+      </section>
+    </main>
+
+    <!-- Bilah simpan -->
+    <div class="savebar" id="savebar" hidden>
+      <div><strong id="save-count"></strong><span class="muted" id="save-detail"></span></div>
+      <div class="row">
+        <button class="btn ghost" id="discard" type="button">Batalkan</button>
+        <button class="btn primary" id="save" type="button">Simpan ke Website</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dialog customer -->
+  <dialog id="c-dlg">
+    <form id="c-form" method="dialog" class="dlg">
+      <h3 id="c-dlg-title">Tambah Customer</h3>
+      <label>Nama perusahaan <em>*</em><input id="c-name" required maxlength="80" placeholder="PT Contoh Sejahtera" /></label>
+      <div class="grid2">
+        <label>Kota <em>*</em><input id="c-city" required maxlength="40" list="c-cities" placeholder="Cikarang" /></label>
+        <label>Lokasi/alamat singkat<input id="c-place" maxlength="120" placeholder="Jababeka, Cikarang" /></label>
+      </div>
+      <datalist id="c-cities"></datalist>
+      <label>Tautan Google Maps <small class="muted">(opsional)</small><input id="c-map" type="url" placeholder="https://maps.app.goo.gl/…" /></label>
+      <div class="logo-field">
+        <div class="logo-prev" id="c-logo-prev">—</div>
+        <div>
+          <span class="lbl">Logo perusahaan <small class="muted">(opsional)</small></span>
+          <div class="row">
+            <button class="btn ghost sm" type="button" id="c-logo-pick">Pilih logo</button>
+            <button class="btn ghost sm" type="button" id="c-logo-clear" hidden>Hapus logo</button>
+          </div>
+          <input type="file" id="c-logo-file" accept="image/*" hidden />
+          <small class="muted">Format persegi/horizontal, latar transparan lebih bagus. Otomatis dikecilkan.</small>
+        </div>
+      </div>
+      <p class="err" id="c-err" role="alert" hidden></p>
+      <div class="row end">
+        <button class="btn ghost" type="button" id="c-cancel">Batal</button>
+        <button class="btn primary" type="submit" id="c-ok">Simpan</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="confirm-dlg">
+    <form method="dialog" class="dlg">
+      <h3 id="cf-title">Hapus?</h3>
+      <p id="cf-text" class="muted"></p>
+      <div class="row end"><button class="btn ghost" value="no">Batal</button><button class="btn danger" value="yes" id="cf-yes">Hapus</button></div>
+    </form>
+  </dialog>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+  <script src="assets/admin.js" defer></script>
+</body>
+</html>

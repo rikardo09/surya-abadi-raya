@@ -1,1795 +1,390 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produk - PT Surya Abadi Raya</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/style.css">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    
-    <style>
-/* Custom Navbar Styling */
-.custom-navbar {
-    background: linear-gradient(to right, #fdfdfd 0%, #B22222 50%, #8B0000 100%) !important;
-    box-shadow: 0 2px 10px rgba(139, 0, 0, 0.3);
-}
-
-.custom-navbar .navbar-brand,
-.custom-navbar .nav-link {
-    color: white !important;
-    font-weight: 500;
-}
-
-.custom-navbar .nav-link:hover {
-    color: #FFE4E1 !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.custom-navbar .nav-link.active {
-    color: #FFFFFF !important;
-    font-weight: 700 !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
-}
-
-/* Custom Footer Styling */
-.custom-footer {
-    background: linear-gradient(135deg, #252c50  10%, #3c3e58ff 50%, #292b37ff 100%) !important;
-    color: white;
-}
-
-.custom-footer h5 {
-    color: #E3F2FD;
-    font-weight: 600;
-}
-
-.custom-footer a {
-    color: #ffffff !important;
-    transition: color 0.3s ease;
-}
-
-.custom-footer a:hover {
-    color: #ffffff !important;
-}
-
-.custom-footer hr {
-    border-color: #3949ab;
-}
-
-/* Modal Fix - Mencegah background scroll */
-body.modal-open {
-    overflow: hidden !important;
-    padding-right: 0px !important;
-}
-
-.modal.show {
-    display: block !important;
-}
-
-.modal-backdrop {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    backdrop-filter: blur(3px);
-}
-
-/* E-commerce Modal Styling */
-.product-detail-modal .modal-dialog {
-    max-width: 1100px;
-    margin: 1.75rem auto;
-    position: relative;
-    z-index: 1060;
-}
-
-.product-detail-modal .modal-content {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-}
-
-/* Image Gallery Styling */
-.product-image-gallery {
-    position: relative;
-}
-
-/* Main Product Image - Full View with Zoom */
-.main-product-image {
-    width: 100%;
-    height: 500px;
-    object-fit: contain;
-    object-position: center;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-    cursor: zoom-in;
-    background-color: #f8f9fa;
-}
-
-.main-product-image:hover {
-    transform: scale(1.02);
-}
-
-.main-product-image.zoomed {
-    cursor: zoom-out;
-    transform: scale(2);
-    transition: transform 0.3s ease;
-}
-
-.product-image-gallery {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-.thumbnail-gallery {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-    overflow-x: auto;
-    padding-bottom: 5px;
-}
-
-.thumbnail-item {
-    flex-shrink: 0;
-    width: 90px;
-    height: 90px;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.thumbnail-item.active {
-    border-color: #8B0000;
-    box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.3);
-}
-
-.thumbnail-item:hover {
-    border-color: #8B0000;
-    transform: scale(1.05);
-}
-
-.thumbnail-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    background-color: #f8f9fa;
-}
-
-/* Zoom overlay */
-.zoom-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    cursor: zoom-out;
-}
-
-.zoom-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    border-radius: 8px;
-}
-
-.zoom-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10000;
-}
-
-.zoom-close:hover {
-    opacity: 0.7;
-}
-
-/* Product Info Styling */
-.product-info {
-    padding-left: 2rem;
-}
-
-.product-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-.product-price {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #8B0000;
-    margin-bottom: 1.5rem;
-}
-
-.product-description {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-}
-
-.product-features {
-    margin-bottom: 2rem;
-}
-
-.feature-badge {
-    background: linear-gradient(45deg, #8B0000, #600000);
-    color: white;
-    padding: 0.4rem 0.9rem;
-    border-radius: 25px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    display: inline-block;
-    box-shadow: 0 2px 8px rgba(139, 0, 0, 0.3);
-}
-
-/* Specifications Styling */
-.product-specs {
-    background-color: #f8f9fa;
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    border: 1px solid #e9ecef;
-}
-
-.spec-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #dee2e6;
-    align-items: center;
-}
-
-.spec-item:last-child {
-    border-bottom: none;
-}
-
-.spec-label {
-    font-weight: 600;
-    color: #495057;
-    flex: 1;
-}
-
-.spec-value {
-    font-weight: 500;
-    color: #8B0000;
-    text-align: right;
-    flex: 1;
-}
-
-/* Hero Banner Styles */
-.hero-banner {
-    height: 60vh;
-    min-height: 400px;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #8B0000 0%, #B22222 50%, #DC143C 100%);
-    display: flex;
-    align-items: center;
-}
-
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('assets/images/galeri/mesinjahit6.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.3;
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    color: white;
-    max-width: 600px;
-    text-align: left;
-}
-
-.hero-badge {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 8px 20px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: inline-block;
-    margin-bottom: 1.5rem;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.hero-title {
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    line-height: 1.1;
-}
-
-.hero-subtitle {
-    font-size: 2rem;
-    font-weight: 300;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    opacity: 0.9;
-}
-
-.hero-offer {
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-    line-height: 1.4;
-}
-
-/* Product Circles */
-.product-circles {
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-}
-
-.product-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    position: relative;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: 4px solid rgba(255, 255, 255, 0.9);
-}
-
-.product-circle:nth-child(2) {
-    width: 140px;
-    height: 140px;
-}
-
-.product-circle img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-/* =====================================================
-   PROFESSIONAL CATALOG SECTION
-   ===================================================== */
-
-/* Professional Section Headers */
-.section-heading {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #8B0000;
-    margin-bottom: 1rem;
-    text-align: center;
-    position: relative;
-}
-
-.section-heading::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #8B0000, #B22222);
-    margin: 1rem auto;
-    border-radius: 2px;
-}
-
-.section-subheading {
-    font-size: 1.125rem;
-    color: #4a5568;
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 3rem;
-    line-height: 1.6;
-}
-
-/* Professional Product Cards */
-.product-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    height: 100%;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.product-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(26, 54, 93, 0.02), rgba(49, 130, 206, 0.02));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 12px;
-}
-
-.product-card:hover::before {
-    opacity: 1;
-}
-
-.product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-    border-color: #B22222;
-}
-
-/* Professional Product Image */
-.product-img {
-    width: 100%;
-    height: 280px;
-    object-fit: contain;
-    object-position: center;
-    background: linear-gradient(145deg, #f7fafc 0%, #ffffff 100%);
-    border-bottom: 1px solid #e2e8f0;
-    transition: transform 0.3s ease;
-    padding: 25px;
-}
-
-.product-card:hover .product-img {
-    transform: scale(1.03);
-}
-
-/* Card Body Professional Styling */
-.product-card .card-body {
-    padding: 1.75rem;
-    background: #ffffff;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    text-align: left;
-}
-
-.product-card .card-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #8B0000;
-    margin-bottom: 1.25rem;
-    line-height: 1.4;
-    text-align: left;
-    min-height: 3rem;
-}
-
-/* Professional Materials Section */
-.materials-section {
-    margin-bottom: 1.75rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.materials-title {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #2d3748;
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-}
-
-.materials-title::before {
-    content: '';
-    display: inline-block;
-    width: 4px;
-    height: 16px;
-    background: #B22222;
-    margin-right: 8px;
-    border-radius: 2px;
-}
-
-.material-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-top: auto;
-}
-
-/* Professional Material Tags */
-.material-tag {
-    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-    color: #2d3748;
-    border: 1px solid #cbd5e0;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-}
-
-.material-tag:hover {
-    background: #B22222;
-    color: white;
-    border-color: #B22222;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(178, 34, 34, 0.3);
-}
-
-/* Professional Button - Enhanced Style */
-.btn-view-details {
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-    color: #8B0000;
-    border: 1px solid #e2e8f0;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.875rem;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.3s ease;
-    margin-top: auto;
-    position: relative;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.btn-view-details::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, #8B0000 0%, #600000 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 7px;
-    z-index: -1;
-}
-
-.btn-view-details::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 2px;
-    background: #8B0000;
-    transition: width 0.3s ease;
-}
-
-.btn-view-details:hover::before {
-    opacity: 1;
-}
-
-.btn-view-details:hover::after {
-    width: 80%;
-}
-
-.btn-view-details:hover {
-    color: white;
-    text-decoration: none;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(139, 0, 0, 0.25);
-    border-color: #8B0000;
-}
-
-/* Animation entrance */
-.animate-slide-in {
-    animation: slideInLeft 1s ease-out;
-}
-
-.animate-slide-in-delay {
-    animation: slideInLeft 1s ease-out 0.3s both;
-}
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.animate-fade-in {
-    animation: fadeInUp 1s ease-out 0.6s both;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Product Loading Animation */
-.product-grid {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
-}
-
-.product-grid.loaded {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .product-circles {
-        right: 2%;
-        gap: 15px;
-    }
-    
-    .product-circle {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .product-circle:nth-child(2) {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .section-heading {
-        font-size: 2.25rem;
-    }
-    
-    .product-img {
-        height: 260px;
-    }
-}
-
-@media (max-width: 992px) {
-    .hero-banner {
-        height: 50vh;
-        min-height: 350px;
-    }
-    
-    .hero-title {
-        font-size: 3rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.5rem;
-    }
-    
-    .product-circles {
-        position: static;
-        transform: none;
-        justify-content: center;
-        margin-top: 2rem;
-        gap: 15px;
-    }
-    
-    .product-circle {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .product-circle:nth-child(2) {
-        width: 100px;
-        height: 100px;
-    }
-
-    .product-img {
-        height: 240px;
-    }
-    
-    .section-heading {
-        font-size: 2rem;
-    }
-    
-    .product-card .card-body {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-banner {
-        height: 45vh;
-        min-height: 300px;
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .hero-offer {
-        font-size: 1.1rem;
-    }
-    
-    .product-circle {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .product-circle:nth-child(2) {
-        width: 90px;
-        height: 90px;
-    }
-
-    .product-img {
-        height: 220px;
-    }
-
-    .product-detail-modal .modal-dialog {
-        max-width: 95%;
-        margin: 1rem;
-    }
-    
-    .product-info {
-        padding-left: 0;
-        margin-top: 2rem;
-    }
-    
-    .product-title {
-        font-size: 1.5rem;
-    }
-    
-    .product-price {
-        font-size: 1.4rem;
-    }
-    
-    .main-product-image {
-        height: 400px;
-    }
-    
-    .section-heading {
-        font-size: 1.75rem;
-    }
-    
-    .section-subheading {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
-    
-    .product-card .card-title {
-        font-size: 1.125rem;
-        min-height: 2.5rem;
-    }
-    
-    .product-card .card-body {
-        padding: 1.25rem;
-    }
-    
-    .materials-section {
-        margin-bottom: 1.5rem;
-    }
-    
-    .btn-view-details {
-        padding: 10px 20px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-    
-    .product-circle {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .product-circle:nth-child(2) {
-        width: 80px;
-        height: 80px;
-    }
-
-    .product-img {
-        height: 200px;
-        padding: 20px;
-    }
-    
-    .main-product-image {
-        height: 320px;
-    }
-    
-    .section-heading {
-        font-size: 1.5rem;
-    }
-    
-    .product-card .card-body {
-        padding: 1rem;
-    }
-    
-    .material-tag {
-        font-size: 0.7rem;
-        padding: 4px 10px;
-    }
-}
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katalog Produk | PT Surya Abadi Raya</title>
+  <meta name="description" content="Katalog seragam kerja, polo, kaos, rompi, apron, anti statik, topi, dan goodie bag dari PT Surya Abadi Raya. Desain custom, minimum order 50 pcs." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#8b0000" />
+  <link rel="canonical" href="https://rikardo09.github.io/surya-abadi-raya/produk.html" />
+  <meta property="og:title" content="Katalog Produk | PT Surya Abadi Raya" />
+  <meta property="og:description" content="Katalog seragam kerja, polo, kaos, rompi, apron, anti statik, topi, dan goodie bag dari PT Surya Abadi Raya. Desain custom, minimum order 50 pcs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:url" content="https://rikardo09.github.io/surya-abadi-raya/produk.html" />
+  <meta property="og:image" content="https://rikardo09.github.io/surya-abadi-raya/assets/img/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/images/logo/favicon.png" />
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="assets/home.css" />
+  <link rel="stylesheet" href="assets/pages.css" />
+  <script src="assets/pages.js" defer></script>
 </head>
-<body class="fade-page">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="assets/images/logo/logo SAR.png" alt="" srcset=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">Tentang Kami</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="produk.html">Produk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">Galeri</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#contact">Kontak</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body data-page="produk">
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></symbol><symbol id="i-award" viewBox="0 0 16 16"><path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702z"/>
+  <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/></symbol><symbol id="i-bag" viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></symbol><symbol id="i-box-seam" viewBox="0 0 16 16"><path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/></symbol><symbol id="i-chat-dots" viewBox="0 0 16 16"><path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+  <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2"/></symbol><symbol id="i-check2-circle" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
+  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/></symbol><symbol id="i-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></symbol><symbol id="i-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/></symbol><symbol id="i-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></symbol><symbol id="i-chevron-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/></symbol><symbol id="i-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></symbol><symbol id="i-envelope" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></symbol><symbol id="i-eye" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/></symbol><symbol id="i-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></symbol><symbol id="i-lightning-charge" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41z"/></symbol><symbol id="i-list" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></symbol><symbol id="i-mortarboard" viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917zM8 8.46 1.758 5.965 8 3.052l6.242 2.913z"/>
+  <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46z"/></symbol><symbol id="i-palette" viewBox="0 0 16 16"><path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+  <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8m-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7"/></symbol><symbol id="i-patch-check" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+  <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z"/></symbol><symbol id="i-person-badge" viewBox="0 0 16 16"><path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492z"/></symbol><symbol id="i-rulers" viewBox="0 0 16 16"><path d="M1 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h5v-1H2v-1h4v-1H4v-1h2v-1H2v-1h4V9H4V8h2V7H2V6h4V2h1v4h1V4h1v2h1V2h1v4h1V4h1v2h1V2h1v4h1V1a1 1 0 0 0-1-1z"/></symbol><symbol id="i-scissors" viewBox="0 0 16 16"><path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0m7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/></symbol><symbol id="i-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></symbol><symbol id="i-shield-check" viewBox="0 0 16 16"><path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/>
+  <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/></symbol><symbol id="i-stars" viewBox="0 0 16 16"><path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/></symbol><symbol id="i-tag" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0"/>
+  <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1m0 5.586 7 7L13.586 9l-7-7H2z"/></symbol><symbol id="i-telephone" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></symbol><symbol id="i-truck" viewBox="0 0 16 16"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/></symbol><symbol id="i-x-lg" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/></symbol><symbol id="i-zoom-in" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+  <path d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"/>
+  <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"/></symbol></svg>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="PT Surya Abadi Raya — Beranda">
+        <img src="assets/img/logo-sar.webp" alt="PT Surya Abadi Raya" width="360" height="149" />
+      </a>
+      <nav class="nav-links" id="menu" aria-label="Navigasi utama">
+        <a href="index.html">Beranda</a>
+        <a href="about.html">Tentang Kami</a>
+        <a href="produk.html" class="active" aria-current="page">Produk</a>
+        <a href="gallery.html">Galeri</a>
+        <a href="contact.html">Kontak</a>
+        <a href="contact.html#form" class="btn btn-light btn-sm nav-cta">Hubungi Kami</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Buka menu">
+        <svg class="i i-open" aria-hidden="true" focusable="false"><use href="#i-list"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x-lg"/></svg>
+      </button>
+    </div>
+  </header>
 
-    <!-- Hero Banner Section -->
-    <section class="hero-banner">
-        <!-- Background -->
-        <div class="hero-background"></div>
-
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7">
-                    <div class="hero-content">
-                        <div class="hero-badge animate-slide-in">
-                            Kualitas Terpercaya
-                        </div>
-                        <h1 class="hero-title animate-slide-in">
-                            GARMENT
-                        </h1>
-                        <h2 class="hero-subtitle animate-slide-in-delay">
-                            Berkualitas Tinggi
-                        </h2>
-                        <div class="hero-offer animate-fade-in">
-                            Solusi Terpercaya untuk Kebutuhan Perusahaan Anda
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-5 d-none d-lg-block">
-                    <div class="product-circles">
-                        <div class="product-circle">
-                            <img src="assets/images/galeri/trix2.png">
-                        </div>
-                        
-                        <div class="product-circle">
-                            <img src="assets/images/galeri/polo2.png">
-                        </div>
-                        
-                        <div class="product-circle">
-                            <img src="assets/images/galeri/anti statik2.png">
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <main id="main">
+    <section class="phero has-strip tone-red" style="--wave:#fff">
+    <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
+    <span class="ring r1" aria-hidden="true"></span><span class="ring r2" aria-hidden="true"></span>
+      <div class="container phero-grid">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Beranda</a><span class="sep">/</span><span aria-current="page">Produk</span></nav>
+          <span class="eyebrow">Katalog Produk</span>
+          <h1>Garment <span class="hl">Berkualitas Tinggi</span> untuk Perusahaan Anda</h1>
+          <p class="phero-lead">Seragam kerja, polo, kaos, rompi, hingga topi dan goodie bag — semua bisa dibuat custom sesuai logo, model, dan warna perusahaan Anda.</p>
+          <div class="phero-actions">
+            <a href="#katalog" class="btn btn-light">Lihat Katalog <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            <a href="contact.html#form" class="btn btn-ghost">Minta Penawaran</a>
+          </div>
         </div>
-
-        <!-- Mobile Product Circles -->
-        <div class="d-lg-none">
-            <div class="product-circles">
-                <div class="product-circle">
-                    <img src="assets/images/galeri/trix2.png">
-                </div>
-                
-                <div class="product-circle">
-                    <img src="assets/images/galeri/polo2.png">
-                </div>
-                
-                <div class="product-circle">
-                    <img src="assets/images/galeri/anti statik2.png">
-                </div>
-            </div>
+        <div class="art" aria-hidden="true">
+          <div class="art-card tone-amber"><span class="art-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-palette"/></svg></span><div><strong>30+ Pilihan Warna</strong><span class="s">Sesuaikan dengan identitas perusahaan</span></div></div>
+          <div class="art-card tone-blue"><span class="art-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg></span><div><strong>Desain Custom</strong><span class="s">Logo, model, dan material</span></div></div>
+          <div class="art-card tone-teal"><span class="art-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-patch-check"/></svg></span><div><strong>Garansi 7 Hari</strong><span class="s">Setelah pengiriman</span></div></div>
         </div>
+      </div>
+      <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C240,90 480,0 720,36 C960,72 1200,92 1440,28 L1440,80 L0,80 Z"/></svg>
     </section>
 
-    <!-- Enhanced Product Detail Modal -->
-    <div class="modal fade product-detail-modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true" data-bs-backdrop="static">
-      <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="productModalLabel">
-                <i class="bi bi-bag-check me-2"></i>Detail Produk
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body p-0">
-            <div class="row g-0">
-              <!-- Image Gallery Column -->
-              <div class="col-lg-6 p-4">
-                <div class="product-image-gallery">
-                  <img id="mainProductImage" src="" alt="" class="main-product-image" onclick="openZoomModal(this.src)">
-                  <div class="thumbnail-gallery" id="thumbnailGallery">
-                    <!-- Thumbnails will be populated by JavaScript -->
-                  </div>
-                </div>
-              </div>
-
-              <!-- Product Info Column -->
-              <div class="col-lg-6">
-                <div class="product-info p-4">
-                  <h2 class="product-title" id="modalProductTitle"></h2>
-                  <div class="product-price" id="modalProductPrice">Hubungi untuk harga</div>
-                  <p class="product-description" id="modalProductDescription"></p>
-
-                  <!-- Features -->
-                  <div class="product-features">
-                    <h6 class="fw-bold mb-3">
-                        <i class="bi bi-check-circle me-2"></i>Keunggulan Produk
-                    </h6>
-                    <div id="modalProductFeatures">
-                      <!-- Features will be populated by JavaScript -->
-                    </div>
-                  </div>
-
-                  <!-- Product Information Only -->
-                  <div class="alert alert-info">
-                    <i class="bi bi-info-circle me-2"></i>
-                    <strong>Informasi Produk:</strong> Untuk mendapatkan informasi lebih lanjut, konsultasi, dan penawaran khusus, silakan hubungi tim sales kami melalui kontak yang tersedia.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Specifications Section -->
-            <div class="px-4 pb-4">
-              <div class="product-specs">
-                <h5 class="mb-3">
-                    <i class="bi bi-gear me-2"></i>Spesifikasi Teknis
-                </h5>
-                <div id="modalProductSpecs">
-                  <!-- Specs will be populated by JavaScript -->
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="strip">
+      <div class="container">
+        <div class="facts">
+          <div class="fact tone-red"><span class="f-ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-box-seam"/></svg></span><div><small>Minimum order</small><strong>Mulai 50 pcs</strong></div></div>
+          <div class="fact tone-blue"><span class="f-ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></span><div><small>Waktu produksi</small><strong>10 – 25 hari kerja</strong></div></div>
+          <div class="fact tone-amber"><span class="f-ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-palette"/></svg></span><div><small>Pilihan warna</small><strong>Hingga 30+ warna</strong></div></div>
+          <div class="fact tone-teal"><span class="f-ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-rulers"/></svg></span><div><small>Ukuran</small><strong>XS – 5XL</strong></div></div>
+          <div class="fact tone-red"><span class="f-ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-patch-check"/></svg></span><div><small>Garansi</small><strong>7 hari</strong></div></div>
         </div>
       </div>
     </div>
 
-    <!-- Zoom Modal -->
-    <div class="zoom-overlay" id="zoomOverlay" onclick="closeZoomModal()">
-      <span class="zoom-close">&times;</span>
-      <img id="zoomedImage" src="" alt="Zoomed Product Image">
-    </div>
+    <section class="section anchor-fix" id="katalog">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Katalog</span>
+          <h2 class="title">Temukan Produk yang Tepat</h2>
+          <p class="lead">Filter berdasarkan kategori atau cari langsung. Klik produk untuk melihat foto, keunggulan, dan spesifikasi lengkap.</p>
+        </div>
 
-<!-- Products Section -->
-<section id="products" class="py-5" style="background: linear-gradient(to bottom, #ffffff, #f8f9fa);">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="section-heading">Katalog Produk Kami</h2>
-      <p class="section-subheading">Temukan berbagai pilihan seragam dan garment berkualitas untuk kebutuhan perusahaan Anda.</p>
-    </div>
-    
-    <div class="row g-4 product-grid" id="productGrid">
-      <!-- Product 1: Seragam Atas Cowok -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('seragam-atas-cowok')">
-          <img src="assets/images/galeri/advik.png" alt="Seragam Atas Cowok" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Seragam Kerja Lengan Pendek</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Maryland Drill</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
+        <div class="cat-bar">
+          <div class="fchips" id="cat-chips" role="group" aria-label="Filter kategori produk"><button class="fchip tone-red" type="button" data-cat="all" aria-pressed="true">Semua <span class="n">12</span></button><button class="fchip tone-red" type="button" data-cat="seragam" aria-pressed="false"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-person-badge"/></svg>Seragam Kerja <span class="n">4</span></button><button class="fchip tone-blue" type="button" data-cat="kasual" aria-pressed="false"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Polo &amp; Kaos <span class="n">3</span></button><button class="fchip tone-teal" type="button" data-cat="pelindung" aria-pressed="false"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg>Pelindung Kerja <span class="n">3</span></button><button class="fchip tone-amber" type="button" data-cat="aksesori" aria-pressed="false"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bag"/></svg>Topi &amp; Tas <span class="n">2</span></button></div>
+          <div class="search">
+            <svg class="i" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+            <input id="q" type="search" placeholder="Cari produk atau bahan…" aria-label="Cari produk" autocomplete="off" />
+            <button class="clear" type="button" aria-label="Hapus pencarian"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x-lg"/></svg></button>
           </div>
         </div>
-      </div>
 
-      <!-- Product 2: Seragam Atas Cewek -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('seragam-atas-cewek')">
-          <img src="assets/images/galeri/sunstar.png" alt="Seragam Atas Cewek" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Seragam Kerja Lengan Panjang</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Maryland Drill</span>
-                <span class="material-tag">AM 1919</span>
-              </div>
+        <p class="result-line" id="result-line" role="status" aria-live="polite" style="margin-top:22px"></p>
+        <div class="pgrid">
+          <article class="pcard tone-red" data-cat="seragam" data-search="seragam kerja lengan pendek maryland drill nyaman dipakai desain simpel bahan berkualitas tahan lama tampilan profesional seragam kerja pria lengan pendek dengan potongan simpel dan profesional. cocok digunakan di lingkungan kerja indoor maupun outdoor dengan tampilan rapi dan nyaman." style="--bg:#cdcdcd">
+            <div class="pcard-media">
+              <img src="assets/img/p-advik-480.webp" width="480" height="679" alt="Seragam Kerja Lengan Pendek" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-person-badge"/></svg>Seragam Kerja</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
             </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="seragam-atas-cowok">Seragam Kerja Lengan Pendek</button>
+              <p class="pcard-mat">Bahan: Maryland Drill</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>S - 5XL</span><span>3 foto</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Seragam%20Kerja%20Lengan%20Pendek#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-red" data-cat="seragam" data-search="seragam kerja lengan panjang maryland drill · am 1919 desain elegan bahan adem nyaman dipakai tampilan rapi mudah perawatan seragam kerja lengan panjang dengan desain elegan. dibuat dari bahan yang adem dan nyaman sehingga mendukung aktivitas kerja sehari-hari." style="--bg:#b5b1b1">
+            <div class="pcard-media">
+              <img src="assets/img/p-sunstar-480.webp" width="480" height="680" alt="Seragam Kerja Lengan Panjang" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-person-badge"/></svg>Seragam Kerja</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="seragam-atas-cewek">Seragam Kerja Lengan Panjang</button>
+              <p class="pcard-mat">Bahan: Maryland Drill · AM 1919</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>XS - 3XL</span><span>3 foto</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Seragam%20Kerja%20Lengan%20Panjang#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-red" data-cat="seragam" data-search="set seragam kerja lengkap am 1919 &amp; maryland drill paket lengkap tampilan serasi nyaman dipakai kualitas terjamin desain profesional paket seragam kerja lengkap terdiri dari atasan dan bawahan dengan warna dan desain senada. memberikan kesan seragam yang profesional dan rapi di lingkungan kerja." style="--bg:#a29e9e">
+            <div class="pcard-media">
+              <img src="assets/img/p-set-nidec-480.webp" width="480" height="679" alt="Set Seragam Kerja Lengkap" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-person-badge"/></svg>Seragam Kerja</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="seragam-set">Set Seragam Kerja Lengkap</button>
+              <p class="pcard-mat">Bahan: Am 1919 &amp; Maryland Drill</p>
+              <div class="pcard-meta"><span>Min. 50 Set</span><span>S - 5XL</span><span>4 foto</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Set%20Seragam%20Kerja%20Lengkap#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-red" data-cat="seragam" data-search="seragam kerja lapangan maryland tropical · drill desain modern nyaman dipakai bahan tahan lama tampilan rapi cocok untuk outdoor seragam kerja lapangan dengan desain modern dan kuat. dibuat untuk mendukung aktivitas kerja yang dinamis dengan tetap menjaga kenyamanan pemakainya." style="--bg:#a29e9e">
+            <div class="pcard-media">
+              <img src="assets/img/p-trix-480.webp" width="480" height="682" alt="Seragam Kerja Lapangan" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-person-badge"/></svg>Seragam Kerja</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="seragam-trix">Seragam Kerja Lapangan</button>
+              <p class="pcard-mat">Bahan: Maryland Tropical · Drill</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>S - 5XL</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Seragam%20Kerja%20Lapangan#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-blue" data-cat="kasual" data-search="polo shirt kerja lacoste pique · cotton combed bahan adem desain kasual profesional logo bisa kustom nyaman dipakai mudah perawatan polo shirt kerja dengan bahan adem dan nyaman. desain kasual namun tetap profesional, cocok untuk seragam perusahaan dengan tambahan logo kustom." style="--bg:#a29e9e">
+            <div class="pcard-media">
+              <img src="assets/img/p-polo-480.webp" width="424" height="603" alt="Polo Shirt Kerja" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Polo &amp; Kaos</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="polo">Polo Shirt Kerja</button>
+              <p class="pcard-mat">Bahan: Lacoste Pique · Cotton Combed</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>S - 5XL</span><span>3 foto</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Polo%20Shirt%20Kerja#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-blue" data-cat="kasual" data-search="kaos family gathering cotton combed · kaos katun lembut nyaman dipakai desain bisa kustom cocok untuk acara tampilan kompak kaos family gathering dengan bahan katun lembut dan nyaman. bisa dikustomisasi sesuai tema acara, warna, atau logo perusahaan." style="--bg:#999999">
+            <div class="pcard-media">
+              <img src="assets/img/p-kaos-480.webp" width="480" height="681" alt="Kaos Family Gathering" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Polo &amp; Kaos</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="kaos-family-gathering">Kaos Family Gathering</button>
+              <p class="pcard-mat">Bahan: Cotton Combed · Kaos</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>S - 5XL</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Kaos%20Family%20Gathering#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-teal" data-cat="pelindung" data-search="apron kerja jeans non stretch bahan kuat anti noda kantong multifungsi tali bisa disetel nyaman dipakai apron kerja berbahan jeans tebal yang kuat dan tahan noda. dilengkapi kantong multifungsi untuk mendukung kebutuhan kerja harian." style="--bg:#ffffff">
+            <div class="pcard-media">
+              <img src="assets/img/p-apron-480.webp" width="480" height="546" alt="Apron Kerja" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg>Pelindung Kerja</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="apron">Apron Kerja</button>
+              <p class="pcard-mat">Bahan: Jeans Non Stretch</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>All Size</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Apron%20Kerja#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-teal" data-cat="pelindung" data-search="seragam anti statik (esd) drill antistatik · perlindungan esd perlindungan esd standar internasional anti statis nyaman dipakai tahan lama seragam kerja anti statik (esd) yang melindungi perangkat elektronik sensitif dari muatan listrik statis. dirancang khusus untuk lingkungan industri elektronik dan cleanroom." style="--bg:#d2d1d1">
+            <div class="pcard-media">
+              <img src="assets/img/p-anti-statik-480.webp" width="354" height="472" alt="Seragam Anti Statik (ESD)" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg>Pelindung Kerja</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="anti-statik">Seragam Anti Statik (ESD)</button>
+              <p class="pcard-mat">Bahan: Drill Antistatik · Perlindungan ESD</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>S - 5XL</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Seragam%20Anti%20Statik%20(ESD)#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-amber" data-cat="aksesori" data-search="topi seragam drill ukuran adjustable nyaman dipakai topi seragam berbahan drill yang kuat dan nyaman. ukuran bisa disetel serta dapat ditambahkan logo perusahaan dengan bordir atau sablon." style="--bg:#a39f9f">
+            <div class="pcard-media">
+              <img src="assets/img/p-topi5-480.webp" width="354" height="472" alt="Topi Seragam" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bag"/></svg>Topi &amp; Tas</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="topi">Topi Seragam</button>
+              <p class="pcard-mat">Bahan: Drill</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>All Size</span><span>5 foto</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Topi%20Seragam#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-amber" data-cat="aksesori" data-search="goodie bag kanvas ringan tahan lama kapasitas luas praktis tas goodie bag serbaguna dengan kapasitas luas dan desain menarik. ideal untuk seminar, belanja, hingga souvenir." style="--bg:#a3a0a0">
+            <div class="pcard-media">
+              <img src="assets/img/p-goodiebag3-480.webp" width="354" height="472" alt="Goodie Bag" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bag"/></svg>Topi &amp; Tas</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="seragam-training-set">Goodie Bag</button>
+              <p class="pcard-mat">Bahan: Kanvas</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>4 foto</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Goodie%20Bag#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-teal" data-cat="pelindung" data-search="rompi kerja poliester high vis visibilitas tinggi reflective tape ringan nyaman dipakai sertifikasi keselamatan rompi kerja dengan visibilitas tinggi dilengkapi reflective tape. memberikan perlindungan ekstra bagi pekerja lapangan, konstruksi, maupun pengatur lalu lintas." style="--bg:#cdcdcd">
+            <div class="pcard-media">
+              <img src="assets/img/p-rompi-1-480.webp" width="480" height="679" alt="Rompi Kerja" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg>Pelindung Kerja</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="rompi">Rompi Kerja</button>
+              <p class="pcard-mat">Bahan: Poliester High Vis</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>S - 5XL</span><span>3 foto</span></div>
+              <a class="pcard-quote" href="contact.html?produk=Rompi%20Kerja#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+          <article class="pcard tone-blue" data-cat="kasual" data-search="t-shirt lengan panjang/pendek cotton combed nyaman dipakai tampilan rapi ringan mudah perawatan t-shirt dengan desain sederhana. dibuat dari bahan nyaman untuk mendukung aktivitas sehari-hari." style="--bg:#a29e9e">
+            <div class="pcard-media">
+              <img src="assets/img/p-tri-480.webp" width="428" height="605" alt="T-shirt Lengan Panjang/Pendek" loading="lazy" decoding="async" />
+              <span class="pbadge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-stars"/></svg>Polo &amp; Kaos</span>
+              <span class="pview"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Lihat detail</span>
+            </div>
+            <div class="pcard-body">
+              <button class="pcard-open" type="button" data-open="totebag">T-shirt Lengan Panjang/Pendek</button>
+              <p class="pcard-mat">Bahan: Cotton Combed</p>
+              <div class="pcard-meta"><span>Min. 50 Pcs</span><span>S - 5XL</span></div>
+              <a class="pcard-quote" href="contact.html?produk=T-shirt%20Lengan%20Panjang%2FPendek#form">Minta penawaran <svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </article>
+        </div>
+        <div class="empty" id="empty" hidden>
+          <svg class="i" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+          <h3>Produk tidak ditemukan</h3>
+          <p>Coba kata kunci lain atau tampilkan semua produk.</p>
+          <button class="btn btn-solid" id="reset" type="button">Tampilkan semua produk</button>
         </div>
       </div>
-
-      <!-- Product 3: Seragam Set -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('seragam-set')">
-          <img src="assets/images/galeri/set nidec.png" alt="Seragam Set" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Set Seragam Kerja Lengkap</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Am 1919 &  Maryland Drill</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 4: Seragam Trix -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('seragam-trix')">
-          <img src="assets/images/galeri/trix.png" alt="Seragam Trix" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Seragam Kerja Lapangan</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Maryland Tropical</span>
-                <span class="material-tag">Drill</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 5: Polo -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('polo')">
-          <img src="assets/images/galeri/polo.png" alt="Polo" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Polo Shirt Kerja</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Lacoste Pique</span>
-                <span class="material-tag">Cotton Combed</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 6: Kaos Family Gathering -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('kaos-family-gathering')">
-          <img src="assets/images/galeri/kaos.png" alt="Kaos Family Gathering" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Kaos Family Gathering</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Cotton Combed</span>
-                <span class="material-tag">Kaos</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 7: Apron -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('apron')">
-          <img src="assets/images/galeri/apron.png" alt="Apron" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Apron Kerja</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Jeans Non Stretch</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 8: Anti Statik -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('anti-statik')">
-          <img src="assets/images/galeri/anti statik.png" alt="Anti Statik" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Seragam Anti Statik</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Drill Antistatik</span>
-                <span class="material-tag">Perlindungan ESD</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 9: Topi -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('topi')">
-          <img src="assets/images/galeri/TOPI5.png" alt="Topi" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Topi Seragam</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Drill</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 10: Seragam Training Set -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('seragam-training-set')">
-          <img src="assets/images/galeri/goodiebag3.png" alt="Seragam Training Set" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Goodie Bag</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Kanvas</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 11: Rompi -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('rompi')">
-          <img src="assets/images/galeri/rompi 1.png" alt="Rompi" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Rompi Kerja</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Poliester High Vis</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-              Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 12: Totebag (Seragam Magang) -->
-      <div class="col-lg-3 col-md-6">
-        <div class="card product-card h-100" onclick="showProductDetail('totebag')">
-          <img src="assets/images/galeri/tri.png" alt="Seragam Magang" class="card-img-top product-img">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">T-Shirt Lengan Panjang/Pendek</h5>
-            
-            <div class="materials-section">
-              <div class="materials-title">Bahan:</div>
-              <div class="material-tags">
-                <span class="material-tag">Cotton Combed</span>
-              </div>
-            </div>
-            
-            <button class="btn-view-details">
-             Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-    <!-- Call to Action -->
-    <section class="py-5" style="background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);">
-        <div class="container">
-            <div class="text-center">
-                <h3 class="mb-3 text-white">Butuh Produk Custom?</h3>
-                <p class="text-light mb-4">Kami siap membantu mewujudkan desain khusus sesuai kebutuhan perusahaan Anda</p>
-                <a href="index.html#contact" class="btn btn-light btn-lg me-3">
-                    <i class="bi bi-telephone me-2"></i>Hubungi Kami
-                </a>
-            </div>
-        </div>
     </section>
 
-    <!-- Enhanced Features Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-heading">Mengapa Memilih Kami?</h2>
-                <p class="section-subheading">Keunggulan yang membuat kami menjadi pilihan terbaik</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="service-icon">
-                        <i class="bi bi-award"></i>
-                    </div>
-                    <h4 style="color: #8B0000;">Kualitas Premium</h4>
-                    <p class="text-muted">Material berkualitas tinggi dengan standar internasional dan kontrol kualitas yang ketat di setiap proses produksi.</p>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="service-icon">
-                        <i class="bi bi-clock"></i>
-                    </div>
-                    <h4 style="color: #8B0000;">Pengiriman Tepat Waktu</h4>
-                    <p class="text-muted">Sistem manajemen produksi yang efisien memastikan semua pesanan diselesaikan sesuai jadwal yang disepakati.</p>
-                </div>
-                
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="service-icon">
-                        <i class="bi bi-palette"></i>
-                    </div>
-                    <h4 style="color: #8B0000;">Desain Custom</h4>
-                    <p class="text-muted">Tim desainer berpengalaman siap mewujudkan konsep dan ide unik sesuai dengan kebutuhan spesifik Anda.</p>
-                </div>
-            </div>
+    <section class="section bg-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Cara Pemesanan</span>
+          <h2 class="title">Empat Langkah Mudah</h2>
+          <p class="lead">Dari konsultasi sampai barang tiba, kami dampingi setiap tahapnya.</p>
         </div>
+        <div class="steps">
+          <div class="step tone-red reveal" style="--d:0ms"><div class="step-no"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chat-dots"/></svg><b>1</b></div><h3>Konsultasi</h3><p>Ceritakan kebutuhan, jumlah, dan model yang Anda inginkan.</p></div>
+          <div class="step tone-blue reveal" style="--d:90ms"><div class="step-no"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-palette"/></svg><b>2</b></div><h3>Desain &amp; Konfirmasi</h3><p>Tentukan logo, warna, dan bahan, lalu konfirmasi desainnya.</p></div>
+          <div class="step tone-amber reveal" style="--d:180ms"><div class="step-no"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg><b>3</b></div><h3>Produksi</h3><p>Dikerjakan tim berpengalaman dengan pengecekan kualitas.</p></div>
+          <div class="step tone-teal reveal" style="--d:270ms"><div class="step-no"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg><b>4</b></div><h3>Pengiriman</h3><p>Barang dikirim tepat waktu dan bergaransi 7 hari.</p></div>
+        </div>
+      </div>
     </section>
 
-<!-- FOOTER -->
-<footer class="custom-footer py-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <h5>PT Surya Abadi Raya</h5>
-        <p>Your trusted partner for quality garments and professional services.</p>
-        <p>Member of <a href="https://mardizu.co.id/" target="_blank" style="color:#fff; text-decoration:underline;">Mardizu</a></p>
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Keunggulan</span>
+          <h2 class="title">Mengapa Garment dari Kami?</h2>
+        </div>
+        <div class="feat3">
+          <article class="feat tone-red reveal" style="--d:0ms"><div class="f-ic2"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-award"/></svg></div><h3>Kualitas Terjaga</h3><p>Jahitan rapi, bahan pilihan, dan standar produksi yang konsisten dari pesanan pertama hingga massal.</p></article>
+          <article class="feat tone-blue reveal" style="--d:90ms"><div class="f-ic2"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-palette"/></svg></div><h3>Custom Sepenuhnya</h3><p>Logo, model, warna, dan material mengikuti kebutuhan perusahaan Anda, bukan sebaliknya.</p></article>
+          <article class="feat tone-teal reveal" style="--d:180ms"><div class="f-ic2"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-lightning-charge"/></svg></div><h3>Tepat Waktu</h3><p>Sistem produksi terpadu membuat jadwal lebih terukur, dengan waktu pengerjaan yang jelas sejak awal.</p></article>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <h5>Quick Links</h5>
-        <ul class="list-unstyled">
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="about.html">Tentang Kami</a></li>
-          <li><a href="produk.html">Produk</a></li>
-          <li><a href="gallery.html">Galeri</a></li>
-          <li><a href="index.html#contact">Kontak</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4 mb-3">
-        <h5>Contact Us</h5>
-        <address>
-          <p><i class="bi bi-geo-alt"></i> Ruko Central Business District (CBD) Blok C12 - C15 Jl. Niaga Raya Kawasan Industri Jababeka II Cikarang – Bekasi 17550</p>
-          <p><i class="bi bi-envelope"></i> surya.abadiraya@gmail.com</p>
-        </address>
+    </section>
+
+    <div class="cta-wrap">
+      <div class="container">
+        <div class="cta reveal">
+          <h2>Siap Membuat Seragam Perusahaan Anda?</h2>
+          <p>Hubungi tim kami untuk konsultasi dan penawaran sesuai kebutuhan Anda.</p>
+          <div class="hero-actions">
+            <a href="contact.html#form" class="btn btn-light btn-lg">Minta Penawaran <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            <a href="tel:+622189325738" class="btn btn-ghost"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-telephone"/></svg> (021) 8932 5738</a>
+          </div>
+        </div>
       </div>
     </div>
-    <hr />
-    <div class="text-center"><p>&copy; 2025 PT Surya Abadi Raya. All Rights Reserved.</p></div>
-  </div>
-</footer>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-<script>
-// Data Produk Seragam (Bahasa Indonesia - versi rapi & konsisten)
-const productData = {
-  'seragam-atas-cowok': {
-    title: 'Seragam Kerja Lengan Pendek',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/advik.png',
-            'assets/images/galeri/unifood.png',
-            'assets/images/galeri/sanksyu.png',
-    ],
-    description:
-      'Seragam kerja pria lengan pendek dengan potongan simpel dan profesional. Cocok digunakan di lingkungan kerja indoor maupun outdoor dengan tampilan rapi dan nyaman.',
-    features: ['Nyaman Dipakai', 'Desain Simpel', 'Bahan Berkualitas', 'Tahan Lama', 'Tampilan Profesional'],
-    specs: {
-      'Bahan Utama': 'Drill',
-      'Jenis Kain': 'Verlando CP America',
-      'Pilihan Warna': '30+ Variasi Warna',
-      'Ukuran': 'S - 5XL',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '14-25 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
+  </main>
 
-  'seragam-atas-cewek': {
-    title: 'Seragam Kerja Lengan Panjang',
-    price: 'Hubungi untuk harga',
-    images: [
-      'assets/images/galeri/sunstar.png',
-      'assets/images/galeri/sekisui.png',
-      'assets/images/galeri/unggul semesta.png',
-    ],
-    description:
-      'Seragam kerja lengan panjang dengan desain elegan. Dibuat dari bahan yang adem dan nyaman sehingga mendukung aktivitas kerja sehari-hari.',
-    features: ['Desain Elegan', 'Bahan Adem', 'Nyaman Dipakai', 'Tampilan Rapi', 'Mudah Perawatan'],
-    specs: {
-      'Bahan Utama': 'Drill',
-      'Jenis Kain 1': 'Maryland Drill',
-      'Jenis Kain 2': 'AM 1919',
-      'Pilihan Warna': '30+ Variasi Warna',
-      'Ukuran': 'XS - 3XL',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '14-25 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
+  <dialog id="pm" class="pm" aria-label="Detail produk">
+    <button class="pm-close" id="pm-close" type="button" aria-label="Tutup"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x-lg"/></svg></button>
+    <div class="pm-wrap">
+      <div class="pm-gallery">
+        <div class="pm-main">
+          <img id="pm-img" src="" alt="" width="900" height="1200" />
+          <button class="pm-nav prev" type="button" aria-label="Foto sebelumnya"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron-left"/></svg></button>
+          <button class="pm-nav next" type="button" aria-label="Foto berikutnya"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></button>
+          <span class="pm-count" id="pm-count"></span>
+        </div>
+        <div class="pm-thumbs" id="pm-thumbs"></div>
+      </div>
+      <div class="pm-info">
+        <span class="pbadge" id="pm-badge"></span>
+        <h2 id="pm-title"></h2>
+        <span class="pm-price" id="pm-price"></span>
+        <p class="pm-desc" id="pm-desc"></p>
+        <h3 class="pm-h">Keunggulan</h3>
+        <ul class="pm-feats" id="pm-feats"></ul>
+        <h3 class="pm-h">Spesifikasi</h3>
+        <dl class="pm-specs" id="pm-specs"></dl>
+        <div class="pm-actions">
+          <a class="btn btn-solid" id="pm-quote" href="contact.html#form">Minta Penawaran <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+          <a class="btn btn-outline" href="tel:+622189325738"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-telephone"/></svg> Telepon Kami</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
-  'seragam-set': {
-    title: 'Set Seragam Kerja Lengkap',
-    price: 'Hubungi untuk harga',
-    images: [
-      'assets/images/galeri/set nidec.png',
-      'assets/images/galeri/kanefusa 2.png',
-      'assets/images/galeri/kanefusa.png',
-      'assets/images/galeri/set yasufuku.png',
-    ],
-    description:
-      'Paket seragam kerja lengkap terdiri dari atasan dan bawahan dengan warna dan desain senada. Memberikan kesan seragam yang profesional dan rapi di lingkungan kerja.',
-    features: ['Paket Lengkap', 'Tampilan Serasi', 'Nyaman Dipakai', 'Kualitas Terjamin', 'Desain Profesional'],
-    specs: {
-      'Bahan Utama': 'Drill',
-      'Jenis Kain': 'AM 1919 & Maryland Drill',
-      'Pilihan Warna': '30+ Variasi Warna',
-      'Ukuran': 'S - 5XL',
-      'Minimum Order': '50 Set',
-      'Waktu Produksi': '14-25 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="assets/img/logo-sar.webp" alt="PT Surya Abadi Raya" width="360" height="149" loading="lazy" />
+          <p>Mitra terpercaya untuk garment berkualitas dan layanan profesional.</p>
+          <p>Member of <a href="https://mardizu.co.id/" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;text-underline-offset:3px">Mardizu</a></p>
+        </div>
+        <div>
+          <h4>Tautan Cepat</h4>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="produk.html">Produk</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="contact.html">Kontak</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Kontak</h4>
+          <ul class="f-contact">
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg><address>Ruko Central Business District (CBD) Blok E20 – E21, Jl. Niaga Raya, Kawasan Industri Jababeka II, Cikarang – Bekasi 17550</address></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-telephone"/></svg><a href="tel:+622189325738">(021) 8932 5738</a></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-envelope"/></svg><a href="mailto:surya.abadiraya@gmail.com">surya.abadiraya@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; <span id="year">2026</span> PT Surya Abadi Raya. All Rights Reserved.</div>
+    </div>
+  </footer>
+  <button class="to-top" type="button" aria-label="Kembali ke atas"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron-up"/></svg></button>
 
-  'seragam-trix': {
-    title: 'Seragam Kerja Lapangan',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/trix.png'],
-    description:
-      'Seragam kerja lapangan dengan desain modern dan kuat. Dibuat untuk mendukung aktivitas kerja yang dinamis dengan tetap menjaga kenyamanan pemakainya.',
-    features: ['Desain Modern', 'Nyaman Dipakai', 'Bahan Tahan Lama', 'Tampilan Rapi', 'Cocok untuk Outdoor'],
-    specs: {
-      'Bahan Utama': 'Drill',
-      'Jenis Kain': 'Maryland Tropical',
-      'Pilihan Warna': '30+ Variasi Warna',
-      'Ukuran': 'S - 5XL',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '14-25 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
-
-  polo: {
-    title: 'Polo Shirt Kerja',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/polo.png',
-        'assets/images/galeri/polo 2.png',
-        'assets/images/galeri/set training.png',
-    ],
-    description:
-      'Polo shirt kerja dengan bahan adem dan nyaman. Desain kasual namun tetap profesional, cocok untuk seragam perusahaan dengan tambahan logo kustom.',
-    features: ['Bahan Adem', 'Desain Kasual Profesional', 'Logo Bisa Kustom', 'Nyaman Dipakai', 'Mudah Perawatan'],
-    specs: {
-      'Bahan 1': 'Lacoste Pique',
-      'Bahan 2': 'Cotton Combed',
-      'Jenis Kain 1': 'Lacoste Poli-Katun',
-      'Jenis Kain 2': 'Cotton Combed 20S',
-      'Pilihan Warna': '15+ Variasi Warna',
-      'Ukuran': 'S - 5XL',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '10-20 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
-
-  'kaos-family-gathering': {
-    title: 'Kaos Family Gathering',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/kaos.png'],
-    description:
-      'Kaos family gathering dengan bahan katun lembut dan nyaman. Bisa dikustomisasi sesuai tema acara, warna, atau logo perusahaan.',
-    features: ['Katun Lembut', 'Nyaman Dipakai', 'Desain Bisa Kustom', 'Cocok untuk Acara', 'Tampilan Kompak'],
-    specs: {
-      'Bahan Utama': 'Cotton Combed',
-      'Jenis Kain': 'Cotton Combed 20S',
-      'Pilihan Warna': '30+ Variasi Warna',
-      'Ukuran': 'S - 5XL',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '10-20 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
-
-  apron: {
-    title: 'Apron Kerja',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/apron.png'],
-    description:
-      'Apron kerja berbahan jeans tebal yang kuat dan tahan noda. Dilengkapi kantong multifungsi untuk mendukung kebutuhan kerja harian.',
-    features: ['Bahan Kuat', 'Anti Noda', 'Kantong Multifungsi', 'Tali Bisa Disetel', 'Nyaman Dipakai'],
-    specs: {
-      'Bahan Utama': 'Jeans',
-      'Jenis Kain': 'Jeans Non Stretch 14oz',
-      'Pilihan Warna': '2 Pilihan Warna',
-      'Ukuran': 'All Size',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '14-25 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
-
-  'anti-statik': {
-    title: 'Seragam Anti Statik (ESD)',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/anti statik.png'],
-    description:
-      'Seragam kerja anti statik (ESD) yang melindungi perangkat elektronik sensitif dari muatan listrik statis. Dirancang khusus untuk lingkungan industri elektronik dan cleanroom.',
-    features: ['Perlindungan ESD', 'Standar Internasional', 'Anti Statis', 'Nyaman Dipakai', 'Tahan Lama'],
-    specs: {
-      'Bahan Utama': 'Drill',
-      'Jenis Kain': 'Anti Statik',
-      'Pilihan Warna': '30+ Variasi Warna',
-      'Ukuran': 'S - 5XL',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '14-25 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
-
-  topi: {
-    title: 'Topi Seragam',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/TOPI5.png',
-    'assets/images/galeri/TOPI2.png',
-    'assets/images/galeri/TOPI4.png',
-    'assets/images/galeri/TOPI1.png',
-    'assets/images/galeri/TOPI3.png',
-
-    ],
-    description:
-      'Topi seragam berbahan drill yang kuat dan nyaman. Ukuran bisa disetel serta dapat ditambahkan logo perusahaan dengan bordir atau sablon.',
-    features: ['Ukuran Adjustable', 'Nyaman Dipakai'],
-    specs: {
-      'Bahan Utama': 'Drill',
-      'Pilihan Warna': '12+ Variasi Warna',
-      'Ukuran': 'All Size (Adjustable)',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '10-15 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
-
-  'seragam-training-set': {
-    title: 'Goodie Bag',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/goodiebag3.png',
-    'assets/images/galeri/goodiebag5.png',
-    'assets/images/galeri/goodiebag6.png',
-    'assets/images/galeri/goodiebag7.png',
-
-    ],
-    description:
-      'Tas goodie bag serbaguna dengan kapasitas luas dan desain menarik. Ideal untuk seminar, belanja, hingga souvenir.',
-    features: ['Ringan', 'Tahan Lama', 'Kapasitas Luas', 'Praktis'],
-    specs: {
-      'Bahan Utama': 'Kanvas', 
-      'Pilihan Warna': '20+ Variasi Warna',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '10-20 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
-  
-  rompi: {
-    title: 'Rompi Kerja',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/rompi 1.png',
-    'assets/images/galeri/rompi 2.png',
-        'assets/images/galeri/rompi 3.png',
-    ],
-    description:
-      'Rompi kerja dengan visibilitas tinggi dilengkapi reflective tape. Memberikan perlindungan ekstra bagi pekerja lapangan, konstruksi, maupun pengatur lalu lintas.',
-    features: ['Visibilitas Tinggi', 'Reflective Tape', 'Ringan', 'Nyaman Dipakai', 'Sertifikasi Keselamatan'],
-    specs: {
-      'Bahan Utama': 'Polyester Mesh',
-      'Jenis Kain': 'High Vis Polyester',
-      'Standar': 'ANSI/ISEA 107-2015',
-      'Ukuran': 'S - 5XL',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '12-20 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
-
-  'totebag': {
-    title: 'T-shirt Lengan Panjang/Pendek',
-    price: 'Hubungi untuk harga',
-    images: ['assets/images/galeri/tri.png'],
-    description:
-      'T-shirt dengan desain sederhana. Dibuat dari bahan nyaman untuk mendukung aktivitas sehari-hari.',
-    features: ['Nyaman Dipakai', 'Tampilan Rapi', 'Ringan', 'Mudah Perawatan'],
-    specs: {
-      'Bahan Utama': 'Kaos',
-      'Jenis Kain': 'Cotton Combed 20S',
-      'Pilihan Warna': '30+ Variasi Warna',
-      'Ukuran': 'S - 5XL',
-      'Minimum Order': '50 Pcs',
-      'Waktu Produksi': '10-20 Hari Kerja',
-      'Garansi': '7 Hari Setelah Pengiriman',
-    },
-  },
-};
-
-        // Modal event handlers
-        const productModal = document.getElementById('productModal');
-        
-        productModal.addEventListener('show.bs.modal', function (event) {
-            document.body.classList.add('modal-open');
-            document.body.style.overflow = 'hidden';
-            document.body.style.paddingRight = '0px';
-        });
-        
-        productModal.addEventListener('hidden.bs.modal', function (event) {
-            document.body.classList.remove('modal-open');
-            document.body.style.overflow = '';
-            document.body.style.paddingRight = '';
-        });
-
-        // Function to change main image when thumbnail is clicked
-        function changeMainImage(imageSrc, thumbnailElement) {
-            document.getElementById('mainProductImage').src = imageSrc;
-            
-            document.querySelectorAll('.thumbnail-item').forEach(thumb => {
-                thumb.classList.remove('active');
-            });
-            thumbnailElement.classList.add('active');
-        }
-
-        // Zoom functionality
-        function openZoomModal(imageSrc) {
-            const zoomOverlay = document.getElementById('zoomOverlay');
-            const zoomedImage = document.getElementById('zoomedImage');
-            
-            zoomedImage.src = imageSrc;
-            zoomOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeZoomModal() {
-            const zoomOverlay = document.getElementById('zoomOverlay');
-            zoomOverlay.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-
-        // Close zoom modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeZoomModal();
-            }
-        });
-
-        function showProductDetail(productId) {
-            const product = productData[productId];
-            if (!product) return;
-
-            // Update modal content
-            document.getElementById('modalProductTitle').textContent = product.title;
-            document.getElementById('modalProductPrice').textContent = product.price;
-            document.getElementById('modalProductDescription').textContent = product.description;
-
-            // Update main image
-            const mainImage = document.getElementById('mainProductImage');
-            mainImage.src = product.images[0];
-            mainImage.alt = product.title;
-
-            // Create thumbnail gallery
-            const thumbnailGallery = document.getElementById('thumbnailGallery');
-            thumbnailGallery.innerHTML = '';
-            
-            product.images.forEach((imageSrc, index) => {
-                const thumbnailDiv = document.createElement('div');
-                thumbnailDiv.className = `thumbnail-item ${index === 0 ? 'active' : ''}`;
-                thumbnailDiv.onclick = () => changeMainImage(imageSrc, thumbnailDiv);
-                
-                const thumbnailImg = document.createElement('img');
-                thumbnailImg.src = imageSrc;
-                thumbnailImg.alt = `${product.title} - Image ${index + 1}`;
-                
-                thumbnailDiv.appendChild(thumbnailImg);
-                thumbnailGallery.appendChild(thumbnailDiv);
-            });
-
-            // Update features
-            const featuresContainer = document.getElementById('modalProductFeatures');
-            featuresContainer.innerHTML = '';
-            product.features.forEach(feature => {
-                const badge = document.createElement('span');
-                badge.className = 'feature-badge';
-                badge.textContent = feature;
-                featuresContainer.appendChild(badge);
-            });
-
-            // Update specifications
-            const specsContainer = document.getElementById('modalProductSpecs');
-            specsContainer.innerHTML = '';
-            Object.entries(product.specs).forEach(([key, value]) => {
-                const specItem = document.createElement('div');
-                specItem.className = 'spec-item';
-                specItem.innerHTML = `
-                    <span class="spec-label">${key}:</span>
-                    <span class="spec-value">${value}</span>
-                `;
-                specsContainer.appendChild(specItem);
-            });
-            
-            // Show modal
-            const modal = new bootstrap.Modal(productModal);
-            modal.show();
-        }
-
-        // Smooth page transitions
-        document.addEventListener("DOMContentLoaded", function () {
-            const page = document.querySelector("body");
-            page.classList.add("fade-page");
-
-            setTimeout(() => {
-                page.classList.add("show");
-            }, 50);
-
-            // Initialize product grid animation
-            setTimeout(() => {
-                document.getElementById('productGrid').classList.add('loaded');
-            }, 300);
-
-            const links = document.querySelectorAll("a[href]");
-
-            links.forEach(link => {
-                if (link.hostname === window.location.hostname && !link.href.includes("#")) {
-                    link.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        const target = this.href;
-                        page.classList.remove("show");
-                        setTimeout(() => {
-                            window.location.href = target;
-                        }, 300);
-                    });
-                }
-            });
-
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        });
-
-        // Parallax effect for background
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const background = document.querySelector('.hero-background');
-            if (background) {
-                background.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
-
-        // Product circle hover effects
-        document.querySelectorAll('.product-circle').forEach(circle => {
-            circle.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1) rotate(5deg)';
-            });
-            
-            circle.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1) rotate(0deg)';
-            });
-        });
-    </script>
+  <script id="catalog-data" type="application/json">[{"id": "seragam-atas-cowok", "tone": "red", "catIcon": "person-badge", "catLabel": "Seragam Kerja", "title": "Seragam Kerja Lengan Pendek", "price": "Hubungi untuk harga", "description": "Seragam kerja pria lengan pendek dengan potongan simpel dan profesional. Cocok digunakan di lingkungan kerja indoor maupun outdoor dengan tampilan rapi dan nyaman.", "features": ["Nyaman Dipakai", "Desain Simpel", "Bahan Berkualitas", "Tahan Lama", "Tampilan Profesional"], "specs": [["Bahan Utama", "Drill"], ["Jenis Kain", "Verlando CP America"], ["Pilihan Warna", "30+ Variasi Warna"], ["Ukuran", "S - 5XL"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "14-25 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-advik-900.webp", "thumb": "assets/img/p-advik-480.webp", "w": 900, "h": 1273, "bg": "#cdcdcd"}, {"src": "assets/img/p-unifood-900.webp", "thumb": "assets/img/p-unifood-480.webp", "w": 626, "h": 894, "bg": "#a29e9e"}, {"src": "assets/img/p-sanksyu-900.webp", "thumb": "assets/img/p-sanksyu-480.webp", "w": 630, "h": 892, "bg": "#a29e9e"}]}, {"id": "seragam-atas-cewek", "tone": "red", "catIcon": "person-badge", "catLabel": "Seragam Kerja", "title": "Seragam Kerja Lengan Panjang", "price": "Hubungi untuk harga", "description": "Seragam kerja lengan panjang dengan desain elegan. Dibuat dari bahan yang adem dan nyaman sehingga mendukung aktivitas kerja sehari-hari.", "features": ["Desain Elegan", "Bahan Adem", "Nyaman Dipakai", "Tampilan Rapi", "Mudah Perawatan"], "specs": [["Bahan Utama", "Drill"], ["Jenis Kain 1", "Maryland Drill"], ["Jenis Kain 2", "AM 1919"], ["Pilihan Warna", "30+ Variasi Warna"], ["Ukuran", "XS - 3XL"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "14-25 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-sunstar-900.webp", "thumb": "assets/img/p-sunstar-480.webp", "w": 630, "h": 893, "bg": "#b5b1b1"}, {"src": "assets/img/p-sekisui-900.webp", "thumb": "assets/img/p-sekisui-480.webp", "w": 900, "h": 1273, "bg": "#a29e9e"}, {"src": "assets/img/p-unggul-semesta-900.webp", "thumb": "assets/img/p-unggul-semesta-480.webp", "w": 900, "h": 1273, "bg": "#cdcdcd"}]}, {"id": "seragam-set", "tone": "red", "catIcon": "person-badge", "catLabel": "Seragam Kerja", "title": "Set Seragam Kerja Lengkap", "price": "Hubungi untuk harga", "description": "Paket seragam kerja lengkap terdiri dari atasan dan bawahan dengan warna dan desain senada. Memberikan kesan seragam yang profesional dan rapi di lingkungan kerja.", "features": ["Paket Lengkap", "Tampilan Serasi", "Nyaman Dipakai", "Kualitas Terjamin", "Desain Profesional"], "specs": [["Bahan Utama", "Drill"], ["Jenis Kain", "AM 1919 & Maryland Drill"], ["Pilihan Warna", "30+ Variasi Warna"], ["Ukuran", "S - 5XL"], ["Minimum Order", "50 Set"], ["Waktu Produksi", "14-25 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-set-nidec-900.webp", "thumb": "assets/img/p-set-nidec-480.webp", "w": 900, "h": 1273, "bg": "#a29e9e"}, {"src": "assets/img/p-kanefusa-2-900.webp", "thumb": "assets/img/p-kanefusa-2-480.webp", "w": 900, "h": 1273, "bg": "#a29e9e"}, {"src": "assets/img/p-kanefusa-900.webp", "thumb": "assets/img/p-kanefusa-480.webp", "w": 900, "h": 1273, "bg": "#a29e9e"}, {"src": "assets/img/p-set-yasufuku-900.webp", "thumb": "assets/img/p-set-yasufuku-480.webp", "w": 900, "h": 1273, "bg": "#a29e9e"}]}, {"id": "seragam-trix", "tone": "red", "catIcon": "person-badge", "catLabel": "Seragam Kerja", "title": "Seragam Kerja Lapangan", "price": "Hubungi untuk harga", "description": "Seragam kerja lapangan dengan desain modern dan kuat. Dibuat untuk mendukung aktivitas kerja yang dinamis dengan tetap menjaga kenyamanan pemakainya.", "features": ["Desain Modern", "Nyaman Dipakai", "Bahan Tahan Lama", "Tampilan Rapi", "Cocok untuk Outdoor"], "specs": [["Bahan Utama", "Drill"], ["Jenis Kain", "Maryland Tropical"], ["Pilihan Warna", "30+ Variasi Warna"], ["Ukuran", "S - 5XL"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "14-25 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-trix-900.webp", "thumb": "assets/img/p-trix-480.webp", "w": 630, "h": 895, "bg": "#a29e9e"}]}, {"id": "polo", "tone": "blue", "catIcon": "stars", "catLabel": "Polo & Kaos", "title": "Polo Shirt Kerja", "price": "Hubungi untuk harga", "description": "Polo shirt kerja dengan bahan adem dan nyaman. Desain kasual namun tetap profesional, cocok untuk seragam perusahaan dengan tambahan logo kustom.", "features": ["Bahan Adem", "Desain Kasual Profesional", "Logo Bisa Kustom", "Nyaman Dipakai", "Mudah Perawatan"], "specs": [["Bahan 1", "Lacoste Pique"], ["Bahan 2", "Cotton Combed"], ["Jenis Kain 1", "Lacoste Poli-Katun"], ["Jenis Kain 2", "Cotton Combed 20S"], ["Pilihan Warna", "15+ Variasi Warna"], ["Ukuran", "S - 5XL"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "10-20 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-polo-900.webp", "thumb": "assets/img/p-polo-480.webp", "w": 424, "h": 603, "bg": "#a29e9e"}, {"src": "assets/img/p-polo-2-900.webp", "thumb": "assets/img/p-polo-2-480.webp", "w": 626, "h": 896, "bg": "#a29e9e"}, {"src": "assets/img/p-set-training-900.webp", "thumb": "assets/img/p-set-training-480.webp", "w": 423, "h": 604, "bg": "#cdcdcd"}]}, {"id": "kaos-family-gathering", "tone": "blue", "catIcon": "stars", "catLabel": "Polo & Kaos", "title": "Kaos Family Gathering", "price": "Hubungi untuk harga", "description": "Kaos family gathering dengan bahan katun lembut dan nyaman. Bisa dikustomisasi sesuai tema acara, warna, atau logo perusahaan.", "features": ["Katun Lembut", "Nyaman Dipakai", "Desain Bisa Kustom", "Cocok untuk Acara", "Tampilan Kompak"], "specs": [["Bahan Utama", "Cotton Combed"], ["Jenis Kain", "Cotton Combed 20S"], ["Pilihan Warna", "30+ Variasi Warna"], ["Ukuran", "S - 5XL"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "10-20 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-kaos-900.webp", "thumb": "assets/img/p-kaos-480.webp", "w": 629, "h": 893, "bg": "#999999"}]}, {"id": "apron", "tone": "teal", "catIcon": "shield-check", "catLabel": "Pelindung Kerja", "title": "Apron Kerja", "price": "Hubungi untuk harga", "description": "Apron kerja berbahan jeans tebal yang kuat dan tahan noda. Dilengkapi kantong multifungsi untuk mendukung kebutuhan kerja harian.", "features": ["Bahan Kuat", "Anti Noda", "Kantong Multifungsi", "Tali Bisa Disetel", "Nyaman Dipakai"], "specs": [["Bahan Utama", "Jeans"], ["Jenis Kain", "Jeans Non Stretch 14oz"], ["Pilihan Warna", "2 Pilihan Warna"], ["Ukuran", "All Size"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "14-25 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-apron-900.webp", "thumb": "assets/img/p-apron-480.webp", "w": 530, "h": 603, "bg": "#ffffff"}]}, {"id": "anti-statik", "tone": "teal", "catIcon": "shield-check", "catLabel": "Pelindung Kerja", "title": "Seragam Anti Statik (ESD)", "price": "Hubungi untuk harga", "description": "Seragam kerja anti statik (ESD) yang melindungi perangkat elektronik sensitif dari muatan listrik statis. Dirancang khusus untuk lingkungan industri elektronik dan cleanroom.", "features": ["Perlindungan ESD", "Standar Internasional", "Anti Statis", "Nyaman Dipakai", "Tahan Lama"], "specs": [["Bahan Utama", "Drill"], ["Jenis Kain", "Anti Statik"], ["Pilihan Warna", "30+ Variasi Warna"], ["Ukuran", "S - 5XL"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "14-25 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-anti-statik-900.webp", "thumb": "assets/img/p-anti-statik-480.webp", "w": 354, "h": 472, "bg": "#d2d1d1"}]}, {"id": "topi", "tone": "amber", "catIcon": "bag", "catLabel": "Topi & Tas", "title": "Topi Seragam", "price": "Hubungi untuk harga", "description": "Topi seragam berbahan drill yang kuat dan nyaman. Ukuran bisa disetel serta dapat ditambahkan logo perusahaan dengan bordir atau sablon.", "features": ["Ukuran Adjustable", "Nyaman Dipakai"], "specs": [["Bahan Utama", "Drill"], ["Pilihan Warna", "12+ Variasi Warna"], ["Ukuran", "All Size (Adjustable)"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "10-15 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-topi5-900.webp", "thumb": "assets/img/p-topi5-480.webp", "w": 354, "h": 472, "bg": "#a39f9f"}, {"src": "assets/img/p-topi2-900.webp", "thumb": "assets/img/p-topi2-480.webp", "w": 354, "h": 472, "bg": "#a39f9f"}, {"src": "assets/img/p-topi4-900.webp", "thumb": "assets/img/p-topi4-480.webp", "w": 354, "h": 472, "bg": "#a39f9f"}, {"src": "assets/img/p-topi1-900.webp", "thumb": "assets/img/p-topi1-480.webp", "w": 354, "h": 472, "bg": "#a39f9f"}, {"src": "assets/img/p-topi3-900.webp", "thumb": "assets/img/p-topi3-480.webp", "w": 354, "h": 472, "bg": "#a39f9f"}]}, {"id": "seragam-training-set", "tone": "amber", "catIcon": "bag", "catLabel": "Topi & Tas", "title": "Goodie Bag", "price": "Hubungi untuk harga", "description": "Tas goodie bag serbaguna dengan kapasitas luas dan desain menarik. Ideal untuk seminar, belanja, hingga souvenir.", "features": ["Ringan", "Tahan Lama", "Kapasitas Luas", "Praktis"], "specs": [["Bahan Utama", "Kanvas"], ["Pilihan Warna", "20+ Variasi Warna"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "10-20 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-goodiebag3-900.webp", "thumb": "assets/img/p-goodiebag3-480.webp", "w": 354, "h": 472, "bg": "#a3a0a0"}, {"src": "assets/img/p-goodiebag5-900.webp", "thumb": "assets/img/p-goodiebag5-480.webp", "w": 354, "h": 472, "bg": "#a3a0a0"}, {"src": "assets/img/p-goodiebag6-900.webp", "thumb": "assets/img/p-goodiebag6-480.webp", "w": 354, "h": 472, "bg": "#a3a0a0"}, {"src": "assets/img/p-goodiebag7-900.webp", "thumb": "assets/img/p-goodiebag7-480.webp", "w": 354, "h": 472, "bg": "#a3a0a0"}]}, {"id": "rompi", "tone": "teal", "catIcon": "shield-check", "catLabel": "Pelindung Kerja", "title": "Rompi Kerja", "price": "Hubungi untuk harga", "description": "Rompi kerja dengan visibilitas tinggi dilengkapi reflective tape. Memberikan perlindungan ekstra bagi pekerja lapangan, konstruksi, maupun pengatur lalu lintas.", "features": ["Visibilitas Tinggi", "Reflective Tape", "Ringan", "Nyaman Dipakai", "Sertifikasi Keselamatan"], "specs": [["Bahan Utama", "Polyester Mesh"], ["Jenis Kain", "High Vis Polyester"], ["Standar", "ANSI/ISEA 107-2015"], ["Ukuran", "S - 5XL"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "12-20 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-rompi-1-900.webp", "thumb": "assets/img/p-rompi-1-480.webp", "w": 900, "h": 1273, "bg": "#cdcdcd"}, {"src": "assets/img/p-rompi-2-900.webp", "thumb": "assets/img/p-rompi-2-480.webp", "w": 900, "h": 1273, "bg": "#a29e9e"}, {"src": "assets/img/p-rompi-3-900.webp", "thumb": "assets/img/p-rompi-3-480.webp", "w": 426, "h": 605, "bg": "#999999"}]}, {"id": "totebag", "tone": "blue", "catIcon": "stars", "catLabel": "Polo & Kaos", "title": "T-shirt Lengan Panjang/Pendek", "price": "Hubungi untuk harga", "description": "T-shirt dengan desain sederhana. Dibuat dari bahan nyaman untuk mendukung aktivitas sehari-hari.", "features": ["Nyaman Dipakai", "Tampilan Rapi", "Ringan", "Mudah Perawatan"], "specs": [["Bahan Utama", "Kaos"], ["Jenis Kain", "Cotton Combed 20S"], ["Pilihan Warna", "30+ Variasi Warna"], ["Ukuran", "S - 5XL"], ["Minimum Order", "50 Pcs"], ["Waktu Produksi", "10-20 Hari Kerja"], ["Garansi", "7 Hari Setelah Pengiriman"]], "images": [{"src": "assets/img/p-tri-900.webp", "thumb": "assets/img/p-tri-480.webp", "w": 428, "h": 605, "bg": "#a29e9e"}]}]</script>
 </body>
 </html>

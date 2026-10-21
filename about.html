@@ -1,769 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - PT Surya Abadi Raya</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/style.css">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-
-    <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets/OwlCarousel/dist/assets/owl.theme.default.min.css" />
-    
-    <style>
-        /* Reset body dan html untuk memastikan tidak ada margin/padding */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        /* Custom Navbar Styling - PERBAIKAN NAVBAR FIXED */
-        .custom-navbar {
-            background: linear-gradient(to right, #fdfdfd 0%, #B22222 50%, #8B0000 100%) !important;
-            box-shadow: 0 2px 10px rgba(139, 0, 0, 0.3);
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            z-index: 1030 !important;
-            width: 100% !important;
-        }
-
-        /* Kompensasi untuk navbar fixed */
-        body.has-fixed-navbar {
-            padding-top: 76px;
-        }
-
-        .custom-navbar .navbar-brand,
-        .custom-navbar .nav-link {
-            color: white !important;
-            font-weight: 500;
-        }
-
-        .custom-navbar .nav-link:hover {
-            color: #FFE4E1 !important;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .custom-navbar .nav-link.active {
-            color: #FFFFFF !important;
-            font-weight: 700 !important;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
-        }
-        
-        /* Custom Footer Styling - SIMPLE SOLUTION */
-        .custom-footer {
-            background: linear-gradient(135deg, #252c50 10%, #3c3e58ff 50%, #292b37ff 100%) !important;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-
-        .footer-wrapper {
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            padding: 3rem 0;
-        }
-        
-        .custom-footer h5 {
-            color: #E3F2FD;
-            font-weight: 600;
-        }
-        
-        .custom-footer a {
-            color: #ffffff !important;
-            transition: color 0.3s ease;
-        }
-        
-        .custom-footer a:hover {
-            color: #ffffff !important;
-        }
-        
-        .custom-footer hr {
-            border-color: #3949ab;
-        }
-        
-        /* Additional CSS for better styling */
-        .text-justify {
-            text-align: justify;
-        }
-
-        .leading-relaxed {
-            line-height: 1.6;
-        }
-
-        .value-item {
-            transition: transform 0.3s ease;
-        }
-
-        .value-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-        }
-
-        .icon-circle {
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover .icon-circle {
-            transform: scale(1.1);
-        }
-
-        .section-heading {
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        /* Client Table Styling */
-        .client-table-section {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
-
-        .client-table-section .table {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .client-table-section .table thead th {
-            background-color: #8B0000;
-            color: white;
-            font-weight: 600;
-            border: none;
-            padding: 1rem;
-        }
-
-        .client-table-section .table tbody tr {
-            transition: background-color 0.3s ease;
-        }
-
-        .client-table-section .table tbody tr:hover {
-            background-color: #f1f3f5;
-        }
-
-        .client-table-section .table tbody td {
-            padding: 1rem;
-            vertical-align: middle;
-            border-color: #e9ecef;
-        }
-
-        .client-table-section .table tbody tr:first-child td {
-            border-top: none;
-        }
-
-        @media (max-width: 768px) {
-            .icon-circle {
-                width: 60px !important;
-                height: 60px !important;
-            }
-            
-            .icon-circle i {
-                font-size: 1.5rem !important;
-            }
-            
-            .client-table-section .table {
-                font-size: 0.9rem;
-            }
-            
-            .client-table-section .table thead th,
-            .client-table-section .table tbody td {
-                padding: 0.75rem 0.5rem;
-            }
-        }
-
-        #carRentalCarousel .carousel-inner {
-            height: 450px; /* sesuaikan dengan kebutuhan */
-        }
-
-        #carRentalCarousel .carousel-item img {
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang Kami | PT Surya Abadi Raya</title>
+  <meta name="description" content="Profil PT Surya Abadi Raya: berdiri sejak 2017, bergerak di produksi garment, outsourcing, lembaga pelatihan kerja, dan sewa mobil di Cikarang, Bekasi." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#8b0000" />
+  <link rel="canonical" href="https://rikardo09.github.io/surya-abadi-raya/about.html" />
+  <meta property="og:title" content="Tentang Kami | PT Surya Abadi Raya" />
+  <meta property="og:description" content="Profil PT Surya Abadi Raya: berdiri sejak 2017, bergerak di produksi garment, outsourcing, lembaga pelatihan kerja, dan sewa mobil di Cikarang, Bekasi." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:url" content="https://rikardo09.github.io/surya-abadi-raya/about.html" />
+  <meta property="og:image" content="https://rikardo09.github.io/surya-abadi-raya/assets/img/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/images/logo/favicon.png" />
+  <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="assets/home.css" />
+  <link rel="stylesheet" href="assets/pages.css" />
+  <script src="assets/pages.js" defer></script>
 </head>
-<body class="fade-page has-fixed-navbar">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="assets/images/logo/logo SAR.png" alt="" srcset=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="about.html">Tentang Kami</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="produk.html">Produk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gallery.html">Galeri</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#contact">Kontak</a>
-                    </li>
-                </ul>
-            </div>
+<body data-page="about">
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></symbol><symbol id="i-award" viewBox="0 0 16 16"><path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702z"/>
+  <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/></symbol><symbol id="i-bag" viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></symbol><symbol id="i-building" viewBox="0 0 16 16"><path d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
+  <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3z"/></symbol><symbol id="i-bullseye" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+  <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+  <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8"/>
+  <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/></symbol><symbol id="i-calendar-check" viewBox="0 0 16 16"><path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/></symbol><symbol id="i-car-front" viewBox="0 0 16 16"><path d="M4 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0m10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM4.862 4.276 3.906 6.19a.51.51 0 0 0 .497.731c.91-.073 2.35-.17 3.597-.17s2.688.097 3.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 10.691 4H5.309a.5.5 0 0 0-.447.276"/>
+  <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM4.82 3a1.5 1.5 0 0 0-1.379.91l-.792 1.847a1.8 1.8 0 0 1-.853.904.8.8 0 0 0-.43.564L1.03 8.904a1.5 1.5 0 0 0-.03.294v.413c0 .796.62 1.448 1.408 1.484 1.555.07 3.786.155 5.592.155s4.037-.084 5.592-.155A1.48 1.48 0 0 0 15 9.611v-.413q0-.148-.03-.294l-.335-1.68a.8.8 0 0 0-.43-.563 1.8 1.8 0 0 1-.853-.904l-.792-1.848A1.5 1.5 0 0 0 11.18 3z"/></symbol><symbol id="i-check2-circle" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
+  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/></symbol><symbol id="i-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/></symbol><symbol id="i-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/></symbol><symbol id="i-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></symbol><symbol id="i-chevron-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/></symbol><symbol id="i-envelope" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/></symbol><symbol id="i-eye" viewBox="0 0 16 16"><path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/></symbol><symbol id="i-geo-alt" viewBox="0 0 16 16"><path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></symbol><symbol id="i-grid" viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/></symbol><symbol id="i-images" viewBox="0 0 16 16"><path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+  <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/></symbol><symbol id="i-lightbulb" viewBox="0 0 16 16"><path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1"/></symbol><symbol id="i-list" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></symbol><symbol id="i-mortarboard" viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917zM8 8.46 1.758 5.965 8 3.052l6.242 2.913z"/>
+  <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46z"/></symbol><symbol id="i-people" viewBox="0 0 16 16"><path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/></symbol><symbol id="i-person-badge" viewBox="0 0 16 16"><path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+  <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492z"/></symbol><symbol id="i-scissors" viewBox="0 0 16 16"><path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0m7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/></symbol><symbol id="i-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></symbol><symbol id="i-shield-check" viewBox="0 0 16 16"><path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/>
+  <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/></symbol><symbol id="i-stars" viewBox="0 0 16 16"><path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/></symbol><symbol id="i-tag" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0"/>
+  <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1m0 5.586 7 7L13.586 9l-7-7H2z"/></symbol><symbol id="i-telephone" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/></symbol><symbol id="i-truck" viewBox="0 0 16 16"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"/></symbol><symbol id="i-x-lg" viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/></symbol><symbol id="i-zoom-in" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+  <path d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"/>
+  <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"/></symbol></svg>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="PT Surya Abadi Raya — Beranda">
+        <img src="assets/img/logo-sar.webp" alt="PT Surya Abadi Raya" width="360" height="149" />
+      </a>
+      <nav class="nav-links" id="menu" aria-label="Navigasi utama">
+        <a href="index.html">Beranda</a>
+        <a href="about.html" class="active" aria-current="page">Tentang Kami</a>
+        <a href="produk.html">Produk</a>
+        <a href="gallery.html">Galeri</a>
+        <a href="contact.html">Kontak</a>
+        <a href="contact.html#form" class="btn btn-light btn-sm nav-cta">Hubungi Kami</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Buka menu">
+        <svg class="i i-open" aria-hidden="true" focusable="false"><use href="#i-list"/></svg><svg class="i i-close" aria-hidden="true" focusable="false"><use href="#i-x-lg"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="phero tone-red" style="--wave:#fff">
+    <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
+    <span class="ring r1" aria-hidden="true"></span><span class="ring r2" aria-hidden="true"></span>
+      <div class="container phero-grid">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Beranda</a><span class="sep">/</span><span aria-current="page">Tentang Kami</span></nav>
+          <span class="eyebrow">Tentang Perusahaan</span>
+          <h1>Mengenal <span class="hl">PT Surya Abadi Raya</span></h1>
+          <p class="phero-lead">Didirikan pada tahun 2017 dengan visi menjadi penyedia garmen berkualitas dan layanan profesional terkemuka di Indonesia.</p>
+          <div class="phero-actions">
+            <a href="#bidang" class="btn btn-light">Bidang Usaha Kami <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            <a href="contact.html" class="btn btn-ghost">Hubungi Kami</a>
+          </div>
         </div>
-    </nav>
-
-<!-- Company Overview -->
-<section class="company-overview py-5">
-  <div class="container">
-    <div class="row align-items-center">
-
-      <!-- Image Column -->
-      <div class="col-lg-6 mb-5 mb-lg-0">
-        <div class="company-image-wrapper position-relative reveal from-left">
-          <img src="assets/images/banner/1.jpeg" alt="PT Surya Abadi Raya" class="img-fluid rounded-3 shadow-lg">
+        <div class="art" aria-hidden="true">
+          <div class="art-card tone-amber"><span class="art-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-calendar-check"/></svg></span><div><strong>Sejak 2017</strong><span class="s">Melayani industri di Indonesia</span></div></div>
+          <div class="art-card tone-blue"><span class="art-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg></span><div><strong>4 Bidang Usaha</strong><span class="s">Garmen, outsourcing, pelatihan, sewa mobil</span></div></div>
+          <div class="art-card tone-teal"><span class="art-icon"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-building"/></svg></span><div><strong><span data-cust-count>20</span> Perusahaan Mitra</strong><span class="s">Tercantum di daftar customer</span></div></div>
         </div>
       </div>
-
-      <!-- Content Column -->
-      <div class="col-lg-6">
-        <div class="ps-lg-4 reveal from-right delay-1">
-          <!-- Section Heading -->
-          <div class="section-header mb-4">
-            <h2 class="section-title" style="color: #8B0000;">
-              <span class="title-text">Tentang Perusahaan</span>
-              <span class="title-line"></span>
-            </h2>
-          </div>
-
-          <!-- Company Description -->
-          <div class="company-description">
-            <div class="company-text-block mb-4 reveal from-up delay-2">
-              <div class="text-icon mb-2">
-                <i class="bi bi-building" style="color: #8B0000;"></i>
-              </div>
-              <p class="mb-0">PT Surya Abadi Raya didirikan pada tahun 2017 dengan visi menjadi penyedia garmen berkualitas dan layanan profesional terkemuka di Indonesia. Selama bertahun-tahun, kami telah memperluas operasi kami hingga mencakup pelatihan kerja dan layanan alih daya, tetapi fokus utama kami tetap pada produksi garmen berkualitas tinggi untuk berbagai industri.</p>
-            </div>
-
-            <div class="company-text-block reveal from-up delay-3">
-              <div class="text-icon mb-2">
-                <i class="bi bi-people-fill" style="color: #8B0000;"></i>
-              </div>
-              <p class="mb-0">Dengan fasilitas canggih dan tim profesional yang terampil, kami berkomitmen untuk memberikan yang terbaik dalam segala hal yang kami lakukan. Dedikasi kami terhadap kualitas, inovasi, dan kepuasan pelanggan telah menjadikan kami mitra tepercaya bagi berbagai bisnis di seluruh Indonesia.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Company Values -->
-    <div class="company-values mt-4">
-      <h4 class="values-title mb-4" style="color: #8B0000;">Prinsip Perusahaan Kami</h4>
-
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="value-card h-100 p-3 p-sm-4 bg-light rounded-3 border-start border-4 border-danger reveal from-up delay-1" style="background-color: #f8f9fa;">
-            <div class="d-flex align-items-start">
-              <div class="value-icon me-3">
-                <i class="bi bi-award fs-3" style="color: #8B0000;"></i>
-              </div>
-              <div>
-                <h5 class="value-heading mb-2" style="color: #8B0000;">Quality</h5>
-                <p class="value-text mb-0 text-secondary">Kualitas tinggi dalam setiap jahitan, mencerminkan profesionalisme perusahaan Anda.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="value-card h-100 p-3 p-sm-4 bg-light rounded-3 border-start border-4 border-danger reveal from-up delay-2" style="background-color: #f8f9fa;">
-            <div class="d-flex align-items-start">
-              <div class="value-icon me-3">
-                <i class="bi bi-people fs-3" style="color: #8B0000;"></i>
-              </div>
-              <div>
-                <h5 class="value-heading mb-2" style="color: #8B0000;">Teamwork</h5>
-                <p class="value-text mb-0 text-secondary">Kerja sama solid antara tim internal dan mitra, membentuk sinergi yang mendukung setiap proses produksi dengan maksimal.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="value-card h-100 p-3 p-sm-4 bg-light rounded-3 border-start border-4 border-danger reveal from-up delay-3" style="background-color: #f8f9fa;">
-            <div class="d-flex align-items-start">
-              <div class="value-icon me-3">
-                <i class="bi bi-lightbulb fs-3" style="color: #8B0000;"></i>
-              </div>
-              <div>
-                <h5 class="value-heading mb-2" style="color: #8B0000;">Innovation</h5>
-                <p class="value-text mb-0 text-secondary">Kami terus berinovasi dengan menghadirkan solusi dan desain kreatif yang menjawab kebutuhan dinamis dunia kerja.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="value-card h-100 p-3 p-sm-4 bg-light rounded-3 border-start border-4 border-danger reveal from-up delay-4" style="background-color: #f8f9fa;">
-            <div class="d-flex align-items-start">
-              <div class="value-icon me-3">
-                <i class="bi bi-hand-thumbs-up fs-3" style="color: #8B0000;"></i>
-              </div>
-              <div>
-                <h5 class="value-heading mb-2" style="color: #8B0000;">Integrity</h5>
-                <p class="value-text mb-0 text-secondary">Kami percaya bahwa kejujuran dan komitmen profesional adalah kunci utama membangun kemitraan jangka panjang.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div><!-- /row -->
-    </div><!-- /company-values -->
-  </div>
-</section>
-
-
-<!-- Vision and Mission -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="section-heading" style="color: #8B0000;">Vision & Mission</h2>
-            <p class="text-muted">Fondasi yang mengarahkan setiap langkah kami</p>
-        </div>
-        <div class="row">
-            <!-- Vision Section (moved to top) -->
-            <div class="col-md-6 mb-4">
-                <div class="card vision-card h-100 border-0 shadow-sm">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <div class="icon-circle mx-auto mb-3" style="width: 80px; height: 80px; background-color: #8B0000; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="bi bi-eye text-white fs-1"></i>
-                            </div>
-                            <h3 class="card-title" style="color: #8B0000;">Our Vision</h3>
-                        </div>
-                        <p class="card-text text-justify leading-relaxed">Menjadi penyedia terdepan dan paling tepercaya dalam bidang pakaian berkualitas tinggi dan layanan profesional di Indonesia. Kami berupaya menetapkan standar baru dalam industri melalui inovasi berkelanjutan, keunggulan operasional, dan komitmen yang kuat terhadap kepuasan pelanggan.</p>
-                        <p class="card-text text-justify">Lebih dari sekadar menghadirkan produk unggulan, kami bertujuan memberikan dampak positif yang berkelanjutan—memberdayakan karyawan, memperkuat kemitraan, serta berkontribusi pada pertumbuhan dan kesejahteraan komunitas yang kami layani.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Mission Section (moved to bottom) -->
-            <div class="col-md-6 mb-4">
-                <div class="card mission-card h-100 border-0 shadow-sm">
-                    <div class="card-body p-4">
-                        <div class="text-center mb-4">
-                            <div class="icon-circle mx-auto mb-3" style="width: 80px; height: 80px; background-color: #8B0000; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="bi bi-bullseye text-white fs-1"></i>
-                            </div>
-                            <h3 class="card-title" style="color: #8B0000;">Our Mission</h3>
-                        </div>
-                        <p class="card-text text-justify leading-relaxed">Memberikan pakaian berkualitas tinggi yang fungsional dan dirancang secara estetis untuk memenuhi beragam kebutuhan klien kami di berbagai industri. Kami berkomitmen untuk menghadirkan layanan terbaik melalui ketelitian dalam pengerjaan, kemitraan yang andal, dan solusi yang berpusat pada pelanggan.</p>
-                        <p class="card-text text-justify">Dengan menjunjung tinggi integritas, mendorong inovasi, dan terus berinvestasi pada pengembangan sumber daya manusia, kami bertekad menciptakan nilai tambah tidak hanya bagi klien, tetapi juga bagi karyawan, mitra bisnis, dan masyarakat luas. Misi kami bukan sekadar menjadi penyedia seragam—melainkan mitra tepercaya dalam membantu organisasi mengekspresikan identitas dan profesionalismenya di setiap jahitan.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-      
-      <!-- Optional: Add scroll indicator -->
-      <div class="text-center mt-3">
-        <small class="text-muted">
-        </small>
-      </div>
-    </div>
-  </div>
-</section>
- <!-- Business Areas -->
-    <section class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-heading" style="color: #8B0000;">Bidang Usaha Kami</h2>
-                <p class="section-subheading">Solusi Terpadu untuk Berbagai Sektor Industri</p>
-            </div>
-
-           <!-- Produksi Garment -->
-            <div class="row align-items-center business-area mb-5">
-                <div class="col-lg-6 order-lg-1 mb-4 mb-lg-0">
-                    <div class="business-area-content pe-lg-4">
-                        <h3>Produksi Garment</h3>
-                        <p class="lead">Fokus utama kami adalah menciptakan pakaian berkualitas tinggi untuk berbagai industri.</p>
-                        <ul>
-                            <li>Seragam Perusahaan</li>
-                            <li>Pakaian Santai</li>
-                            <li>Pakaian Kerja Khusus</li>
-                            <li>Pakaian Promosi</li>
-                            <li>Pakaian Desain Kustom</li>
-                        </ul>
-                        <p>Proses produksi kami menekankan pengendalian kualitas di setiap tahap.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 order-lg-2">
-                    <div id="garmentCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/images/galeri/gallery9.jpg" class="d-block w-100" alt="Garment Production">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/galeri/gallery1.jpg" class="d-block w-100" alt="Garment Production">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/galeri/gallery4.jpg" class="d-block w-100" alt="Garment Production">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#garmentCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#garmentCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Outsourcing Services -->
-            <div class="row align-items-center business-area mb-5">
-                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
-                    <div class="business-area-content ps-lg-4">
-                        <h3>Layanan Outsourcing</h3>
-                        <p class="lead">Solusi penyediaan tenaga kerja profesional untuk kebutuhan bisnis Anda.</p>
-                        <ul>
-                            <li>Satpam</li>
-                            <li>Cleaning Service</li>
-                            <li>Driver</li>
-                            <li>Operator Produksi</li>
-                            <li>Staf Administrasi</li>
-                        </ul>
-                        <p>Kami menangani proses rekrutmen, pelatihan, dan manajemen untuk hasil yang optimal.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 order-lg-1">
-                    <div id="outsourcingCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/images/galeri/drive.jpg" class="d-block w-100" alt="Outsourcing Services">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/galeri/clean2.jpeg" class="d-block w-100" alt="Outsourcing Services">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/galeri/satpam.jpeg" class="d-block w-100" alt="Outsourcing Services">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#outsourcingCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#outsourcingCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Job Training Institute -->
-            <div class="row align-items-center business-area mb-5">
-                <div class="col-lg-6 order-lg-1 mb-4 mb-lg-0">
-                    <div class="business-area-content pe-lg-4">
-                        <h3>Lembaga Pelatihan Kerja</h3>
-                        <p class="lead">Program pelatihan komprehensif untuk mengembangkan keterampilan dan jalur karier.</p>
-                        <ul>
-                            <li>Teknik Produksi Garmen</li>
-                            <li>Kontrol dan Penjaminan Kualitas</li>
-                            <li>Administrasi Bisnis</li>
-                            <li>Layanan Pelanggan Profesional</li>
-                            <li>Pengembangan Profesional</li>
-                        </ul>
-                        <p>Kurikulum kami dirancang untuk memenuhi standar industri.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 order-lg-2">
-                    <div id="trainingCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/images/galeri/lpk2.jpeg" class="d-block w-100" alt="Job Training">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/galeri/lpk.jpeg" class="d-block w-100" alt="Job Training">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#trainingCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#trainingCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-<!-- Car Rental Services -->
-            <div class="row align-items-center business-area">
-                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
-                    <div class="business-area-content ps-lg-4">
-                        <h3>Layanan Sewa Mobil</h3>
-                        <p class="lead">Solusi transportasi yang andal untuk keperluan bisnis maupun pribadi.</p>
-                        <ul>
-                            <li>SUV Eksekutif</li>
-                            <li>Mobil Penumpang</li>
-                            <li>Elf & HiAce</li>
-                            <li>Truck</li>
-                            <li>Paket Fleksibel Per Jam/Harian</li>
-                        </ul>
-                        <p>Kendaraan yang nyaman, bersih, dan siap digunakan untuk kenyamanan Anda.</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 order-lg-1">
-                    <div id="carRentalCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="assets/images/galeri/carr.png" class="d-block w-100" alt="Car Rental">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/galeri/trukk.png" class="d-block w-100" alt="Car Rental">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="assets/images/galeri/elf.jpeg" class="d-block w-100" alt="Car Rental">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carRentalCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carRentalCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0,40 C240,90 480,0 720,36 C960,72 1200,92 1440,28 L1440,80 L0,80 Z"/></svg>
     </section>
 
-            <!-- Client Table Section -->
-<section class="py-5 bg-light">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="section-heading" style="color:#8B0000;">Daftar Customer Kami</h2>
-      <p class="section-subheading">Beberapa perusahaan yang telah mempercayakan layanan kami</p>
-    </div>
+    <section class="section">
+      <div class="container">
+        <div class="intro">
+          <div class="why-visual reveal reveal-left">
+            <svg class="stitch" aria-hidden="true"><rect x="1" y="1" width="100%" height="100%" rx="28" ry="28" /></svg>
+            <div class="why-photo wide">
+              <img src="assets/img/about-kantor.webp" width="1000" height="812" alt="Kantor PT Surya Abadi Raya di Ruko Central Business District, Jababeka II" />
+            </div>
+            <div class="est-badge"><strong>2017</strong><span>Berdiri sejak</span></div>
+          </div>
+          <div class="intro-copy reveal reveal-right">
+            <span class="eyebrow">Tentang Perusahaan</span>
+            <h2 class="title">Mitra Tepercaya Bisnis di Seluruh Indonesia</h2>
+            <p>PT Surya Abadi Raya didirikan pada tahun 2017 dengan visi menjadi penyedia garmen berkualitas dan layanan profesional terkemuka di Indonesia. Selama bertahun-tahun, kami telah memperluas operasi kami hingga mencakup pelatihan kerja dan layanan alih daya, tetapi fokus utama kami tetap pada produksi garmen berkualitas tinggi untuk berbagai industri.</p>
+            <p>Dengan fasilitas canggih dan tim profesional yang terampil, kami berkomitmen untuk memberikan yang terbaik dalam segala hal yang kami lakukan. Dedikasi kami terhadap kualitas, inovasi, dan kepuasan pelanggan telah menjadikan kami mitra tepercaya bagi berbagai bisnis di seluruh Indonesia.</p>
+          </div>
+        </div>
 
-    <div class="client-table-section p-4">
-<div class="table-responsive" style="border: 1px solid #dee2e6; border-radius: 8px;">
-    <table class="table table-hover mb-0">
-      <thead style="background-color:#8B0000;color:#fff;">
-            <tr>
-              <th style="width:10%;">No</th>
-              <th style="width:45%;">Nama Perusahaan</th>
-              <th style="width:45%;">Alamat</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class='fw-medium'>1</td>
-              <td class='fw-medium'>PT Sunstar Engineering Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/GMHNCoRQSsqDZdQ8A' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>2</td>
-              <td class='fw-medium'>PT Heesung Electronics Jakarta</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/KK2SbkTPFp1XCyNg8' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>3</td>
-              <td class='fw-medium'>PT Berjaya Nawaplastic Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/tTj9pu1HWcmXzepRA' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>4</td>
-              <td class='fw-medium'>PT Shinsung Automotive Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/sZ1e1cVAznb9X5eLA' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>5</td>
-              <td class='fw-medium'>PT Nippo Mechatronics Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/rVhUbKkZqv2j8eDv5' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>6</td>
-              <td class='fw-medium'>PT Unifoods Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/Nv6ck6SjVLCLnDp87' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>7</td>
-              <td class='fw-medium'>PT Haeng Sung Raya Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/ifdjpCEnWfULHnVv8' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>8</td>
-              <td class='fw-medium'>PT Kimpai Dyna Tube</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/Jiy2w1L3R4fPss9N8' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>9</td>
-              <td class='fw-medium'>PT Naga Sinar Terang</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/PMtAZmqtrqtAEnaK6' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>10</td>
-              <td class='fw-medium'>PT Neohyolim</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/s61sAQhtse9qS3DE6' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>11</td>
-              <td class='fw-medium'>PT Topline Evergreen Manufacturing</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/zRvgCwR1x9uENXE7A' target='_blank' class='text-decoration-none text-dark'>Cikarang, Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>12</td>
-              <td class='fw-medium'>PT GUUD Logistics Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/iHrtY7zsvnrHYcxM6' target='_blank' class='text-decoration-none text-dark'>Sunter,Jakarta</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>13</td>
-              <td class='fw-medium'>PT Dela Cemara Indah</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/rw4CHREmxWU8TdT9A' target='_blank' class='text-decoration-none text-dark'>Cibitung,Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>14</td>
-              <td class='fw-medium'>PT Woo In</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/vKXFr4op6qGJCtkK8' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>15</td>
-              <td class='fw-medium'>PT Dnt Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/TSqinDWr8VHfws5S8' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>16</td>
-              <td class='fw-medium'>PT MICS Steel Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/VnzgFrEWouxBYxbi8' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>17</td>
-              <td class='fw-medium'>PT Yasufuku Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/zUMiJNKL9icqDSug9' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>18</td>
-              <td class='fw-medium'>LPK Horenso Indonesia</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/nWrwNNqNv13PyeAK9' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>19</td>
-              <td class='fw-medium'>LPK Mitra Industri</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/XzDQkhFMiwfByrDQ8' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
-            </tr>
-            <tr>
-              <td class='fw-medium'>20</td>
-              <td class='fw-medium'>PT New Optics</td>
-              <td class='fw-medium'><a href='https://maps.app.goo.gl/4S9CvpRpeoFXgGod6' target='_blank' class='text-decoration-none text-dark'>Cikarang,Bekasi</a></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="stats">
+          <div class="stat tone-red reveal" style="--d:0ms"><span class="num" data-years-since="2017">0</span><span class="lbl">Tahun Berpengalaman</span><span class="sub">Sejak 2017</span><svg class="i st-i" aria-hidden="true" focusable="false"><use href="#i-calendar-check"/></svg></div>
+          <div class="stat tone-blue reveal" style="--d:80ms"><span class="num" data-count="20" data-cust-count>0</span><span class="lbl">Perusahaan Mitra</span><span class="sub">Tercantum di daftar customer</span><svg class="i st-i" aria-hidden="true" focusable="false"><use href="#i-building"/></svg></div>
+          <div class="stat tone-amber reveal" style="--d:160ms"><span class="num" data-count="4">0</span><span class="lbl">Bidang Usaha</span><span class="sub">Garmen, outsourcing, pelatihan, sewa mobil</span><svg class="i st-i" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg></div>
+          <div class="stat tone-teal reveal" style="--d:240ms"><span class="num" data-count="12">0</span><span class="lbl">Jenis Produk Garmen</span><span class="sub">Seragam, polo, kaos, rompi, topi, dan lainnya</span><svg class="i st-i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Nilai Kami</span>
+          <h2 class="title">Prinsip Perusahaan Kami</h2>
+        </div>
+        <div class="tiles">
+          <article class="tile tone-red reveal" style="--d:0ms"><svg class="i big-i" aria-hidden="true" focusable="false"><use href="#i-award"/></svg><span class="t-ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-award"/></svg></span><h3>Quality</h3><p>Kualitas tinggi dalam setiap jahitan, mencerminkan profesionalisme perusahaan Anda.</p></article>
+          <article class="tile tone-blue reveal" style="--d:90ms"><svg class="i big-i" aria-hidden="true" focusable="false"><use href="#i-people"/></svg><span class="t-ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-people"/></svg></span><h3>Teamwork</h3><p>Kerja sama solid antara tim internal dan mitra, membentuk sinergi yang mendukung setiap proses produksi dengan maksimal.</p></article>
+          <article class="tile tone-amber reveal" style="--d:180ms"><svg class="i big-i" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg><span class="t-ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></span><h3>Innovation</h3><p>Kami terus berinovasi dengan menghadirkan solusi dan desain kreatif yang menjawab kebutuhan dinamis dunia kerja.</p></article>
+          <article class="tile tone-teal reveal" style="--d:270ms"><svg class="i big-i" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg><span class="t-ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shield-check"/></svg></span><h3>Integrity</h3><p>Kami percaya bahwa kejujuran dan komitmen profesional adalah kunci utama membangun kemitraan jangka panjang.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Arah Perusahaan</span>
+          <h2 class="title">Visi &amp; Misi</h2>
+          <p class="lead">Fondasi yang mengarahkan setiap langkah kami</p>
+        </div>
+        <div class="vm-wrap reveal">
+          <div class="seg-row">
+            <div class="seg" role="tablist" aria-label="Visi atau Misi">
+              <span class="seg-ind" aria-hidden="true"></span>
+              <button class="tone-red" type="button" role="tab" id="t-visi" aria-controls="p-visi" aria-selected="true"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>Visi</button>
+              <button class="tone-blue" type="button" role="tab" id="t-misi" aria-controls="p-misi" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bullseye"/></svg>Misi</button>
+            </div>
+          </div>
+          <div class="vm-panel tone-red" role="tabpanel" id="p-visi" aria-labelledby="t-visi">
+            <div class="vm-side"><svg class="i big-i" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg><small>Our Vision</small><h3>Visi Kami</h3></div>
+            <div class="vm-body">
+              <p>Menjadi penyedia terdepan dan paling tepercaya dalam bidang pakaian berkualitas tinggi dan layanan profesional di Indonesia. Kami berupaya menetapkan standar baru dalam industri melalui inovasi berkelanjutan, keunggulan operasional, dan komitmen yang kuat terhadap kepuasan pelanggan.</p>
+              <p>Lebih dari sekadar menghadirkan produk unggulan, kami bertujuan memberikan dampak positif yang berkelanjutan—memberdayakan karyawan, memperkuat kemitraan, serta berkontribusi pada pertumbuhan dan kesejahteraan komunitas yang kami layani.</p>
+            </div>
+          </div>
+          <div class="vm-panel tone-blue" role="tabpanel" id="p-misi" aria-labelledby="t-misi" hidden>
+            <div class="vm-side"><svg class="i big-i" aria-hidden="true" focusable="false"><use href="#i-bullseye"/></svg><small>Our Mission</small><h3>Misi Kami</h3></div>
+            <div class="vm-body">
+              <p>Memberikan pakaian berkualitas tinggi yang fungsional dan dirancang secara estetis untuk memenuhi beragam kebutuhan klien kami di berbagai industri. Kami berkomitmen untuk menghadirkan layanan terbaik melalui ketelitian dalam pengerjaan, kemitraan yang andal, dan solusi yang berpusat pada pelanggan.</p>
+              <p>Dengan menjunjung tinggi integritas, mendorong inovasi, dan terus berinvestasi pada pengembangan sumber daya manusia, kami bertekad menciptakan nilai tambah tidak hanya bagi klien, tetapi juga bagi karyawan, mitra bisnis, dan masyarakat luas. Misi kami bukan sekadar menjadi penyedia seragam—melainkan mitra tepercaya dalam membantu organisasi mengekspresikan identitas dan profesionalismenya di setiap jahitan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-soft anchor-fix" id="bidang">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Bidang Usaha</span>
+          <h2 class="title">Bidang Usaha Kami</h2>
+          <p class="lead">Solusi Terpadu untuk Berbagai Sektor Industri</p>
+        </div>
+        <div class="biz-tabs" role="tablist" aria-label="Pilih bidang usaha"><button class="pill tone-red" type="button" role="tab" id="t-garment" data-key="garment" aria-controls="p-garment" aria-selected="true" tabindex="0"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Produksi Garment</button><button class="pill tone-blue" type="button" role="tab" id="t-outsourcing" data-key="outsourcing" aria-controls="p-outsourcing" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-people"/></svg>Layanan Outsourcing</button><button class="pill tone-amber" type="button" role="tab" id="t-training" data-key="training" aria-controls="p-training" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-mortarboard"/></svg>Lembaga Pelatihan Kerja</button><button class="pill tone-teal" type="button" role="tab" id="t-carrental" data-key="carrental" aria-controls="p-carrental" aria-selected="false" tabindex="-1"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-car-front"/></svg>Layanan Sewa Mobil</button></div>
+        
+        <div class="biz-panel tone-red" role="tabpanel" id="p-garment" aria-labelledby="t-garment">
+          <div>
+            <span class="biz-tag"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-scissors"/></svg>Bidang Usaha</span>
+            <h3>Produksi Garment</h3>
+            <p class="lead">Fokus utama kami adalah menciptakan pakaian berkualitas tinggi untuk berbagai industri.</p>
+            <ul class="checks"><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Seragam Perusahaan</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Pakaian Santai</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Pakaian Kerja Khusus</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Pakaian Promosi</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Pakaian Desain Kustom</span></li></ul>
+            <p class="biz-note">Proses produksi kami menekankan pengendalian kualitas di setiap tahap.</p>
+            <a class="btn btn-solid" href="produk.html" style="background:var(--ac);color:var(--ac-on)">Lihat Katalog Produk <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+          </div>
+          <div class="stack">
+            <div class="stack-main">
+              <img class="on" src="assets/img/about-garmen-1.webp" width="900" height="675" alt="Penjahit mengerjakan kain merah di mesin jahit" /><img src="assets/img/about-garmen-2.webp" width="900" height="675" alt="Penjahit bekerja di lini produksi garmen" loading="lazy" decoding="async" /><img src="assets/img/about-garmen-3.webp" width="900" height="675" alt="Ruang produksi dengan deretan mesin jahit" loading="lazy" decoding="async" />
+              <span class="stack-hint"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-images"/></svg>Klik untuk foto lain</span>
+            </div>
+            <div class="stack-thumbs"><button class="thumb" type="button" aria-label="Foto 1"><img src="assets/img/about-garmen-1.webp" alt="" loading="lazy" decoding="async" /></button><button class="thumb" type="button" aria-label="Foto 2"><img src="assets/img/about-garmen-2.webp" alt="" loading="lazy" decoding="async" /></button><button class="thumb" type="button" aria-label="Foto 3"><img src="assets/img/about-garmen-3.webp" alt="" loading="lazy" decoding="async" /></button></div>
+          </div>
+        </div>
+        <div class="biz-panel tone-blue" role="tabpanel" id="p-outsourcing" aria-labelledby="t-outsourcing" hidden>
+          <div>
+            <span class="biz-tag"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-people"/></svg>Bidang Usaha</span>
+            <h3>Layanan Outsourcing</h3>
+            <p class="lead">Solusi penyediaan tenaga kerja profesional untuk kebutuhan bisnis Anda.</p>
+            <ul class="checks"><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Satpam</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Cleaning Service</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Driver</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Operator Produksi</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Staf Administrasi</span></li></ul>
+            <p class="biz-note">Kami menangani proses rekrutmen, pelatihan, dan manajemen untuk hasil yang optimal.</p>
+            <a class="btn btn-solid" href="contact.html?subjek=outsourcing#form" style="background:var(--ac);color:var(--ac-on)">Tanya Layanan Outsourcing <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+          </div>
+          <div class="stack">
+            <div class="stack-main">
+              <img class="on" src="assets/img/about-outsourcing-1.webp" width="900" height="863" alt="Driver profesional bersama kendaraan operasional" loading="lazy" decoding="async" /><img src="assets/img/about-outsourcing-2.webp" width="575" height="339" alt="Petugas kebersihan di area kerja" loading="lazy" decoding="async" /><img src="assets/img/about-outsourcing-3.webp" width="900" height="506" alt="Tim keamanan (satpam) di ruang pertemuan" loading="lazy" decoding="async" />
+              <span class="stack-hint"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-images"/></svg>Klik untuk foto lain</span>
+            </div>
+            <div class="stack-thumbs"><button class="thumb" type="button" aria-label="Foto 1"><img src="assets/img/about-outsourcing-1.webp" alt="" loading="lazy" decoding="async" /></button><button class="thumb" type="button" aria-label="Foto 2"><img src="assets/img/about-outsourcing-2.webp" alt="" loading="lazy" decoding="async" /></button><button class="thumb" type="button" aria-label="Foto 3"><img src="assets/img/about-outsourcing-3.webp" alt="" loading="lazy" decoding="async" /></button></div>
+          </div>
+        </div>
+        <div class="biz-panel tone-amber" role="tabpanel" id="p-training" aria-labelledby="t-training" hidden>
+          <div>
+            <span class="biz-tag"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-mortarboard"/></svg>Bidang Usaha</span>
+            <h3>Lembaga Pelatihan Kerja</h3>
+            <p class="lead">Program pelatihan komprehensif untuk mengembangkan keterampilan dan jalur karier.</p>
+            <ul class="checks"><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Teknik Produksi Garmen</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Kontrol dan Penjaminan Kualitas</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Administrasi Bisnis</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Layanan Pelanggan Profesional</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Pengembangan Profesional</span></li></ul>
+            <p class="biz-note">Kurikulum kami dirancang untuk memenuhi standar industri.</p>
+            <a class="btn btn-solid" href="contact.html?subjek=training#form" style="background:var(--ac);color:var(--ac-on)">Tanya Program Pelatihan <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+          </div>
+          <div class="stack">
+            <div class="stack-main">
+              <img class="on" src="assets/img/about-training-1.webp" width="900" height="675" alt="Peserta pelatihan kerja di dalam kelas" loading="lazy" decoding="async" /><img src="assets/img/about-training-2.webp" width="900" height="675" alt="Sesi materi pelatihan dengan layar proyektor" loading="lazy" decoding="async" />
+              <span class="stack-hint"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-images"/></svg>Klik untuk foto lain</span>
+            </div>
+            <div class="stack-thumbs"><button class="thumb" type="button" aria-label="Foto 1"><img src="assets/img/about-training-1.webp" alt="" loading="lazy" decoding="async" /></button><button class="thumb" type="button" aria-label="Foto 2"><img src="assets/img/about-training-2.webp" alt="" loading="lazy" decoding="async" /></button></div>
+          </div>
+        </div>
+        <div class="biz-panel tone-teal" role="tabpanel" id="p-carrental" aria-labelledby="t-carrental" hidden>
+          <div>
+            <span class="biz-tag"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-car-front"/></svg>Bidang Usaha</span>
+            <h3>Layanan Sewa Mobil</h3>
+            <p class="lead">Solusi transportasi yang andal untuk keperluan bisnis maupun pribadi.</p>
+            <ul class="checks"><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>SUV Eksekutif</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Mobil Penumpang</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Elf &amp; HiAce</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Truck</span></li><li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check2-circle"/></svg><span>Paket Fleksibel Per Jam/Harian</span></li></ul>
+            <p class="biz-note">Kendaraan yang nyaman, bersih, dan siap digunakan untuk kenyamanan Anda.</p>
+            <a class="btn btn-solid" href="contact.html?subjek=rental#form" style="background:var(--ac);color:var(--ac-on)">Tanya Sewa Mobil <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+          </div>
+          <div class="stack">
+            <div class="stack-main">
+              <img class="on" src="assets/img/about-rental-1.webp" width="900" height="676" alt="Deretan mobil sewa di area parkir" loading="lazy" decoding="async" /><img src="assets/img/about-rental-2.webp" width="900" height="506" alt="Truk operasional" loading="lazy" decoding="async" /><img src="assets/img/about-rental-3.webp" width="900" height="553" alt="Armada ELF" loading="lazy" decoding="async" />
+              <span class="stack-hint"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-images"/></svg>Klik untuk foto lain</span>
+            </div>
+            <div class="stack-thumbs"><button class="thumb" type="button" aria-label="Foto 1"><img src="assets/img/about-rental-1.webp" alt="" loading="lazy" decoding="async" /></button><button class="thumb" type="button" aria-label="Foto 2"><img src="assets/img/about-rental-2.webp" alt="" loading="lazy" decoding="async" /></button><button class="thumb" type="button" aria-label="Foto 3"><img src="assets/img/about-rental-3.webp" alt="" loading="lazy" decoding="async" /></button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section anchor-fix" id="customer">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Mitra</span>
+          <h2 class="title">Daftar Customer Kami</h2>
+          <p class="lead">Beberapa perusahaan yang telah mempercayakan layanan kami</p>
+        </div>
+        <div class="cust-tools">
+          <div class="fchips" id="cust-chips" role="group" aria-label="Filter kota"><button class="fchip tone-red" type="button" data-city="all" aria-pressed="true">Semua <span class="n">20</span></button><button class="fchip tone-blue" type="button" data-city="cikarang" aria-pressed="false">Cikarang <span class="n">18</span></button><button class="fchip tone-amber" type="button" data-city="cibitung" aria-pressed="false">Cibitung <span class="n">1</span></button><button class="fchip tone-teal" type="button" data-city="jakarta" aria-pressed="false">Jakarta <span class="n">1</span></button></div>
+          <div class="search">
+            <svg class="i" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+            <input id="cust-q" type="search" placeholder="Cari nama perusahaan…" aria-label="Cari perusahaan" autocomplete="off" />
+            <button class="clear" type="button" aria-label="Hapus pencarian"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x-lg"/></svg></button>
+          </div>
+        </div>
+        <p class="result-line" id="cust-count" role="status" aria-live="polite"></p>
+        <div class="cust-grid"><a class="cust tone-red" href="https://maps.app.goo.gl/GMHNCoRQSsqDZdQ8A" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt sunstar engineering indonesia cikarang, bekasi" aria-label="PT Sunstar Engineering Indonesia — lihat di Google Maps"><span class="avatar">SE</span><div><h3>PT Sunstar Engineering Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-blue" href="https://maps.app.goo.gl/KK2SbkTPFp1XCyNg8" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt heesung electronics jakarta cikarang, bekasi" aria-label="PT Heesung Electronics Jakarta — lihat di Google Maps"><span class="avatar">HE</span><div><h3>PT Heesung Electronics Jakarta</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-amber" href="https://maps.app.goo.gl/tTj9pu1HWcmXzepRA" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt berjaya nawaplastic indonesia cikarang, bekasi" aria-label="PT Berjaya Nawaplastic Indonesia — lihat di Google Maps"><span class="avatar">BN</span><div><h3>PT Berjaya Nawaplastic Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-teal" href="https://maps.app.goo.gl/sZ1e1cVAznb9X5eLA" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt shinsung automotive indonesia cikarang, bekasi" aria-label="PT Shinsung Automotive Indonesia — lihat di Google Maps"><span class="avatar">SA</span><div><h3>PT Shinsung Automotive Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-red" href="https://maps.app.goo.gl/rVhUbKkZqv2j8eDv5" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt nippo mechatronics indonesia cikarang, bekasi" aria-label="PT Nippo Mechatronics Indonesia — lihat di Google Maps"><span class="avatar">NM</span><div><h3>PT Nippo Mechatronics Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-blue" href="https://maps.app.goo.gl/Nv6ck6SjVLCLnDp87" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt unifoods indonesia cikarang, bekasi" aria-label="PT Unifoods Indonesia — lihat di Google Maps"><span class="avatar">UI</span><div><h3>PT Unifoods Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-amber" href="https://maps.app.goo.gl/ifdjpCEnWfULHnVv8" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt haeng sung raya indonesia cikarang, bekasi" aria-label="PT Haeng Sung Raya Indonesia — lihat di Google Maps"><span class="avatar">HS</span><div><h3>PT Haeng Sung Raya Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-teal" href="https://maps.app.goo.gl/Jiy2w1L3R4fPss9N8" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt kimpai dyna tube cikarang, bekasi" aria-label="PT Kimpai Dyna Tube — lihat di Google Maps"><span class="avatar">KD</span><div><h3>PT Kimpai Dyna Tube</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-red" href="https://maps.app.goo.gl/PMtAZmqtrqtAEnaK6" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt naga sinar terang cikarang, bekasi" aria-label="PT Naga Sinar Terang — lihat di Google Maps"><span class="avatar">NS</span><div><h3>PT Naga Sinar Terang</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-blue" href="https://maps.app.goo.gl/s61sAQhtse9qS3DE6" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt neohyolim cikarang, bekasi" aria-label="PT Neohyolim — lihat di Google Maps"><span class="avatar">NE</span><div><h3>PT Neohyolim</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-amber" href="https://maps.app.goo.gl/zRvgCwR1x9uENXE7A" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt topline evergreen manufacturing cikarang, bekasi" aria-label="PT Topline Evergreen Manufacturing — lihat di Google Maps"><span class="avatar">TE</span><div><h3>PT Topline Evergreen Manufacturing</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-teal" href="https://maps.app.goo.gl/iHrtY7zsvnrHYcxM6" target="_blank" rel="noopener noreferrer" data-city="jakarta" data-search="pt guud logistics indonesia sunter, jakarta" aria-label="PT GUUD Logistics Indonesia — lihat di Google Maps"><span class="avatar">GL</span><div><h3>PT GUUD Logistics Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Sunter, Jakarta</p></div></a><a class="cust tone-red" href="https://maps.app.goo.gl/rw4CHREmxWU8TdT9A" target="_blank" rel="noopener noreferrer" data-city="cibitung" data-search="pt dela cemara indah cibitung, bekasi" aria-label="PT Dela Cemara Indah — lihat di Google Maps"><span class="avatar">DC</span><div><h3>PT Dela Cemara Indah</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cibitung, Bekasi</p></div></a><a class="cust tone-blue" href="https://maps.app.goo.gl/vKXFr4op6qGJCtkK8" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt woo in cikarang, bekasi" aria-label="PT Woo In — lihat di Google Maps"><span class="avatar">WI</span><div><h3>PT Woo In</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-amber" href="https://maps.app.goo.gl/TSqinDWr8VHfws5S8" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt dnt indonesia cikarang, bekasi" aria-label="PT Dnt Indonesia — lihat di Google Maps"><span class="avatar">DI</span><div><h3>PT Dnt Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-teal" href="https://maps.app.goo.gl/VnzgFrEWouxBYxbi8" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt mics steel indonesia cikarang, bekasi" aria-label="PT MICS Steel Indonesia — lihat di Google Maps"><span class="avatar">MS</span><div><h3>PT MICS Steel Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-red" href="https://maps.app.goo.gl/zUMiJNKL9icqDSug9" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt yasufuku indonesia cikarang, bekasi" aria-label="PT Yasufuku Indonesia — lihat di Google Maps"><span class="avatar">YI</span><div><h3>PT Yasufuku Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-blue" href="https://maps.app.goo.gl/nWrwNNqNv13PyeAK9" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="lpk horenso indonesia cikarang, bekasi" aria-label="LPK Horenso Indonesia — lihat di Google Maps"><span class="avatar">HI</span><div><h3>LPK Horenso Indonesia</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-amber" href="https://maps.app.goo.gl/XzDQkhFMiwfByrDQ8" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="lpk mitra industri cikarang, bekasi" aria-label="LPK Mitra Industri — lihat di Google Maps"><span class="avatar">MI</span><div><h3>LPK Mitra Industri</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a><a class="cust tone-teal" href="https://maps.app.goo.gl/4S9CvpRpeoFXgGod6" target="_blank" rel="noopener noreferrer" data-city="cikarang" data-search="pt new optics cikarang, bekasi" aria-label="PT New Optics — lihat di Google Maps"><span class="avatar">NO</span><div><h3>PT New Optics</h3><p><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg>Cikarang, Bekasi</p></div></a></div>
+        <div class="empty" id="cust-empty" hidden>
+          <svg class="i" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+          <h3>Perusahaan tidak ditemukan</h3>
+          <p>Coba kata kunci lain atau tampilkan semua perusahaan.</p>
+          <button class="btn btn-solid" id="cust-reset" type="button">Tampilkan semua</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-wrap">
+      <div class="container">
+        <div class="cta reveal">
+          <h2>Mari Jalin Kemitraan Profesional</h2>
+          <p>Hubungi kami hari ini untuk mendiskusikan bagaimana kami dapat membantu perkembangan bisnis Anda.</p>
+          <div class="hero-actions">
+            <a href="contact.html#form" class="btn btn-light btn-lg">Hubungi Kami <svg class="i i-arrow" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            <a href="tel:+622189325738" class="btn btn-ghost"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-telephone"/></svg> (021) 8932 5738</a>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </main>
 
-<!-- FOOTER -->
-<footer class="custom-footer py-4">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <h5>PT Surya Abadi Raya</h5>
-        <p>Your trusted partner for quality garments and professional services.</p>
-        <p>Member of <a href="https://mardizu.co.id/" target="_blank" style="color:#fff; text-decoration:underline;">Mardizu</a></p>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="assets/img/logo-sar.webp" alt="PT Surya Abadi Raya" width="360" height="149" loading="lazy" />
+          <p>Mitra terpercaya untuk garment berkualitas dan layanan profesional.</p>
+          <p>Member of <a href="https://mardizu.co.id/" target="_blank" rel="noopener noreferrer" style="color:#fff;text-decoration:underline;text-underline-offset:3px">Mardizu</a></p>
+        </div>
+        <div>
+          <h4>Tautan Cepat</h4>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="produk.html">Produk</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="contact.html">Kontak</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Kontak</h4>
+          <ul class="f-contact">
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-geo-alt"/></svg><address>Ruko Central Business District (CBD) Blok E20 – E21, Jl. Niaga Raya, Kawasan Industri Jababeka II, Cikarang – Bekasi 17550</address></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-telephone"/></svg><a href="tel:+622189325738">(021) 8932 5738</a></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-envelope"/></svg><a href="mailto:surya.abadiraya@gmail.com">surya.abadiraya@gmail.com</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <h5>Quick Links</h5>
-        <ul class="list-unstyled">
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="about.html">Tentang Kami</a></li>
-          <li><a href="produk.html">Produk</a></li>
-          <li><a href="gallery.html">Galeri</a></li>
-          <li><a href="index.html#contact">Kontak</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4 mb-3">
-        <h5>Contact Us</h5>
-        <address>
-          <p><i class="bi bi-geo-alt"></i> Ruko Central Business District (CBD) Blok C12 - C15 Jl. Niaga Raya Kawasan Industri Jababeka II Cikarang – Bekasi 17550</p>
-          <p><i class="bi bi-envelope"></i> surya.abadiraya@gmail.com</p>
-        </address>
-      </div>
+      <div class="footer-bottom">&copy; <span id="year">2026</span> PT Surya Abadi Raya. All Rights Reserved.</div>
     </div>
-    <hr />
-    <div class="text-center"><p>&copy; 2025 PT Surya Abadi Raya. All Rights Reserved.</p></div>
-  </div>
-</footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const page = document.querySelector("body");
-            page.classList.add("fade-page");
-
-            // Show page with fade-in
-            setTimeout(() => {
-                page.classList.add("show");
-            }, 50);
-
-            // Fade-out saat klik link internal
-            const links = document.querySelectorAll("a[href]");
-
-            links.forEach(link => {
-                if (link.hostname === window.location.hostname && !link.href.includes("#")) {
-                    link.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        const target = this.href;
-                        page.classList.remove("show");
-                        setTimeout(() => {
-                            window.location.href = target;
-                        }, 300);
-                    });
-                }
-            });
-        });
-          (function(){
-    const els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-      // Fallback: tampilkan semua jika browser lama
-      els.forEach(el => el.classList.add('visible'));
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target); // animasi sekali saja
-        }
-      });
-    }, { threshold: 0.12 });
-
-    els.forEach(el => io.observe(el));
-  })();
-    </script>
+  </footer>
+  <button class="to-top" type="button" aria-label="Kembali ke atas"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-chevron-up"/></svg></button>
 
 </body>
 </html>
