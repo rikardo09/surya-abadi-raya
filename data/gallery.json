@@ -1,6 +1,46 @@
 [
  {
   "cat": "office",
+  "caption": "Ruang Staff",
+  "thumb": "assets/img/up-mvixgkap5op-whatsapp-image-2026-10-22-at-t.webp",
+  "full": "assets/img/up-mvixgkap5op-whatsapp-image-2026-10-22-at-l.webp",
+  "tw": 640,
+  "th": 480
+ },
+ {
+  "cat": "office",
+  "caption": "Ruang Meeting",
+  "thumb": "assets/img/up-mvixgk6y5vx-whatsapp-image-2026-10-22-at-t.webp",
+  "full": "assets/img/up-mvixgk6y5vx-whatsapp-image-2026-10-22-at-l.webp",
+  "tw": 640,
+  "th": 480
+ },
+ {
+  "cat": "office",
+  "caption": "Ruang Staff",
+  "thumb": "assets/img/up-mvixgk2ejjq-whatsapp-image-2026-10-22-at-t.webp",
+  "full": "assets/img/up-mvixgk2ejjq-whatsapp-image-2026-10-22-at-l.webp",
+  "tw": 640,
+  "th": 479
+ },
+ {
+  "cat": "office",
+  "caption": "Ruang Staff",
+  "thumb": "assets/img/up-mvixgjyfxof-whatsapp-image-2026-10-22-at-t.webp",
+  "full": "assets/img/up-mvixgjyfxof-whatsapp-image-2026-10-22-at-l.webp",
+  "tw": 640,
+  "th": 479
+ },
+ {
+  "cat": "office",
+  "caption": "Resepsionis",
+  "thumb": "assets/img/up-mvixgjun8xg-whatsapp-image-2026-10-22-at-t.webp",
+  "full": "assets/img/up-mvixgjun8xg-whatsapp-image-2026-10-22-at-l.webp",
+  "tw": 640,
+  "th": 479
+ },
+ {
+  "cat": "office",
   "caption": "Ruang Training",
   "thumb": "assets/img/up-mviwfgyrbpt-whatsapp-image-2026-10-21-at-t.webp",
   "full": "assets/img/up-mviwfgyrbpt-whatsapp-image-2026-10-21-at-l.webp",
