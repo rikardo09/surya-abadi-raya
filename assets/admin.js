@@ -9,7 +9,7 @@
 
   var CATS = [
     ["products", "Produk Unggulan"], ["services", "Layanan & Fasilitas"],
-    ["training", "Pelatihan Kerja"], ["production", "Proses Produksi"]
+    ["training", "Pelatihan Kerja"], ["production", "Proses Produksi"], ["office", "Ruang Office"]
   ];
   var CATNAME = {}; CATS.forEach(function (c) { CATNAME[c[0]] = c[1]; });
   var DELETABLE = /^assets\/img\/(g-|up-|logos\/)/;

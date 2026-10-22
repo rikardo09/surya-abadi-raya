@@ -8,6 +8,7 @@
 .tone-red   { --ac: #8b0000; --ac-2: #a81c1c; --ac-ink: #8b0000; --ac-tint: #f8e9e9; --ac-on: #fff; }
 .tone-blue  { --ac: #3340a8; --ac-2: #4654c4; --ac-ink: #2c3790; --ac-tint: #e9ebfa; --ac-on: #fff; }
 .tone-amber { --ac: #f2a900; --ac-2: #ffc93c; --ac-ink: #7a4f00; --ac-tint: #fff2cf; --ac-on: #2a1b00; }
+.tone-violet { --ac: #6d3fc0; --ac-2: #8a5ee0; --ac-ink: #5b32a6; --ac-tint: #eee7fb; --ac-on: #fff; }
 .tone-teal  { --ac: #0a6e70; --ac-2: #0d8588; --ac-ink: #0a6163; --ac-tint: #ddf3f3; --ac-on: #fff; }
 
 [hidden] { display: none !important; }

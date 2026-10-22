@@ -588,7 +588,8 @@
     products: ["Produk Unggulan", "red", "stars", "Produk"],
     services: ["Layanan & Fasilitas", "blue", "truck", "Layanan"],
     training: ["Pelatihan Kerja", "amber", "mortarboard", "Pelatihan"],
-    production: ["Proses Produksi", "teal", "scissors", "Produksi"]
+    production: ["Proses Produksi", "teal", "scissors", "Produksi"],
+    office: ["Ruang Office", "violet", "building", "Office"]
   };
   function renderGallery(list) {
     if (!Array.isArray(list)) throw new Error("format");
