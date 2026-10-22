@@ -1,5 +1,13 @@
 [
  {
+  "cat": "office",
+  "caption": "Ruang Training",
+  "thumb": "assets/img/up-mviwfgyrbpt-whatsapp-image-2026-10-21-at-t.webp",
+  "full": "assets/img/up-mviwfgyrbpt-whatsapp-image-2026-10-21-at-l.webp",
+  "tw": 640,
+  "th": 480
+ },
+ {
   "cat": "products",
   "caption": "Seragam Kerja Lengan Panjang",
   "thumb": "assets/img/g-sunstar-t.webp",
